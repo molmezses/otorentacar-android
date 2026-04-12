@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="18dp"
+    app:cardBackgroundColor="@color/bg_card"
+    app:cardCornerRadius="26dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:padding="18dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSelect"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            app:cardBackgroundColor="@color/bg_screen"
+            app:cardCornerRadius="17dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/bg_divider"
+            app:strokeWidth="2dp">
+
+            <ImageView
+                android:id="@+id/ivCheck"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="7dp"
+                android:src="@drawable/ic_check"
+                android:tint="@color/primary_green_dark"
+                android:visibility="gone"
+                tools:ignore="UseAppTint" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvServiceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:lineSpacingExtra="2dp"
+                android:text="Bebek Koltuğu"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvServiceDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:lineSpacingExtra="2dp"
+                android:text="Çocuklu aileler için güvenli koltuk."
+                android:textColor="@color/text_hint"
+                android:textSize="@dimen/text_sm"
+                android:fontFamily="@font/inter_medium"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Günlük Ücret"
+                        android:textColor="@color/text_hint"
+                        android:textSize="@dimen/text_xs"
+                        android:fontFamily="@font/inter_medium"/>
+
+                    <TextView
+                        android:id="@+id/tvServicePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="₺75"
+                        android:textColor="@color/primary_green_dark"
+                        android:textSize="@dimen/text_lg"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/inter_bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnMinus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="@color/primary_green_light"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="−"
+                            android:textColor="@color/primary_green_dark"
+                            android:textSize="@dimen/text_2xl"
+                            android:textStyle="bold" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="1"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_lg"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnPlus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="@color/primary_green_light"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/primary_green_dark"
+                            android:textSize="@dimen/text_2xl"
+                            android:textStyle="bold" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

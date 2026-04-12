@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.edadursun.otorentacar.ui.home.HomeFragment"
+        android:label="HomeFragment" />
+
+    <fragment
+        android:id="@+id/myBookingsFragment"
+        android:name="com.edadursun.otorentacar.ui.mybookings.MyBookingsFragment"
+        android:label="MyBookingsFragment" />
+
+
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.edadursun.otorentacar.ui.contact.ContactFragment"
+        android:label="ContactFragment" />
+
+    <fragment
+        android:id="@+id/reservationDetailFragment"
+        android:name="com.edadursun.otorentacar.ui.reservationdetail.ReservationDetailFragment"
+        android:label="ReservationDetailFragment" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.edadursun.otorentacar.ui.about.AboutFragment"
+        android:label="AboutFragment" />
+
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.edadursun.otorentacar.ui.services.ServicesFragment"
+        android:label="ServicesFragment" />
+
+    <fragment
+        android:id="@+id/allVehiclesFragment"
+        android:name="com.edadursun.otorentacar.ui.allvehicles.AllVehiclesFragment"
+        android:label="AllVehiclesFragment" />
+
+    <fragment
+        android:id="@+id/vehicleListFragment"
+        android:name="com.edadursun.otorentacar.ui.vehiclelist.VehicleListFragment"
+        android:label="VehicleListFragment" />
+
+    <fragment
+        android:id="@+id/vehicleDetailFragment"
+        android:name="com.edadursun.otorentacar.ui.vehicledetail.VehicleDetailFragment"
+        android:label="VehicleDetailFragment" />
+
+    <fragment
+        android:id="@+id/extrasFragment"
+        android:name="com.edadursun.otorentacar.ui.extras.ExtrasFragment"
+        android:label="ExtrasFragment" />
+
+    <fragment
+        android:id="@+id/bookingDetailFragment"
+        android:name="com.edadursun.otorentacar.ui.bookingdetail.BookingDetailFragment"
+        android:label="BookingDetailFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.edadursun.otorentacar.ui.auth.LoginFragment"
+        android:label="LoginFragment" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.edadursun.otorentacar.ui.auth.RegisterFragment"
+        android:label="RegisterFragment" />
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.edadursun.otorentacar.ui.auth.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
+
+</navigation>

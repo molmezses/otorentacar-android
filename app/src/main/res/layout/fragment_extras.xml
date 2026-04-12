@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xl">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="@color/text_primary"
+                    tools:ignore="UseAppTint" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ek Hizmetler"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_2xl"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter_bold"
+                app:layout_constraintBottom_toBottomOf="@id/cardBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardBack" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="18dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    app:cardBackgroundColor="@color/bg_input"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp">
+
+                    <ImageView
+                        android:id="@+id/ivSelectedVehicle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_directions_car"
+                        android:tint="#A7A7AD"
+                        tools:ignore="UseAppTint" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSelectedVehicleName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Renault Clio"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_xl"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSelectedVehicleType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Economy Hatchback"
+                        android:textColor="@color/text_hint"
+                        android:textSize="@dimen/text_sm" />
+
+                    <TextView
+                        android:id="@+id/tvRentalDays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="3 gün kiralama"
+                        android:textColor="@color/primary_green_dark"
+                        android:textSize="@dimen/text_sm" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Yolculuğunu Güçlendir"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_2xl"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/inter_bold"
+            android:lineSpacingExtra="2dp"
+            android:text="İhtiyacına uygun ek hizmetleri seçebilirsin"
+            android:textColor="@color/text_hint"
+            android:textSize="@dimen/text_sm" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInsurancePackages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:nestedScrollingEnabled="false" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExtraServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:nestedScrollingEnabled="false" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="Araç"
+                            android:textColor="@color/text_hint"
+                            android:textSize="@dimen/text_sm" />
+
+                        <TextView
+                            android:id="@+id/tvVehiclePrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="₺3.750"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="Ek Hizmet"
+                            android:textColor="@color/text_hint"
+                            android:textSize="@dimen/text_sm" />
+
+                        <TextView
+                            android:id="@+id/tvExtraPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="₺1.491"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="Toplam"
+                            android:textColor="@color/text_hint"
+                            android:textSize="@dimen/text_sm" />
+
+                        <TextView
+                            android:id="@+id/tvTotalPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="₺5.241"
+                            android:textColor="@color/primary_green_dark"
+                            android:textSize="@dimen/text_xl"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Devam Et"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_lg"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/primary_green_dark"
+                    app:cornerRadius="18dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
