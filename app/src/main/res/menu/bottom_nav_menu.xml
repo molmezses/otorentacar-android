@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="HOME" />
+
+    <item
+        android:id="@+id/myBookingsFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="MY BOOKINGS" />
+
+    <item
+        android:id="@+id/contactFragment"
+        android:icon="@drawable/ic_contact"
+        android:title="CONTACT" />
+
+</menu>

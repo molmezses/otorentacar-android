@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xxl">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_xl">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivDrawerProfile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_profile_circle_green"
+                    android:src="@drawable/logo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseAppTint" />
+
+                <ImageView
+                    android:id="@+id/ivDrawerClose"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UseAppTint" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvDrawerLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xl"
+                android:fontFamily="@font/inter_bold"
+                android:text="Otorentacar"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_3xl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Hoş Geldiniz"
+                android:textColor="@color/primary_green_dark"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/inter_medium"
+                android:lineSpacingExtra="1dp"
+                android:text="Araç kiralama işlemlerini hızlı ve kolay şekilde yönetebilirsiniz."
+                android:textColor="@color/text_hint"
+                android:textSize="@dimen/text_sm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuHome"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp">
+
+            <ImageView
+                android:id="@+id/ivMenuHome"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_home"
+                android:tint="@color/text_secondary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/tvMenuHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Anasayfa"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuBookings"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp">
+
+            <ImageView
+                android:id="@+id/ivMenuBookings"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_directions_car"
+                android:tint="@color/text_secondary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/tvMenuBookings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Rezervasyonlarım"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuAbout"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp">
+
+            <ImageView
+                android:id="@+id/ivMenuAbout"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_info"
+                android:tint="@color/text_secondary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/tvMenuAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Hakkımızda"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuServices"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp">
+
+            <ImageView
+                android:id="@+id/ivMenuServices"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_services"
+                android:tint="@color/text_secondary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/tvMenuServices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Hizmetlerimiz"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menuContact"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/spacing_lg"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="18dp">
+
+            <ImageView
+                android:id="@+id/ivMenuContact"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_support_agent"
+                android:tint="@color/text_secondary"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:id="@+id/tvMenuContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="İletişim"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
