@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -41,9 +41,9 @@
         android:label="AllVehiclesFragment" />
 
     <fragment
-        android:id="@+id/vehicleListFragment"
-        android:name="com.edadursun.otorentacar.ui.vehiclelist.VehicleListFragment"
-        android:label="VehicleListFragment" />
+        android:id="@+id/splashFragment"
+        android:name="com.edadursun.otorentacar.presentation.splash.SplashFragment"
+        android:label="SplashFragment" />
 
     <fragment
         android:id="@+id/vehicleDetailFragment"
@@ -70,9 +70,5 @@
         android:name="com.edadursun.otorentacar.ui.auth.RegisterFragment"
         android:label="RegisterFragment" />
 
-    <fragment
-        android:id="@+id/forgotPasswordFragment"
-        android:name="com.edadursun.otorentacar.ui.auth.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" />
 
 </navigation>
