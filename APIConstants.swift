@@ -11,7 +11,7 @@ enum APIConstants {
     static let baseURL = "https://api.bluesense.ai"
     static let communityBaseURL = "https://community.bluesense.ai/api/v1/community"
 
-    // MARK: - Address Management
+
 
     
     // MARK: - Authentication
@@ -250,6 +250,17 @@ enum APIConstants {
         static let feed = communityBaseURL + "/feed"
         
         static let myPosts = communityBaseURL + "/posts/me"
+        
+        static let mustafa = communityBaseURL + "/posts/me"
+
+        static let eda = communityBaseURL + "/posdasadsts/asd"
+
+        
+        static let ela = communityBaseURL + "/possadsadasdts/me"
+
+        
+        static let volkanhoca  = communityBaseURL + "/posts/me"
+
     }
 
     enum eda {
