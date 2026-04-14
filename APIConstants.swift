@@ -18,10 +18,12 @@ enum APIConstants {
         static func getAddressById(_ id: Int) -> String {
             return baseURL + "/api/v1/addresses/\(id)"
         }
-        static func updateAddressById(_  id: Int) -> String {
+        
+        static func deleteAddressById(_ id: Int) -> String {
             return baseURL + "/api/v1/addresses/\(id)"
         }
-        static func deleteAddressById(_ id: Int) -> String {
+        
+        static func edaadress(_ id: Int) -> String {
             return baseURL + "/api/v1/addresses/\(id)"
         }
     }
@@ -262,6 +264,17 @@ enum APIConstants {
         static let feed = communityBaseURL + "/feed"
         
         static let myPosts = communityBaseURL + "/posts/me"
+        
+        static let mustafa = communityBaseURL + "/posts/me"
+
+        static let eda = communityBaseURL + "/posdasadsts/asd"
+
+        
+        static let ela = communityBaseURL + "/possadsadasdts/me"
+
+        
+        static let volkanhoca  = communityBaseURL + "/posts/me"
+
     }
     
     
