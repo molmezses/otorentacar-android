@@ -3,8 +3,7 @@ package com.edadursun.otorentacar.core.network
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-//Gerçek network işini yapar
-//Bağlantıyı açar,isteği gönderir,cevabı alır,header ekler,loglar
+//Bağlantıyı alır,isteği gönderir,cevabı alır,header ekler,loglar
 //Gerçek isteği internete gönderiyor
 object OkHttpProvider {
 

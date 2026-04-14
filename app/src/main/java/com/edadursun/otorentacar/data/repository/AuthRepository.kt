@@ -5,6 +5,7 @@ import com.edadursun.otorentacar.data.remote.service.AuthApiService
 
 //Viewmodel ile remote katman arasındaki köprü
 //Servicei çağırır,username/password verir,sonucu düzenler,hata olursa yakalar,viewmodele temiz sonuç döner
+//Veriyi getirir, tokeni getirir, isteği atar sonucu düzenler
 class AuthRepository(
     private val authApiService: AuthApiService
 ) {
