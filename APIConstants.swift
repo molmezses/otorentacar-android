@@ -11,22 +11,8 @@ enum APIConstants {
     static let baseURL = "https://api.bluesense.ai"
     static let communityBaseURL = "https://community.bluesense.ai/api/v1/community"
 
-    // MARK: - Address Management
-    enum Address {
-        static let getAll = baseURL + "/api/v1/addresses"
-        static let addAddress = baseURL + "/api/v1/addresses"
-        static func getAddressById(_ id: Int) -> String {
-            return baseURL + "/api/v1/addresses/\(id)"
-        }
-        
-        static func deleteAddressById(_ id: Int) -> String {
-            return baseURL + "/api/v1/addresses/\(id)"
-        }
-        
-        static func edaadress(_ id: Int) -> String {
-            return baseURL + "/api/v1/addresses/\(id)"
-        }
-    }
+
+
     
     // MARK: - Authentication
     enum Auth {
@@ -275,6 +261,13 @@ enum APIConstants {
         
         static let volkanhoca  = communityBaseURL + "/posts/me"
 
+    }
+
+    enum eda {
+        static let login = baseURL + "/api/v1/auth/login"
+        static let refreshToken = baseURL + "/api/v1/auth/refresh-token"
+        static let validateEmailWithCode = baseURL + "/api/v1/auth/password/validate-email-with-code"
+        static let eda = baseURL + "eda"
     }
     
     
