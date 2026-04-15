@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 //Bağlantıyı alır,isteği gönderir,cevabı alır,header ekler,loglar
-//Gerçek isteği internete gönderiyor
+//Gerçek isteği internete gönderiyorrrrrr
 object OkHttpProvider {
 
     fun create(): OkHttpClient {
