@@ -64,16 +64,37 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // Araç Bul butonu: tarih kontrolü yapar ve araç listesine gider
         binding.btnFindCar.setOnClickListener {
-            //dskmfsdgmksdgmdsmfksdgmsdh
+
+            val pickupLocation = viewModel.selectedPickupLocation.value
+
+            if (pickupLocation == null) {
+                binding.tvDateValidationError.text = "Lütfen alış lokasyonu seçin."
+                binding.tvDateValidationError.visibility = View.VISIBLE
+                return@setOnClickListener
+            }
+
+            //Kullanıcı drop off seçmediyse drop offu pick up lokasyonu ile aynı seç
+            val dropOffLocation = if (
+                binding.switchDrop.isChecked &&
+                viewModel.selectedDropOffLocation.value != null
+            ) {
+                viewModel.selectedDropOffLocation.value
+            } else {
+                pickupLocation
+            }
+            
             val pickupDateTime = getPickupDateTime()
             val dropOffDateTime = getDropOffDateTime()
 
             binding.tvDateValidationError.visibility = View.GONE
 
             // Dönüş tarihi, alış tarihinden sonra olmalı
-            if (!dropOffDateTime.after(pickupDateTime)) {
+            val minDropOffTime = pickupDateTime.clone() as Calendar
+            minDropOffTime.add(Calendar.HOUR_OF_DAY, 1)
+
+            if (dropOffDateTime.before(minDropOffTime)) {
                 binding.tvDateValidationError.text =
-                    "Dönüş tarihi, alış tarihinden sonra olmalıdır."
+                    "Araç teslim tarihi,alış tarihinizden sonra olmak zorundadır.Lütfen alış ve teslim tarihinizi gözden geçiriniz."
                 binding.tvDateValidationError.visibility = View.VISIBLE
                 return@setOnClickListener
             }
@@ -86,7 +107,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(R.id.allVehiclesFragment, bundle)
         }
 
-        // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
+                // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
         binding.switchDrop.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.layoutDropOffSection.visibility = View.VISIBLE
