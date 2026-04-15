@@ -82,7 +82,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             } else {
                 pickupLocation
             }
-
+            
             val pickupDateTime = getPickupDateTime()
             val dropOffDateTime = getDropOffDateTime()
 
