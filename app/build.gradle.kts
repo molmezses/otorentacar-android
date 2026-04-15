@@ -1,6 +1,12 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+val localProperties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -15,6 +21,22 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "RIKA_BASE_URL",
+            "\"${localProperties.getProperty("RIKA_BASE_URL")}\""
+        )
+        buildConfigField(
+            "String",
+            "RIKA_USERNAME",
+            "\"${localProperties.getProperty("RIKA_USERNAME")}\""
+        )
+        buildConfigField(
+            "String",
+            "RIKA_PASSWORD",
+            "\"${localProperties.getProperty("RIKA_PASSWORD")}\""
+        )
     }
 
     buildTypes {
@@ -26,6 +48,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,6 +59,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 }
@@ -60,4 +84,9 @@ dependencies {
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("com.google.android.material:material:1.12.0")
 
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 }
