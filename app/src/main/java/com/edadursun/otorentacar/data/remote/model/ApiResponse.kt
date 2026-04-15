@@ -1,7 +1,6 @@
 package com.edadursun.otorentacar.data.remote.model
 
-//Ortak API response modeli - DIŞ RESPONSE
-//Amaç: her endpoint için tekrar tekrar status,data,description yazmamak
+//APIdan gelen cevabın dış kabuğu - Kapalı bi zarf içerisinde 3 parça içeriği var
 data class ApiResponse<T>(
     val status: Int, //1 başarılı 1 dışında her şey başarısız
     val data: T?,    //sorguya dönen json tipindeki nesne

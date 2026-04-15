@@ -14,7 +14,6 @@
         android:name="com.edadursun.otorentacar.ui.mybookings.MyBookingsFragment"
         android:label="MyBookingsFragment" />
 
-
     <fragment
         android:id="@+id/contactFragment"
         android:name="com.edadursun.otorentacar.ui.contact.ContactFragment"
@@ -43,7 +42,13 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.edadursun.otorentacar.presentation.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:label="SplashFragment">
+
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/vehicleDetailFragment"

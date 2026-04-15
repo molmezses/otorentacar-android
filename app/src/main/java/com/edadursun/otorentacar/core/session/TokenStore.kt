@@ -1,6 +1,7 @@
 package com.edadursun.otorentacar.core.session
 
-
+//Tokeni tutan yer, uygulama açıkken kullandığımız tokeni hafızada tutar, tokeni saklar
+//Her yerde ayrı token değişkeni olmasın tek merkezden erişilsin diye object olarak tanımladık
 object TokenStore {
 
     //Neden private set ? herkes gidip direkt yazamasın

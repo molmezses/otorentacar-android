@@ -9,7 +9,7 @@ import retrofit2.http.POST
 //Api ile konuşmanın arayüzü
 //Hangi endpoint çağrılcak, hangi method kullanılacak
 //Hangi parametreler gönderilcek , hangi model döncek
-//Ne çağrılacağını tarif eder
+//Ne çağrılacağını tarif eder,ne yapılacağını söyler
 interface AuthApiService {
 
     @FormUrlEncoded
