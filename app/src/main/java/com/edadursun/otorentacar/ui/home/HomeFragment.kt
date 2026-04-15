@@ -64,6 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // Araç Bul butonu: tarih kontrolü yapar ve araç listesine gider
         binding.btnFindCar.setOnClickListener {
+            //dskmfsdgmksdgmdsmfksdgmsdh
             val pickupDateTime = getPickupDateTime()
             val dropOffDateTime = getDropOffDateTime()
 
