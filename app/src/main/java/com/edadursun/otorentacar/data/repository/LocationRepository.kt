@@ -23,4 +23,5 @@ class LocationRepository(
             Result.failure(e)
         }
     }
+
 }

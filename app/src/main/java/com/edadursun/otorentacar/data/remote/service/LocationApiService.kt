@@ -14,4 +14,5 @@ interface LocationApiService {
     suspend fun searchLocations(
         @Field("token") token: String
     ): ApiResponse<SearchLocationsResponse>
+
 }

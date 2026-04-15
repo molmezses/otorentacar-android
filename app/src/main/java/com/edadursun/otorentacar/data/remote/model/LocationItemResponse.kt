@@ -7,3 +7,4 @@ data class LocationItemResponse(
     val id: Int,
     val name: String
 )
+
