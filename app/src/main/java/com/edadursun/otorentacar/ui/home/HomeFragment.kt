@@ -19,6 +19,7 @@ import java.util.Locale
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import java.util.TimeZone
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -26,13 +27,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding get() = _binding!!
 
     // Kullanıcının seçtiği alış / dönüş tarih-saat bilgileri
-    private val pickupDateCalendar = Calendar.getInstance()
-    private val dropOffDateCalendar = Calendar.getInstance()
-    private val pickupTimeCalendar = Calendar.getInstance()
-    private val dropOffTimeCalendar = Calendar.getInstance()
+    private val turkeyTimeZone: TimeZone = TimeZone.getTimeZone("Europe/Istanbul")
+    private val pickupDateCalendar = Calendar.getInstance(turkeyTimeZone)
+    private val dropOffDateCalendar = Calendar.getInstance(turkeyTimeZone)
+    private val pickupTimeCalendar = Calendar.getInstance(turkeyTimeZone)
+    private val dropOffTimeCalendar = Calendar.getInstance(turkeyTimeZone)
 
     // Home ekranına ait ViewModel
     private val viewModel: HomeViewModel by viewModels()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,7 +76,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 return@setOnClickListener
             }
 
-            //Kullanıcı drop off seçmediyse drop offu pick up lokasyonu ile aynı seç
             val dropOffLocation = if (
                 binding.switchDrop.isChecked &&
                 viewModel.selectedDropOffLocation.value != null
@@ -88,26 +90,56 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             binding.tvDateValidationError.visibility = View.GONE
 
-            // Dönüş tarihi, alış tarihinden sonra olmalı
-            val minDropOffTime = pickupDateTime.clone() as Calendar
-            minDropOffTime.add(Calendar.HOUR_OF_DAY, 1)
+            val now = Calendar.getInstance(turkeyTimeZone)
 
-            if (dropOffDateTime.before(minDropOffTime)) {
-                binding.tvDateValidationError.text =
-                    "Araç teslim tarihi,alış tarihinizden sonra olmak zorundadır.Lütfen alış ve teslim tarihinizi gözden geçiriniz."
-                binding.tvDateValidationError.visibility = View.VISIBLE
-                return@setOnClickListener
+            val pickupIsToday =
+                pickupDateTime.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
+                        pickupDateTime.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
+
+            // Eğer alış tarihi bugünse, alış saati şu andan en az 1 saat sonrası olmalı
+            if (pickupIsToday) {
+                val minPickupTime = now.clone() as Calendar
+                minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
+
+                if (pickupDateTime.before(minPickupTime)) {
+                    binding.tvDateValidationError.text =
+                        "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                    binding.tvDateValidationError.visibility = View.VISIBLE
+                    return@setOnClickListener
+                }
+
+                // Bugün alınan araç için iade tarihi en az yarın olmalı
+                val minDropOffDate = pickupDateTime.clone() as Calendar
+                minDropOffDate.add(Calendar.DAY_OF_MONTH, 1)
+
+                if (dropOffDateTime.before(minDropOffDate)) {
+                    binding.tvDateValidationError.text =
+                        "Bugün alınan araç için iade tarihi en az yarın olmalıdır."
+                    binding.tvDateValidationError.visibility = View.VISIBLE
+                    return@setOnClickListener
+                }
+            } else {
+                // Pickup bugün değilse, iade tarihi-saati pickup'tan önce olamaz
+                if (dropOffDateTime.before(pickupDateTime)) {
+                    binding.tvDateValidationError.text =
+                        "İade saati, alış saatinden önce olamaz."
+                    binding.tvDateValidationError.visibility = View.VISIBLE
+                    return@setOnClickListener
+                }
             }
 
             val bundle = Bundle().apply {
                 putLong("pickupMillis", pickupDateTime.timeInMillis)
                 putLong("dropoffMillis", dropOffDateTime.timeInMillis)
+                putInt("pickupLocationId", pickupLocation.id)
+                putInt("dropOffLocationId", dropOffLocation!!.id)
             }
 
             findNavController().navigate(R.id.allVehiclesFragment, bundle)
         }
 
-                // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
+
+        // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
         binding.switchDrop.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.layoutDropOffSection.visibility = View.VISIBLE
@@ -155,28 +187,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    // ViewModel'deki mevcut lokasyon listesini al
-    private fun showLocationPicker(isPickup: Boolean) {
-        val locations = viewModel.locations.value
-
-        if (locations.isEmpty()) return
-
-        // Dialogda göstermek için sadece isim listesini çıkar
-        val locationNames = locations.map { it.name }.toTypedArray()
-
-        AlertDialog.Builder(requireContext())
-            .setItems(locationNames) { _, which ->
-                val selectedLocation = locations[which]
-
-                // Kullanıcının seçimine göre pickup veya dropoff state'ini güncelle
-                if (isPickup) {
-                    viewModel.selectPickupLocation(selectedLocation)
-                } else {
-                    viewModel.selectDropOffLocation(selectedLocation)
-                }
-            }
-            .show()
-    }
 
     // Tarih hatası gösterimini temizler
     private fun clearDateError() {
@@ -271,7 +281,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     // İlk açılışta varsayılan tarih-saat değerlerini ayarla
     private fun setupInitialDateTime() {
-        val now = Calendar.getInstance()
+        val now = Calendar.getInstance(turkeyTimeZone)
 
         pickupDateCalendar.timeInMillis = now.timeInMillis
         pickupTimeCalendar.timeInMillis = now.timeInMillis
@@ -312,12 +322,46 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         calendar: Calendar,
         onTimeSelected: () -> Unit
     ) {
-        // Ortak saat seçici
         TimePickerDialog(
             requireContext(),
             { _, hourOfDay, minute ->
+
+                val tempCalendar = Calendar.getInstance(turkeyTimeZone)
+                tempCalendar.timeInMillis = calendar.timeInMillis
+                tempCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                tempCalendar.set(Calendar.MINUTE, minute)
+                tempCalendar.set(Calendar.SECOND, 0)
+                tempCalendar.set(Calendar.MILLISECOND, 0)
+
+                // Eğer pickup saatini seçiyorsak ve pickup tarihi bugünse
+                if (calendar === pickupTimeCalendar) {
+                    val pickupDate = Calendar.getInstance(turkeyTimeZone).apply {
+                        timeInMillis = pickupDateCalendar.timeInMillis
+                    }
+
+                    val now = Calendar.getInstance(turkeyTimeZone)
+                    val sameDayAsToday =
+                        pickupDate.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
+                                pickupDate.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
+
+                    if (sameDayAsToday) {
+                        val minPickupTime = now.clone() as Calendar
+                        minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
+
+                        if (tempCalendar.before(minPickupTime)) {
+                            binding.tvDateValidationError.text =
+                                "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                            binding.tvDateValidationError.visibility = View.VISIBLE
+                            return@TimePickerDialog
+                        }
+                    }
+                }
+
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendar.set(Calendar.MINUTE, minute)
+                calendar.set(Calendar.SECOND, 0)
+                calendar.set(Calendar.MILLISECOND, 0)
+
                 onTimeSelected()
             },
             calendar.get(Calendar.HOUR_OF_DAY),
@@ -330,8 +374,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     // Seçilen pickup tarihini UI'a yaz
     private fun updatePickupDateText() {
         binding.tvPickupDate.text = formatDateForCard(pickupDateCalendar)
+        updateDropOffIfNeeded()
         clearDateError()
     }
+
 
     // Seçilen dropoff tarihini UI'a yaz
     private fun updateDropOffDateText() {
@@ -342,6 +388,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     // Seçilen pickup saatini UI'a yaz
     private fun updatePickupTimeText() {
         binding.tvPickupTime.text = formatTimeForCard(pickupTimeCalendar)
+        updateDropOffIfNeeded()
         clearDateError()
     }
 
@@ -355,51 +402,79 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun updateDropOffIfNeeded() {
         val pickup = getPickupDateTime()
         val dropoff = getDropOffDateTime()
+        val today = Calendar.getInstance(turkeyTimeZone)
 
-        if (!dropoff.after(pickup)) {
-            dropOffDateCalendar.timeInMillis = pickupDateCalendar.timeInMillis
-            dropOffDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
+        val pickupIsToday =
+            pickup.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                    pickup.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
 
-            dropOffTimeCalendar.set(
-                Calendar.HOUR_OF_DAY,
-                pickupTimeCalendar.get(Calendar.HOUR_OF_DAY)
-            )
-            dropOffTimeCalendar.set(Calendar.MINUTE, pickupTimeCalendar.get(Calendar.MINUTE))
+        if (pickupIsToday) {
+            val minDropOff = pickup.clone() as Calendar
+            minDropOff.add(Calendar.DAY_OF_MONTH, 1)
 
-            updateDropOffDateText()
-            updateDropOffTimeText()
+            if (dropoff.before(minDropOff)) {
+                dropOffDateCalendar.timeInMillis = minDropOff.timeInMillis
+                dropOffTimeCalendar.timeInMillis = minDropOff.timeInMillis
+
+                updateDropOffDateText()
+                updateDropOffTimeText()
+            }
+        } else {
+            if (dropoff.before(pickup)) {
+                dropOffDateCalendar.timeInMillis = pickup.timeInMillis
+                dropOffTimeCalendar.timeInMillis = pickup.timeInMillis
+
+                updateDropOffDateText()
+                updateDropOffTimeText()
+            }
         }
     }
 
     // Kart içindeki tarih formatı: 09 Nis\n2026
     private fun formatDateForCard(calendar: Calendar): String {
-        val day = SimpleDateFormat("dd", Locale("tr")).format(calendar.time)
-        val month = SimpleDateFormat("MMM", Locale("tr")).format(calendar.time)
-            .replaceFirstChar { it.uppercase() }
-        val year = SimpleDateFormat("yyyy", Locale("tr")).format(calendar.time)
+        val dayFormat = SimpleDateFormat("dd", Locale("tr")).apply {
+            timeZone = turkeyTimeZone
+        }
+        val monthFormat = SimpleDateFormat("MMM", Locale("tr")).apply {
+            timeZone = turkeyTimeZone
+        }
+        val yearFormat = SimpleDateFormat("yyyy", Locale("tr")).apply {
+            timeZone = turkeyTimeZone
+        }
+
+        val day = dayFormat.format(calendar.time)
+        val month = monthFormat.format(calendar.time).replaceFirstChar { it.uppercase() }
+        val year = yearFormat.format(calendar.time)
+
         return "$day $month\n$year"
     }
 
     // Kart içindeki saat formatı: 10:00
     private fun formatTimeForCard(calendar: Calendar): String {
-        return SimpleDateFormat("HH:mm", Locale("tr")).format(calendar.time)
+        return SimpleDateFormat("HH:mm", Locale("tr")).apply {
+            timeZone = turkeyTimeZone
+        }.format(calendar.time)
     }
 
     // Pickup tarih ve saatini tek Calendar içinde birleştirir
     private fun getPickupDateTime(): Calendar {
-        val calendar = Calendar.getInstance()
+        val calendar = Calendar.getInstance(turkeyTimeZone)
         calendar.timeInMillis = pickupDateCalendar.timeInMillis
         calendar.set(Calendar.HOUR_OF_DAY, pickupTimeCalendar.get(Calendar.HOUR_OF_DAY))
         calendar.set(Calendar.MINUTE, pickupTimeCalendar.get(Calendar.MINUTE))
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
         return calendar
     }
 
     // Dropoff tarih ve saatini tek Calendar içinde birleştirir
     private fun getDropOffDateTime(): Calendar {
-        val calendar = Calendar.getInstance()
+        val calendar = Calendar.getInstance(turkeyTimeZone)
         calendar.timeInMillis = dropOffDateCalendar.timeInMillis
         calendar.set(Calendar.HOUR_OF_DAY, dropOffTimeCalendar.get(Calendar.HOUR_OF_DAY))
         calendar.set(Calendar.MINUTE, dropOffTimeCalendar.get(Calendar.MINUTE))
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
         return calendar
     }
 
