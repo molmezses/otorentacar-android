@@ -2,6 +2,7 @@ package com.edadursun.otorentacar.core.network
 
 import com.edadursun.otorentacar.data.remote.service.AuthApiService
 import com.edadursun.otorentacar.data.remote.service.LocationApiService
+import com.edadursun.otorentacar.data.remote.service.VehicleApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,6 +19,10 @@ object RetrofitProvider {
 
     val authApiService: AuthApiService = retrofit.create(AuthApiService::class.java)
 
-    val locationApiService: LocationApiService =
-        retrofit.create(LocationApiService::class.java)
+    //LocationApiService i çalışan nesneye çevirir
+    val locationApiService: LocationApiService = retrofit.create(LocationApiService::class.java)
+
+    //VehicleApiService i çalışan nesneye çevirir
+    val vehicleApiService: VehicleApiService = retrofit.create(VehicleApiService::class.java)
+
 }

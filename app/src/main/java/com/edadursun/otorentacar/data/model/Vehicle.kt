@@ -12,5 +12,7 @@ data class Vehicle(
     val passengerCount: String,
     val bagCount: String,
     val tag: String,
-    val imageResId: Int
+    val imageResId: Int,
+    val orderNo: Int
+
 )

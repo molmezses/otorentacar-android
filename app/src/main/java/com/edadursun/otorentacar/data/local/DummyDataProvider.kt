@@ -21,7 +21,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "POPULAR",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 2,
@@ -34,7 +35,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "ÖNERİLEN",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 3,
@@ -47,7 +49,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "POPULAR",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             )
         )
     }
@@ -88,7 +91,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "POPULAR",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 2,
@@ -101,7 +105,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "ÖNERİLEN",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 3,
@@ -114,7 +119,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "3",
                 tag = "POPULAR",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 4,
@@ -127,7 +133,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "2",
                 tag = "ÖNERİLEN",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             ),
             Vehicle(
                 id = 5,
@@ -140,7 +147,8 @@ object DummyDataProvider {
                 passengerCount = "5",
                 bagCount = "3",
                 tag = "POPULAR",
-                imageResId = R.drawable.car_placeholder
+                imageResId = R.drawable.car_placeholder,
+                orderNo = 3
             )
         )
     }
