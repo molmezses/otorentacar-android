@@ -4,6 +4,11 @@ data class ExtraService(
     val id: Int,
     val name: String,
     val description: String,
-    val price: String,
-    var quantity: Int = 1
+    val price: Double,
+    val currencySymbol: String,
+    val maxCount: Int,
+    val priceCalculationType: String,
+    val orderNo: Int,
+    val isSelected: Boolean = false,
+    val quantity: Int = 0
 )

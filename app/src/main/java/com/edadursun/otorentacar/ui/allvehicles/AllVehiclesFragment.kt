@@ -101,18 +101,32 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
     // RecyclerView başlangıç ayarları
     private fun setupRecyclerView() {
         binding.rvAllVehicles.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvAllVehicles.adapter = AllVehiclesAdapter(emptyList()) {
-            findNavController().navigate(R.id.extrasFragment)
+        binding.rvAllVehicles.adapter = AllVehiclesAdapter(emptyList()) { selectedVehicle ->
+            navigateToExtras(selectedVehicle)
         }
     }
 
     // Yeni gelen araç listesiyle adapter'ı yeniler
     private fun refreshVehicleList(newList: List<Vehicle>) {
         currentVehicles = newList
-        binding.rvAllVehicles.adapter = AllVehiclesAdapter(currentVehicles) {
-            findNavController().navigate(R.id.extrasFragment)
+        binding.rvAllVehicles.adapter = AllVehiclesAdapter(currentVehicles) { selectedVehicle ->
+            navigateToExtras(selectedVehicle)
         }
         setupHeader()
+    }
+
+    private fun navigateToExtras(vehicle: Vehicle) {
+        val bundle = Bundle().apply {
+            putInt("vehicleId", vehicle.id)
+            putString("vehicleName", vehicle.name)
+            putString("vehicleType", vehicle.type)
+            putString("vehicleDailyPrice", vehicle.dailyPrice)
+            putString("vehicleTotalPrice", vehicle.totalPrice)
+            putLong("pickupMillis", pickupMillis)
+            putLong("dropoffMillis", dropoffMillis)
+        }
+
+        findNavController().navigate(R.id.extrasFragment, bundle)
     }
 
     // Geri, filtre ve sıralama tıklamalarını ayarlar

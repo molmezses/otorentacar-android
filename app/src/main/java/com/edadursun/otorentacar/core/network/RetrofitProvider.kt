@@ -1,6 +1,7 @@
 package com.edadursun.otorentacar.core.network
 
 import com.edadursun.otorentacar.data.remote.service.AuthApiService
+import com.edadursun.otorentacar.data.remote.service.ExtrasApiService
 import com.edadursun.otorentacar.data.remote.service.LocationApiService
 import com.edadursun.otorentacar.data.remote.service.VehicleApiService
 import retrofit2.Retrofit
@@ -24,5 +25,8 @@ object RetrofitProvider {
 
     //VehicleApiService i çalışan nesneye çevirir
     val vehicleApiService: VehicleApiService = retrofit.create(VehicleApiService::class.java)
+
+    //ExtrasApiService i çalışan nesneye çevirir
+    val extrasApiService : ExtrasApiService = retrofit.create(ExtrasApiService::class.java)
 
 }

@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-// Araç listesi ekranında UI'ın hangi durumda olduğunu temsil eder
 sealed class AllVehiclesUiState {
     object Idle : AllVehiclesUiState()
     object Loading : AllVehiclesUiState()
@@ -92,7 +91,7 @@ class AllVehiclesViewModel : ViewModel() {
 
         // UI'da gösterilecek metinler
         val dailyPriceText = "$currencyText${formatPrice(dailyPriceValue)}"
-        val totalPriceText = "Toplam $currencyText${formatPrice(totalPriceValue)}"
+        val totalPriceText = "$currencyText${formatPrice(totalPriceValue)}"
 
         return Vehicle(
             id = modelId,
