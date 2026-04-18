@@ -193,24 +193,33 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     // Form alanlarının boş geçilmesini engeller
     private fun validateInputs(): Boolean {
         val fullName = binding.etFullName.text?.toString()?.trim().orEmpty()
-        val phone = binding.etPhone.text?.toString()?.trim().orEmpty()
+        val phoneRaw = binding.etPhone.text?.toString()?.trim().orEmpty()
         val birthDate = binding.etBirthDate.text?.toString()?.trim().orEmpty()
         val email = binding.etEmail.text?.toString()?.trim().orEmpty()
 
+        val phoneDigits = phoneRaw.filter { it.isDigit() }
+        val nameParts = fullName.split("\\s+".toRegex()).filter { it.isNotBlank() }
+
         var isValid = true
 
-        binding.tilFullName.error = null
-        binding.tilPhone.error = null
-        binding.tilBirthDate.error = null
-        binding.tilEmail.error = null
+        clearFormErrors()
 
         if (fullName.isEmpty()) {
-            binding.tilFullName.error = "Lütfen ad soyad girin."
+            binding.tilFullName.error = "Lütfen ad ve soyad girin."
+            isValid = false
+        } else if (nameParts.size < 2) {
+            binding.tilFullName.error = "Lütfen ad ve soyadınızı birlikte girin."
             isValid = false
         }
 
-        if (phone.isEmpty()) {
+        if (phoneRaw.isEmpty()) {
             binding.tilPhone.error = "Lütfen telefon numarası girin."
+            isValid = false
+        } else if (phoneDigits.length < 10) {
+            binding.tilPhone.error = "Telefon numarası en az 10 rakam olmalıdır."
+            isValid = false
+        } else if (phoneDigits.length > 11) {
+            binding.tilPhone.error = "Telefon numarası en fazla 11 rakam olmalıdır."
             isValid = false
         }
 
@@ -228,6 +237,15 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         }
 
         return isValid
+    }
+
+    //Ortak error temizleme fonksiyonu
+    private fun clearFormErrors() {
+        binding.tilFullName.error = null
+        binding.tilPhone.error = null
+        binding.tilBirthDate.error = null
+        binding.tilEmail.error = null
+        binding.tilFlightCode.error = null
     }
 
     // API için full name'i name + surname olarak ayırmakta kullanacağız
@@ -286,9 +304,48 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
                         binding.btnCompleteReservation.isEnabled = true
                         binding.btnCompleteReservation.text = "Rezervasyonu Tamamla"
 
+                        showApiValidationError(state.message)
                         Log.e("ADD_RESERVATION", "Rezervasyon hatası: ${state.message}")
                     }
                 }
+            }
+        }
+    }
+
+    private fun showApiValidationError(message: String) {
+        clearFormErrors()
+
+        when {
+            message.contains("Soyad", ignoreCase = true) -> {
+                binding.tilFullName.error = "Lütfen ad ve soyadınızı eksiksiz girin."
+            }
+
+            message.contains("Ad", ignoreCase = true) -> {
+                binding.tilFullName.error = "Lütfen adınızı girin."
+            }
+
+            message.contains("Telefon", ignoreCase = true) ||
+                    message.contains("phone", ignoreCase = true) -> {
+                binding.tilPhone.error = "Lütfen geçerli bir telefon numarası girin."
+            }
+
+            message.contains("Doğum Tarihi", ignoreCase = true) ||
+                    message.contains("birth", ignoreCase = true) -> {
+                binding.tilBirthDate.error = "Lütfen geçerli bir doğum tarihi seçin."
+            }
+
+            message.contains("E-posta", ignoreCase = true) ||
+                    message.contains("email", ignoreCase = true) -> {
+                binding.tilEmail.error = "Lütfen geçerli bir e-posta girin."
+            }
+
+            message.contains("Uçuş", ignoreCase = true) ||
+                    message.contains("flight", ignoreCase = true) -> {
+                binding.tilFlightCode.error = "Lütfen geçerli bir uçuş kodu girin."
+            }
+
+            else -> {
+                binding.tilFullName.error = message
             }
         }
     }
@@ -347,19 +404,21 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         }
 
         val extraNameMap = mapOf(
-            "6" to "Navigasyon Cihazı",
-            "5" to "Süper Hasar Güvencesi",
+            "1" to "Navigasyon Cihazı",
+            "2" to "Muafiyetsiz Kaza Güvencesi",
+            "3" to "Süper Hasar Güvencesi",
             "4" to "Mini Hasar Güvencesi",
-            "3" to "Ek Sürücü",
-            "2" to "Bebek Koltuğu (0-3 yaş)"
+            "5" to "Ek Sürücü",
+            "6" to "Bebek Koltuğu (0-3 yaş)"
         )
 
         val extraPriceMap = mapOf(
-            "6" to "€6",
-            "5" to "€6",
+            "1" to "€2",
+            "2" to "€8",
+            "3" to "€6",
             "4" to "€4",
-            "3" to "€5",
-            "2" to "€3"
+            "5" to "€5",
+            "6" to "€3"
         )
 
         val entries = groupedExtras.entries.toList()

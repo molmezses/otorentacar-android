@@ -34,10 +34,10 @@
             app:cardBackgroundColor="@color/bg_card"
             app:cardCornerRadius="28dp"
             app:cardElevation="0dp"
-            app:strokeWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:id="@+id/customBottomBar"
@@ -82,11 +82,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="HOME"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Rezervasyon"
                         android:textColor="@color/bottom_nav_active"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,11 +122,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="MY BOOKINGS"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Rezervasyon Sorgu"
                         android:textColor="@color/bottom_nav_inactive"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,11 +162,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="CONTACT"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="İletişim"
                         android:textColor="@color/bottom_nav_inactive"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
