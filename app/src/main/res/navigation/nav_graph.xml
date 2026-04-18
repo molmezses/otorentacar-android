@@ -25,6 +25,17 @@
         android:label="ReservationDetailFragment" />
 
     <fragment
+        android:id="@+id/reservationSuccessFragment"
+        android:name="com.edadursun.otorentacar.ui.reservationsuccess.ReservationSuccessFragment"
+        android:label="SuccessReservationFragment"/>
+
+    <action
+        android:id="@+id/action_reservationSuccessFragment_to_homeFragment"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+
+    <fragment
         android:id="@+id/aboutFragment"
         android:name="com.edadursun.otorentacar.ui.about.AboutFragment"
         android:label="AboutFragment" />

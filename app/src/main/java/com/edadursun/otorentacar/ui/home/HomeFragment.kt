@@ -18,6 +18,9 @@ import java.util.Calendar
 import java.util.Locale
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
+import com.google.android.material.timepicker.TimeFormat
 import kotlinx.coroutines.launch
 import java.util.TimeZone
 
@@ -84,7 +87,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             } else {
                 pickupLocation
             }
-            
+
             val pickupDateTime = getPickupDateTime()
             val dropOffDateTime = getDropOffDateTime()
 
@@ -186,7 +189,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(R.id.allVehiclesFragment)
         }
     }
-
 
     // Tarih hatası gösterimini temizler
     private fun clearDateError() {
@@ -322,52 +324,57 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         calendar: Calendar,
         onTimeSelected: () -> Unit
     ) {
-        TimePickerDialog(
-            requireContext(),
-            { _, hourOfDay, minute ->
+        val picker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_24H)
+            .setHour(calendar.get(Calendar.HOUR_OF_DAY))
+            .setMinute(calendar.get(Calendar.MINUTE))
+            .setTitleText("Saat Seç")
+            .setInputMode(INPUT_MODE_KEYBOARD)
+            .build()
 
-                val tempCalendar = Calendar.getInstance(turkeyTimeZone)
-                tempCalendar.timeInMillis = calendar.timeInMillis
-                tempCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                tempCalendar.set(Calendar.MINUTE, minute)
-                tempCalendar.set(Calendar.SECOND, 0)
-                tempCalendar.set(Calendar.MILLISECOND, 0)
+        picker.addOnPositiveButtonClickListener {
+            val hourOfDay = picker.hour
+            val minute = picker.minute
 
-                // Eğer pickup saatini seçiyorsak ve pickup tarihi bugünse
-                if (calendar === pickupTimeCalendar) {
-                    val pickupDate = Calendar.getInstance(turkeyTimeZone).apply {
-                        timeInMillis = pickupDateCalendar.timeInMillis
-                    }
+            val tempCalendar = Calendar.getInstance(turkeyTimeZone)
+            tempCalendar.timeInMillis = calendar.timeInMillis
+            tempCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            tempCalendar.set(Calendar.MINUTE, minute)
+            tempCalendar.set(Calendar.SECOND, 0)
+            tempCalendar.set(Calendar.MILLISECOND, 0)
 
-                    val now = Calendar.getInstance(turkeyTimeZone)
-                    val sameDayAsToday =
-                        pickupDate.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
-                                pickupDate.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
-
-                    if (sameDayAsToday) {
-                        val minPickupTime = now.clone() as Calendar
-                        minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
-
-                        if (tempCalendar.before(minPickupTime)) {
-                            binding.tvDateValidationError.text =
-                                "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
-                            binding.tvDateValidationError.visibility = View.VISIBLE
-                            return@TimePickerDialog
-                        }
-                    }
+            if (calendar === pickupTimeCalendar) {
+                val pickupDate = Calendar.getInstance(turkeyTimeZone).apply {
+                    timeInMillis = pickupDateCalendar.timeInMillis
                 }
 
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                calendar.set(Calendar.MINUTE, minute)
-                calendar.set(Calendar.SECOND, 0)
-                calendar.set(Calendar.MILLISECOND, 0)
+                val now = Calendar.getInstance(turkeyTimeZone)
+                val sameDayAsToday =
+                    pickupDate.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
+                            pickupDate.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
 
-                onTimeSelected()
-            },
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
-            true
-        ).show()
+                if (sameDayAsToday) {
+                    val minPickupTime = now.clone() as Calendar
+                    minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
+
+                    if (tempCalendar.before(minPickupTime)) {
+                        binding.tvDateValidationError.text =
+                            "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                        binding.tvDateValidationError.visibility = View.VISIBLE
+                        return@addOnPositiveButtonClickListener
+                    }
+                }
+            }
+
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
+
+            onTimeSelected()
+        }
+
+        picker.show(childFragmentManager, "material_time_picker")
     }
 
 

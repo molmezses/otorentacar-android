@@ -26,4 +26,6 @@
     <color name="bottom_nav_active">#138A36</color>
     <color name="bottom_nav_inactive">#8A8A8A</color>
 
+    <color name="error_red">#9E1414</color>
+
 </resources>
