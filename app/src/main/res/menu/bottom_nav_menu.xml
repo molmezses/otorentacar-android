@@ -4,16 +4,16 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="HOME" />
+        android:title="Rezervasyon" />
 
     <item
         android:id="@+id/myBookingsFragment"
         android:icon="@drawable/ic_calendar"
-        android:title="MY BOOKINGS" />
+        android:title="Rezervasyon Sorgula" />
 
     <item
         android:id="@+id/contactFragment"
         android:icon="@drawable/ic_contact"
-        android:title="CONTACT" />
+        android:title="İletişim" />
 
 </menu>

@@ -87,16 +87,15 @@ class MainActivity : AppCompatActivity() {
             R.id.aboutFragment,
             R.id.servicesFragment,
             R.id.allVehiclesFragment,
-            R.id.vehicleDetailFragment,
             R.id.extrasFragment,
-            R.id.reservationDetailFragment,
-            R.id.bookingDetailFragment -> {
+            R.id.reservationDetailFragment -> {
                 binding.navHomeIndicator.setCardBackgroundColor(getColor(R.color.bottom_nav_selected_bg))
                 binding.ivNavHome.setColorFilter(getColor(R.color.bottom_nav_active))
                 binding.tvNavHome.setTextColor(getColor(R.color.bottom_nav_active))
             }
 
-            R.id.myBookingsFragment -> {
+            R.id.myBookingsFragment,
+            R.id.bookingDetailFragment-> {
                 binding.navBookingsIndicator.setCardBackgroundColor(getColor(R.color.bottom_nav_selected_bg))
                 binding.ivNavBookings.setColorFilter(getColor(R.color.bottom_nav_active))
                 binding.tvNavBookings.setTextColor(getColor(R.color.bottom_nav_active))

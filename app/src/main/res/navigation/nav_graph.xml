@@ -12,7 +12,13 @@
     <fragment
         android:id="@+id/myBookingsFragment"
         android:name="com.edadursun.otorentacar.ui.mybookings.MyBookingsFragment"
-        android:label="MyBookingsFragment" />
+        android:label="MyBookingsFragment">
+
+        <action
+            android:id="@+id/action_myBookingsFragment_to_bookingDetailFragment"
+            app:destination="@id/bookingDetailFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/contactFragment"
@@ -61,10 +67,6 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/vehicleDetailFragment"
-        android:name="com.edadursun.otorentacar.ui.vehicledetail.VehicleDetailFragment"
-        android:label="VehicleDetailFragment" />
 
     <fragment
         android:id="@+id/extrasFragment"
@@ -76,15 +78,6 @@
         android:name="com.edadursun.otorentacar.ui.bookingdetail.BookingDetailFragment"
         android:label="BookingDetailFragment" />
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.edadursun.otorentacar.ui.auth.LoginFragment"
-        android:label="LoginFragment" />
-
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.edadursun.otorentacar.ui.auth.RegisterFragment"
-        android:label="RegisterFragment" />
 
 
 </navigation>
