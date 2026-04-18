@@ -10,31 +10,39 @@ import com.edadursun.otorentacar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // Activity'nin view binding referansı
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // ViewBinding ile layout'u bağla
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // NavHostFragment ve NavController'ı bul
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        // Alt custom navigation bar'ı ayarla
         setupCustomBottomBar(navController)
 
+        // Uygulama ilk açıldığında home seçili gelsin
         updateDrawerSelection(R.id.homeFragment)
         updateCustomBottomBarSelection(R.id.homeFragment)
 
+        // Fragment değiştiğinde drawer ve bottom bar seçimini güncelle
         navController.addOnDestinationChangedListener { _, destination, _ ->
             updateDrawerSelection(destination.id)
             updateCustomBottomBarSelection(destination.id)
         }
 
+        // Drawer menü tıklamalarını ayarla
         setupDrawerClicks()
     }
 
+    // Alt navigation bar üzerindeki tıklamaları ayarlar
     private fun setupCustomBottomBar(navController: NavController) {
         binding.navHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
@@ -55,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Alt navigation bar üzerindeki tüm seçim stillerini sıfırlar
     private fun resetCustomBottomBar() {
         binding.navHomeIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
         binding.navBookingsIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
@@ -69,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvNavContact.setTextColor(getColor(R.color.bottom_nav_inactive))
     }
 
+    // Hangi fragment açıksa alt navigation bar'da onu seçili gösterir
     private fun updateCustomBottomBarSelection(destinationId: Int) {
         resetCustomBottomBar()
 
@@ -100,15 +110,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Drawer menüdeki tıklamaları ayarlar
     private fun setupDrawerClicks() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        // Drawer kapatma butonu
         binding.drawerMenu.ivDrawerClose.setOnClickListener {
             closeDrawer()
         }
 
+        // Home menüsü
         binding.drawerMenu.menuHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
                 navController.navigate(R.id.homeFragment)
@@ -116,6 +129,7 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
 
+        // Rezervasyonlarım menüsü
         binding.drawerMenu.menuBookings.setOnClickListener {
             if (navController.currentDestination?.id != R.id.myBookingsFragment) {
                 navController.navigate(R.id.myBookingsFragment)
@@ -123,6 +137,7 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
 
+        // Hakkımızda menüsü
         binding.drawerMenu.menuAbout.setOnClickListener {
             if (navController.currentDestination?.id != R.id.aboutFragment) {
                 navController.navigate(R.id.aboutFragment)
@@ -130,6 +145,7 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
 
+        // Hizmetler menüsü
         binding.drawerMenu.menuServices.setOnClickListener {
             if (navController.currentDestination?.id != R.id.servicesFragment) {
                 navController.navigate(R.id.servicesFragment)
@@ -137,6 +153,7 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
 
+        // İletişim menüsü
         binding.drawerMenu.menuContact.setOnClickListener {
             if (navController.currentDestination?.id != R.id.contactFragment) {
                 navController.navigate(R.id.contactFragment)
@@ -145,6 +162,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Drawer menüdeki tüm seçim stillerini sıfırlar
     private fun resetDrawerMenuStyles() {
         val transparent = android.R.color.transparent
         val textColor = getColor(R.color.text_secondary)
@@ -168,6 +186,7 @@ class MainActivity : AppCompatActivity() {
         binding.drawerMenu.ivMenuContact.setColorFilter(textColor)
     }
 
+    // Açık olan fragment'e göre drawer menüsünde seçili görünümü uygular
     private fun updateDrawerSelection(selectedId: Int) {
         resetDrawerMenuStyles()
 
@@ -204,14 +223,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Drawer'ı açar
     fun openDrawer() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
 
+    // Drawer'ı kapatır
     fun closeDrawer() {
         binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 
+    // Geri tuşuna basıldığında drawer açıksa önce onu kapatır
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closeDrawer()

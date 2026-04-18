@@ -91,9 +91,17 @@ class ExtrasViewModel : ViewModel() {
         _services.value = _services.value.map { service ->
             if (service.id == serviceId && service.maxCount > 1) {
                 val newQuantity = (service.quantity + 1).coerceAtMost(service.maxCount)
+
+                val newChildAges = if (service.name.contains("Bebek Koltuğu", ignoreCase = true)) {
+                    service.childAges + ""
+                } else {
+                    service.childAges
+                }.take(newQuantity)
+
                 service.copy(
                     quantity = newQuantity,
-                    isSelected = newQuantity > 0
+                    isSelected = newQuantity > 0,
+                    childAges = newChildAges
                 )
             } else {
                 service
@@ -107,10 +115,32 @@ class ExtrasViewModel : ViewModel() {
         _services.value = _services.value.map { service ->
             if (service.id == serviceId && service.maxCount > 1) {
                 val newQuantity = (service.quantity - 1).coerceAtLeast(0)
+
+                val newChildAges = if (service.name.contains("Bebek Koltuğu", ignoreCase = true)) {
+                    service.childAges.take(newQuantity)
+                } else {
+                    service.childAges
+                }
+
                 service.copy(
                     quantity = newQuantity,
-                    isSelected = newQuantity > 0
+                    isSelected = newQuantity > 0,
+                    childAges = newChildAges
                 )
+            } else {
+                service
+            }
+        }
+    }
+
+    fun updateChildAge(serviceId: Int, index: Int, value: String) {
+        _services.value = _services.value.map { service ->
+            if (service.id == serviceId) {
+                val updatedAges = service.childAges.toMutableList()
+                if (index in updatedAges.indices) {
+                    updatedAges[index] = value
+                }
+                service.copy(childAges = updatedAges)
             } else {
                 service
             }

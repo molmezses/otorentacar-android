@@ -20,52 +20,75 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     private var _binding: FragmentExtrasBinding? = null
     private val binding get() = _binding!!
 
-    // ViewModel bağlantısı
+    // Extras ekranına ait ViewModel
     private val viewModel: ExtrasViewModel by viewModels()
 
     // RecyclerView adapterı
     private lateinit var adapter: ExtraServicesAdapter
 
-    // Önceki ekrandan gelen araç ve tarih bilgileri
+    // Önceki ekrandan gelen araç bilgileri
     private var vehicleName: String = ""
     private var vehicleType: String = ""
+    private var vehicleTransmission: String = ""
+    private var vehicleFuel: String = ""
+    private var vehicleTag: String = ""
     private var vehicleDailyPrice: String = ""
     private var vehicleTotalPrice: String = ""
+
+    // Önceki ekrandan gelen tarih bilgileri
     private var pickupMillis: Long = 0L
     private var dropoffMillis: Long = 0L
     private var rentalDays: Int = 1
+
+    // API için gerekli id alanları
+    private var vehicleModelId: Int = 0
+    private var pickupLocationId: Int = 0
+    private var dropOffLocationId: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentExtrasBinding.bind(view)
 
-        // Bundle ile gelen verileri oku
+        // Önceki ekrandan gelen verileri oku
         readArguments()
 
-        // Ekran başlangıç ayarları
+        // Ekran kurulumları
         setupHeader()
         setupRecyclerView()
         setupClicks()
         observeData()
 
-        // API'den ek hizmetleri getir
+        // API'den ek hizmetleri çek
         viewModel.fetchExtraServices()
     }
 
-    // Önceki ekrandan gönderilen verileri alır
+    // Bundle ile gelen verileri alır
     private fun readArguments() {
         vehicleName = arguments?.getString("vehicleName").orEmpty()
         vehicleType = arguments?.getString("vehicleType").orEmpty()
+        vehicleTransmission = arguments?.getString("vehicleTransmission").orEmpty()
+        vehicleFuel = arguments?.getString("vehicleFuel").orEmpty()
+        vehicleTag = arguments?.getString("vehicleTag").orEmpty()
         vehicleDailyPrice = arguments?.getString("vehicleDailyPrice").orEmpty()
         vehicleTotalPrice = arguments?.getString("vehicleTotalPrice").orEmpty()
+
         pickupMillis = arguments?.getLong("pickupMillis") ?: 0L
         dropoffMillis = arguments?.getLong("dropoffMillis") ?: 0L
 
-        // Alış ve dönüş tarihine göre kiralama gün sayısını hesapla
+        vehicleModelId = arguments?.getInt("vehicleModelId") ?: 0
+        pickupLocationId = arguments?.getInt("pickupLocationId") ?: 0
+        dropOffLocationId = arguments?.getInt("dropOffLocationId") ?: 0
+
+        // Alış ve dönüşe göre kaç gün kiralama olduğunu hesapla
         rentalDays = calculateRentalDays(pickupMillis, dropoffMillis)
+
+        android.util.Log.d(
+            "EXTRAS_ARGS",
+            "vehicleModelId=$vehicleModelId, pickupLocationId=$pickupLocationId, dropOffLocationId=$dropOffLocationId"
+        )
     }
 
-    // Üst araç kartı ve alt fiyat özetinin ilk halini doldurur
+    // Üstteki seçili araç kartı ve ilk fiyat alanlarını doldurur
     private fun setupHeader() {
         binding.tvSelectedVehicleName.text = vehicleName
         binding.tvSelectedVehicleType.text = vehicleType
@@ -75,7 +98,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         binding.tvTotalPrice.text = vehicleTotalPrice
     }
 
-    // RecyclerView ve adapter ayarları
+    // RecyclerView ve adapter bağlantısını kurar
     private fun setupRecyclerView() {
         adapter = ExtraServicesAdapter(
             items = emptyList(),
@@ -88,6 +111,9 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
             },
             onMinusClick = { serviceId ->
                 viewModel.decreaseQuantity(serviceId)
+            },
+            onChildAgeChanged = { serviceId, index, value ->
+                viewModel.updateChildAge(serviceId, index, value)
             }
         )
 
@@ -95,14 +121,19 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         binding.rvExtraServices.adapter = adapter
     }
 
-    // Geri tuşu ve devam et butonu tıklamaları
+    // Geri ve devam et butonlarının tıklamalarını yönetir
     private fun setupClicks() {
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        // Devam Et butonuna basılınca rezervasyon detay ekranına geç
         binding.btnContinue.setOnClickListener {
+            val currentServices = viewModel.services.value
+
+            // Bebek koltuğu seçildiyse çocuk yaş alanları dolu mu kontrol et
+            if (!adapter.validateChildAges(currentServices)) return@setOnClickListener
+
+            // Reservation Detail ekranına taşınacak verileri hazırla
             val bundle = Bundle().apply {
                 putString("vehicleName", vehicleName)
                 putString("vehicleType", vehicleType)
@@ -113,13 +144,50 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
                 putInt("rentalDays", rentalDays)
                 putString("extraPrice", binding.tvExtraPrice.text.toString())
                 putString("totalPrice", binding.tvTotalPrice.text.toString())
+                putString("vehicleInfo", "$vehicleTransmission | $vehicleFuel")
+                putString("vehicleTag", vehicleTag)
+                putString("rentalPrice", binding.tvVehiclePrice.text.toString())
+
+                // API tarafında da kullanılacak id bilgileri
+                putInt("vehicleModelId", vehicleModelId)
+                putInt("pickupLocationId", pickupLocationId)
+                putInt("dropOffLocationId", dropOffLocationId)
+
+                // Seçilen ek hizmetleri ve çocuk yaşlarını gönder
+                putStringArrayList("selectedExtras", ArrayList(buildSelectedExtras(currentServices)))
+                putStringArrayList("childrenAge", ArrayList(buildChildrenAges(currentServices)))
             }
 
             findNavController().navigate(R.id.reservationDetailFragment, bundle)
         }
     }
 
-    // ViewModel'deki hizmet listesini dinler
+    // Seçilen ek hizmetlerin id listesini oluşturur
+    // Adetli hizmetlerde id, adet kadar eklenir
+    private fun buildSelectedExtras(services: List<ExtraService>): List<String> {
+        val selectedExtras = mutableListOf<String>()
+
+        services.forEach { service ->
+            if (service.isSelected && service.quantity > 0) {
+                repeat(service.quantity) {
+                    selectedExtras.add(service.id.toString())
+                }
+            }
+        }
+
+        return selectedExtras
+    }
+
+    // Bebek koltuğu seçildiyse girilen çocuk yaşlarını döndürür
+    private fun buildChildrenAges(services: List<ExtraService>): List<String> {
+        val babySeatService = services.find {
+            it.name.contains("Bebek Koltuğu", ignoreCase = true)
+        } ?: return emptyList()
+
+        return babySeatService.childAges.filter { it.isNotBlank() }
+    }
+
+    // ViewModel'den gelen ek hizmet listesini dinler
     private fun observeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.services.collect { services ->
@@ -129,7 +197,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         }
     }
 
-    // Seçilen hizmetlere göre ek hizmet toplamı ve genel toplamı hesaplar
+    // Seçilen hizmetlere göre ek hizmet toplamını ve genel toplamı hesaplar
     private fun updatePriceSummary(services: List<ExtraService>) {
         val extrasTotal = services.sumOf { service ->
             if (!service.isSelected || service.quantity == 0) {
@@ -142,7 +210,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
                     // Günlük hizmetlerde fiyat = fiyat x gün
                     service.priceCalculationType.lowercase() == "günlük" -> service.price * rentalDays
 
-                    // Sabit ücretli hizmetlerde sadece tek fiyat
+                    // Sabit fiyatlı hizmetlerde tek ücret alınır
                     else -> service.price
                 }
             }
@@ -151,14 +219,14 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         // Araç toplam fiyatını sayıya çevir
         val vehicleTotalValue = parsePrice(vehicleTotalPrice)
 
-        // Genel toplam = araç fiyatı + ek hizmetler
+        // Genel toplam = araç + ekstra hizmetler
         val grandTotal = vehicleTotalValue + extrasTotal
 
         binding.tvExtraPrice.text = "€${formatPrice(extrasTotal)}"
         binding.tvTotalPrice.text = "€${formatPrice(grandTotal)}"
     }
 
-    // Alış ve dönüş tarihine göre kaç gün kiralama olduğunu hesaplar
+    // Milisaniye farkına göre kiralama gün sayısını hesaplar
     private fun calculateRentalDays(pickupMillis: Long, dropoffMillis: Long): Int {
         val diffMillis = dropoffMillis - pickupMillis
         if (diffMillis <= 0L) return 1
@@ -167,7 +235,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         return ceil(diffHours / 24.0).toInt().coerceAtLeast(1)
     }
 
-    // Fiyat string'inden para birimlerini temizleyip sayıya çevirir
+    // Fiyat string'ini sayıya çevirir
     private fun parsePrice(price: String): Double {
         return price
             .replace("₺", "")
@@ -179,7 +247,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
             .toDoubleOrNull() ?: 0.0
     }
 
-    // Double fiyat değerini ekrana uygun string'e çevirir
+    // Double fiyatı ekrana uygun string formatına çevirir
     private fun formatPrice(price: Double): String {
         return if (price % 1.0 == 0.0) {
             price.toInt().toString()

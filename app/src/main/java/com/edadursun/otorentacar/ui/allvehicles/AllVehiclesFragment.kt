@@ -117,13 +117,23 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
 
     private fun navigateToExtras(vehicle: Vehicle) {
         val bundle = Bundle().apply {
-            putInt("vehicleId", vehicle.id)
+            // Araç bilgileri
+            putInt("vehicleModelId", vehicle.id)
             putString("vehicleName", vehicle.name)
             putString("vehicleType", vehicle.type)
+            putString("vehicleTransmission", vehicle.transmission)
+            putString("vehicleFuel", vehicle.fuel)
+            putString("vehicleTag", vehicle.tag)
             putString("vehicleDailyPrice", vehicle.dailyPrice)
             putString("vehicleTotalPrice", vehicle.totalPrice)
+
+            // Tarih bilgileri
             putLong("pickupMillis", pickupMillis)
             putLong("dropoffMillis", dropoffMillis)
+
+            // Lokasyon id bilgileri
+            putInt("pickupLocationId", pickupLocationId)
+            putInt("dropOffLocationId", dropOffLocationId)
         }
 
         findNavController().navigate(R.id.extrasFragment, bundle)

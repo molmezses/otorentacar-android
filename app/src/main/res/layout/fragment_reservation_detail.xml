@@ -43,15 +43,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
+                android:fontFamily="@font/inter_bold"
                 android:text="Rezervasyon Detayı"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_2xl"
                 android:textStyle="bold"
-                android:fontFamily="@font/inter_bold"
                 app:layout_constraintBottom_toBottomOf="@id/cardBack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cardBack"  />
+                app:layout_constraintTop_toTopOf="@id/cardBack" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -59,21 +59,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Rezervasyon Detayları"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
-            android:textStyle="bold"
-            android:fontFamily="@font/inter_bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_medium"
             android:lineSpacingExtra="2dp"
             android:text="Bilgilerinizi doldurup rezervasyonu tamamlayabilirsiniz."
             android:textColor="@color/text_secondary"
-            android:textSize="@dimen/text_md"
-            android:fontFamily="@font/inter_medium"/>
+            android:textSize="@dimen/text_md" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -108,13 +108,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
+                            android:fontFamily="@font/inter_bold"
                             android:gravity="center"
                             android:paddingHorizontal="12dp"
                             android:text="POPULAR"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_xs"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/inter_bold"/>
+                            android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -123,21 +123,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Renault Clio"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Araç Adı"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_2xl"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvVehicleInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Manual | Dizel"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Özellik 1 | Özellik 2"
                         android:textColor="@color/text_hint"
-                        android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_bold"/>
+                        android:textSize="@dimen/text_md" />
 
                 </LinearLayout>
 
@@ -190,22 +190,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
                         android:text="ALIŞ"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvPickupDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/inter_medium"
                         android:lineSpacingExtra="2dp"
-                        android:text="09 Nis 2026, 10:00"
+                        android:text="Gün Ay Yıl, 00:00"
                         android:textColor="@color/text_hint"
-                        android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_medium" />
+                        android:textSize="@dimen/text_md" />
 
                 </LinearLayout>
 
@@ -233,22 +233,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
                         android:text="DÖNÜŞ"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvDropOffDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/inter_medium"
                         android:lineSpacingExtra="2dp"
-                        android:text="12 Nis 2026, 10:00"
+                        android:text="Gün Ay Yıl, 00:00"
                         android:textColor="@color/text_hint"
-                        android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_medium"/>
+                        android:textSize="@dimen/text_md" />
 
                 </LinearLayout>
 
@@ -299,11 +299,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
                     android:text="AD SOYAD"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold"/>
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilFullName"
@@ -323,12 +323,14 @@
                         android:id="@+id/etFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
                         android:hint=""
                         android:inputType="textPersonName"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_light"
                         android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_regular"/>
+                        app:errorTextAppearance="@style/TextInputErrorStyle"
+                        app:errorTextColor="@color/error_red" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -347,11 +349,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
                             android:text="TELEFON"
                             android:textColor="@color/text_hint"
                             android:textSize="@dimen/text_sm"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/inter_bold" />
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilPhone"
@@ -371,12 +373,14 @@
                                 android:id="@+id/etPhone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_regular"
                                 android:hint=""
                                 android:inputType="phone"
                                 android:textColor="@color/text_primary"
                                 android:textColorHint="@color/text_light"
                                 android:textSize="@dimen/text_md"
-                                android:fontFamily="@font/inter_regular" />
+                                app:errorTextAppearance="@style/TextInputErrorStyle"
+                                app:errorTextColor="@color/error_red" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -395,11 +399,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
                             android:text="DOĞUM TARİHİ"
                             android:textColor="@color/text_hint"
                             android:textSize="@dimen/text_sm"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/inter_bold" />
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/tilBirthDate"
@@ -421,12 +425,14 @@
                                 android:layout_height="wrap_content"
                                 android:clickable="true"
                                 android:focusable="false"
+                                android:fontFamily="@font/inter_regular"
                                 android:hint=""
                                 android:inputType="none"
                                 android:textColor="@color/text_primary"
                                 android:textColorHint="@color/text_light"
                                 android:textSize="@dimen/text_md"
-                                android:fontFamily="@font/inter_regular" />
+                                app:errorTextAppearance="@style/TextInputErrorStyle"
+                                app:errorTextColor="@color/error_red" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -438,11 +444,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
                     android:text="E-POSTA"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold"/>
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilEmail"
@@ -462,12 +468,14 @@
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
                         android:hint=""
                         android:inputType="textEmailAddress"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_light"
                         android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_regular" />
+                        app:errorTextAppearance="@style/TextInputErrorStyle"
+                        app:errorTextColor="@color/error_red" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -475,11 +483,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
                     android:text="UÇUŞ KODU (OPSIYONEL)"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold" />
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilFlightCode"
@@ -499,12 +507,13 @@
                         android:id="@+id/etFlightCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
                         android:hint=""
                         android:inputType="text"
                         android:textColor="@color/text_primary"
                         android:textColorHint="@color/text_light"
                         android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_regular" />
+                        app:errorTextColor="@color/error_red" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -544,11 +553,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:fontFamily="@font/inter_bold"
                         android:text="Ödeme Özeti"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_2xl"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/inter_bold"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -560,10 +569,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
                         android:text="Araç Kiralama Bedeli"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_medium"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -571,10 +580,10 @@
                         android:id="@+id/tvRentalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="₺3.750,00"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="€0"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
-                        android:fontFamily="@font/inter_bold"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -589,10 +598,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
                         android:text="Ek Hizmetler"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_medium"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -600,44 +609,16 @@
                         android:id="@+id/tvExtraPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="₺1.491,00"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="€0"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
-                        android:fontFamily="@font/inter_bold"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="KDV (%20)"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_md"
-                        android:fontFamily="@font/inter_medium"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tvTaxPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₺1.048,00"
-                        android:textColor="@color/text_primary"
-                        android:textSize="@dimen/text_lg"
-                        android:fontFamily="@font/inter_bold"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -649,22 +630,58 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_bold"
                     android:text="GENEL TOPLAM"
                     android:textColor="@color/primary_green_dark"
                     android:textSize="@dimen/text_sm"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="₺6.289,20"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="€0"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_3xl"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_bold"/>
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSelectedExtras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:cardBackgroundColor="@color/bg_card"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Ek Hizmetler"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_2xl"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/layoutSelectedExtrasContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical" />
 
             </LinearLayout>
 
@@ -675,12 +692,12 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="22dp"
+            android:fontFamily="@font/inter_bold"
             android:text="Rezervasyonu Tamamla"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_lg"
             android:textStyle="bold"
-            android:fontFamily="@font/inter_bold"
             app:backgroundTint="@color/primary_green_dark"
             app:cornerRadius="18dp" />
 
