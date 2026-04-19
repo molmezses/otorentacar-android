@@ -1,27 +1,25 @@
 package com.edadursun.otorentacar.ui.home
 
-import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edadursun.otorentacar.R
-import com.edadursun.otorentacar.data.local.DummyDataProvider
 import com.edadursun.otorentacar.databinding.FragmentHomeBinding
 import com.edadursun.otorentacar.ui.home.adapter.FeaturedVehicleAdapter
 import com.edadursun.otorentacar.ui.main.MainActivity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
 import com.google.android.material.timepicker.TimeFormat
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import java.util.TimeZone
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -39,6 +37,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     // Home ekranına ait ViewModel
     private val viewModel: HomeViewModel by viewModels()
 
+    // Öne çıkan araçlar adapterı
+    private lateinit var featuredVehicleAdapter: FeaturedVehicleAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,6 +52,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // ViewModel state'lerini dinle ve lokasyonları çek
         observeLocations()
+        observeFeaturedVehicles()
         setupLocationDropdowns()
         viewModel.fetchLocations()
     }
@@ -70,77 +71,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // Araç Bul butonu: tarih kontrolü yapar ve araç listesine gider
         binding.btnFindCar.setOnClickListener {
-
-            val pickupLocation = viewModel.selectedPickupLocation.value
-
-            if (pickupLocation == null) {
-                binding.tvDateValidationError.text = "Lütfen alış lokasyonu seçin."
-                binding.tvDateValidationError.visibility = View.VISIBLE
-                return@setOnClickListener
-            }
-
-            val dropOffLocation = if (
-                binding.switchDrop.isChecked &&
-                viewModel.selectedDropOffLocation.value != null
-            ) {
-                viewModel.selectedDropOffLocation.value
-            } else {
-                pickupLocation
-            }
-
-            val pickupDateTime = getPickupDateTime()
-            val dropOffDateTime = getDropOffDateTime()
-
-            binding.tvDateValidationError.visibility = View.GONE
-
-            val now = Calendar.getInstance(turkeyTimeZone)
-
-            val pickupIsToday =
-                pickupDateTime.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
-                        pickupDateTime.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
-
-            // Eğer alış tarihi bugünse, alış saati şu andan en az 1 saat sonrası olmalı
-            if (pickupIsToday) {
-                val minPickupTime = now.clone() as Calendar
-                minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
-
-                if (pickupDateTime.before(minPickupTime)) {
-                    binding.tvDateValidationError.text =
-                        "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
-                    binding.tvDateValidationError.visibility = View.VISIBLE
-                    return@setOnClickListener
-                }
-
-                // Bugün alınan araç için iade tarihi en az yarın olmalı
-                val minDropOffDate = pickupDateTime.clone() as Calendar
-                minDropOffDate.add(Calendar.DAY_OF_MONTH, 1)
-
-                if (dropOffDateTime.before(minDropOffDate)) {
-                    binding.tvDateValidationError.text =
-                        "Bugün alınan araç için iade tarihi en az yarın olmalıdır."
-                    binding.tvDateValidationError.visibility = View.VISIBLE
-                    return@setOnClickListener
-                }
-            } else {
-                // Pickup bugün değilse, iade tarihi-saati pickup'tan önce olamaz
-                if (dropOffDateTime.before(pickupDateTime)) {
-                    binding.tvDateValidationError.text =
-                        "İade saati, alış saatinden önce olamaz."
-                    binding.tvDateValidationError.visibility = View.VISIBLE
-                    return@setOnClickListener
-                }
-            }
-
-            val bundle = Bundle().apply {
-                putLong("pickupMillis", pickupDateTime.timeInMillis)
-                putLong("dropoffMillis", dropOffDateTime.timeInMillis)
-                putInt("pickupLocationId", pickupLocation.id)
-                putInt("dropOffLocationId", dropOffLocation!!.id)
-            }
-
-            findNavController().navigate(R.id.allVehiclesFragment, bundle)
+            navigateToAllVehicles()
         }
-
 
         // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
         binding.switchDrop.setOnCheckedChangeListener { _, isChecked ->
@@ -149,13 +81,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             } else {
                 binding.layoutDropOffSection.visibility = View.GONE
             }
+
+            // Switch değişince öne çıkan araçları da yeniden çek
+            refreshFeaturedVehiclesIfPossible()
         }
 
         // Alış tarihi seçimi
         binding.ivPickupDate.setOnClickListener {
             showDatePicker(
                 calendar = pickupDateCalendar,
-                onDateSelected = { updatePickupDateText() }
+                onDateSelected = {
+                    updatePickupDateText()
+                    refreshFeaturedVehiclesIfPossible()
+                }
             )
         }
 
@@ -163,7 +101,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.ivPickupTime.setOnClickListener {
             showTimePicker(
                 calendar = pickupTimeCalendar,
-                onTimeSelected = { updatePickupTimeText() }
+                onTimeSelected = {
+                    updatePickupTimeText()
+                    refreshFeaturedVehiclesIfPossible()
+                }
             )
         }
 
@@ -171,7 +112,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.ivDropOffDate.setOnClickListener {
             showDatePicker(
                 calendar = dropOffDateCalendar,
-                onDateSelected = { updateDropOffDateText() }
+                onDateSelected = {
+                    updateDropOffDateText()
+                    refreshFeaturedVehiclesIfPossible()
+                }
             )
         }
 
@@ -179,15 +123,89 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.ivDropOffTime.setOnClickListener {
             showTimePicker(
                 calendar = dropOffTimeCalendar,
-                onTimeSelected = { updateDropOffTimeText() }
+                onTimeSelected = {
+                    updateDropOffTimeText()
+                    refreshFeaturedVehiclesIfPossible()
+                }
             )
         }
 
-
         // Tüm araçları gör ekranına git
         binding.tvSeeAll.setOnClickListener {
-            findNavController().navigate(R.id.allVehiclesFragment)
+            navigateToAllVehicles()
         }
+    }
+
+    // Araç Bul ve Tümünü Gör için ortak yönlendirme fonksiyonu
+    private fun navigateToAllVehicles() {
+        val pickupLocation = viewModel.selectedPickupLocation.value
+
+        if (pickupLocation == null) {
+            binding.tvDateValidationError.text = "Lütfen alış lokasyonu seçin."
+            binding.tvDateValidationError.visibility = View.VISIBLE
+            return
+        }
+
+        val dropOffLocation = if (
+            binding.switchDrop.isChecked &&
+            viewModel.selectedDropOffLocation.value != null
+        ) {
+            viewModel.selectedDropOffLocation.value
+        } else {
+            pickupLocation
+        }
+
+        val pickupDateTime = getPickupDateTime()
+        val dropOffDateTime = getDropOffDateTime()
+
+        binding.tvDateValidationError.visibility = View.GONE
+
+        val now = Calendar.getInstance(turkeyTimeZone)
+
+        val pickupIsToday =
+            pickupDateTime.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
+                    pickupDateTime.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR)
+
+        // Eğer alış tarihi bugünse, alış saati şu andan en az 1 saat sonrası olmalı
+        if (pickupIsToday) {
+            val minPickupTime = now.clone() as Calendar
+            minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
+
+            if (pickupDateTime.before(minPickupTime)) {
+                binding.tvDateValidationError.text =
+                    "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                binding.tvDateValidationError.visibility = View.VISIBLE
+                return
+            }
+
+            // Bugün alınan araç için iade tarihi en az yarın olmalı
+            val minDropOffDate = pickupDateTime.clone() as Calendar
+            minDropOffDate.add(Calendar.DAY_OF_MONTH, 1)
+
+            if (dropOffDateTime.before(minDropOffDate)) {
+                binding.tvDateValidationError.text =
+                    "Bugün alınan araç için iade tarihi en az yarın olmalıdır."
+                binding.tvDateValidationError.visibility = View.VISIBLE
+                return
+            }
+        } else {
+            // Pickup bugün değilse, iade tarihi-saati pickup'tan önce olamaz
+            if (dropOffDateTime.before(pickupDateTime)) {
+                binding.tvDateValidationError.text =
+                    "İade saati, alış saatinden önce olamaz."
+                binding.tvDateValidationError.visibility = View.VISIBLE
+                return
+            }
+        }
+
+        val bundle = Bundle().apply {
+            putLong("pickupMillis", pickupDateTime.timeInMillis)
+            putLong("dropoffMillis", dropOffDateTime.timeInMillis)
+            putInt("pickupLocationId", pickupLocation.id)
+            putInt("dropOffLocationId", dropOffLocation!!.id)
+        }
+
+        findNavController().navigate(R.id.allVehiclesFragment, bundle)
     }
 
     // Tarih hatası gösterimini temizler
@@ -195,7 +213,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.tvDateValidationError.visibility = View.GONE
     }
 
-    //seçilen veriyi tekrar UI’a yazar
+    // Seçilen lokasyonları ve ekran state'ini dinler
     private fun observeLocations() {
         // Seçilen pickup lokasyonu değişirse texti güncelle
         viewLifecycleOwner.lifecycleScope.launch {
@@ -211,11 +229,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
-
         // API'den gelen lokasyon listesi değişirse burada dinlenir
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.locations.collect { locations ->
-                android.util.Log.d("HOME_TEST", "locations size: ${locations.size}")
+                if (locations.isEmpty()) return@collect
+
+                // İlk açılışta varsayılan olarak ilk lokasyonu seç
+                if (viewModel.selectedPickupLocation.value == null) {
+                    val firstLocation = locations.first()
+                    viewModel.selectPickupLocation(firstLocation)
+                    viewModel.selectDropOffLocation(firstLocation)
+                    refreshFeaturedVehiclesIfPossible()
+                }
             }
         }
 
@@ -234,22 +259,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
+    // Gerçek API'den gelen öne çıkan araçları dinler ve recycler'a basar
+    private fun observeFeaturedVehicles() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.featuredVehicles.collect { vehicles ->
+                featuredVehicleAdapter = FeaturedVehicleAdapter(vehicles)
+                binding.rvFeaturedVehicles.adapter = featuredVehicleAdapter
+            }
+        }
+    }
+
     private fun setupLocationDropdowns() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.locations.collect { locations ->
-                android.util.Log.d("DROPDOWN_TEST", "locations geldi: ${locations.size}")
-
                 if (locations.isEmpty()) return@collect
 
                 val locationNames = locations.map { it.name }
 
-                val pickupAdapter = android.widget.ArrayAdapter(
+                val pickupAdapter = ArrayAdapter(
                     requireContext(),
                     R.layout.item_location_dropdown,
                     locationNames
                 )
 
-                val dropOffAdapter = android.widget.ArrayAdapter(
+                val dropOffAdapter = ArrayAdapter(
                     requireContext(),
                     R.layout.item_location_dropdown,
                     locationNames
@@ -261,21 +294,27 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.actDropOffLocation.setDropDownBackgroundResource(R.drawable.bg_location_dropdown_item)
 
                 binding.actPickupLocation.setOnClickListener {
-                    android.util.Log.d("DROPDOWN_TEST", "pickup tıklandı")
                     binding.actPickupLocation.showDropDown()
                 }
 
                 binding.actDropOffLocation.setOnClickListener {
-                    android.util.Log.d("DROPDOWN_TEST", "dropoff tıklandı")
                     binding.actDropOffLocation.showDropDown()
                 }
 
                 binding.actPickupLocation.setOnItemClickListener { _, _, position, _ ->
                     viewModel.selectPickupLocation(locations[position])
+
+                    // Drop-off seçimi kapalıysa aynı lokasyonu drop-off olarak da ata
+                    if (!binding.switchDrop.isChecked) {
+                        viewModel.selectDropOffLocation(locations[position])
+                    }
+
+                    refreshFeaturedVehiclesIfPossible()
                 }
 
                 binding.actDropOffLocation.setOnItemClickListener { _, _, position, _ ->
                     viewModel.selectDropOffLocation(locations[position])
+                    refreshFeaturedVehiclesIfPossible()
                 }
             }
         }
@@ -285,13 +324,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun setupInitialDateTime() {
         val now = Calendar.getInstance(turkeyTimeZone)
 
+        // Pickup varsayılan olarak yarın olsun
         pickupDateCalendar.timeInMillis = now.timeInMillis
+        pickupDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
+
         pickupTimeCalendar.timeInMillis = now.timeInMillis
 
-        dropOffDateCalendar.timeInMillis = now.timeInMillis
+        // Drop-off pickup'tan 3 gün sonrası olsun
+        dropOffDateCalendar.timeInMillis = pickupDateCalendar.timeInMillis
         dropOffDateCalendar.add(Calendar.DAY_OF_MONTH, 3)
 
-        dropOffTimeCalendar.timeInMillis = now.timeInMillis
+        dropOffTimeCalendar.timeInMillis = pickupTimeCalendar.timeInMillis
 
         updatePickupDateText()
         updatePickupTimeText()
@@ -299,12 +342,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         updateDropOffTimeText()
     }
 
-    //Date pickerı göster
+    // Date pickerı göster
     private fun showDatePicker(
         calendar: Calendar,
         onDateSelected: () -> Unit
     ) {
-        // Ortak tarih seçici
         DatePickerDialog(
             requireContext(),
             { _, year, month, dayOfMonth ->
@@ -319,7 +361,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ).show()
     }
 
-    //Time pickerı göster
+    // Time pickerı göster
     private fun showTimePicker(
         calendar: Calendar,
         onTimeSelected: () -> Unit
@@ -377,14 +419,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         picker.show(childFragmentManager, "material_time_picker")
     }
 
-
     // Seçilen pickup tarihini UI'a yaz
     private fun updatePickupDateText() {
         binding.tvPickupDate.text = formatDateForCard(pickupDateCalendar)
         updateDropOffIfNeeded()
         clearDateError()
     }
-
 
     // Seçilen dropoff tarihini UI'a yaz
     private fun updateDropOffDateText() {
@@ -485,13 +525,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return calendar
     }
 
-
+    // RecyclerView ilk kurulumunu yapar
     private fun setupFeaturedVehicles() {
-        // Şimdilik dummy verilerle öne çıkan araçları göster
-        val vehicles = DummyDataProvider.getFeaturedVehicles()
+        featuredVehicleAdapter = FeaturedVehicleAdapter(emptyList())
         binding.rvFeaturedVehicles.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvFeaturedVehicles.adapter = FeaturedVehicleAdapter(vehicles)
+        binding.rvFeaturedVehicles.adapter = featuredVehicleAdapter
+    }
+
+    // Lokasyon ve tarih bilgileri hazırsa featured araçları API'den çeker
+    private fun refreshFeaturedVehiclesIfPossible() {
+        val pickupLocation = viewModel.selectedPickupLocation.value ?: return
+
+        val dropOffLocation = if (
+            binding.switchDrop.isChecked &&
+            viewModel.selectedDropOffLocation.value != null
+        ) {
+            viewModel.selectedDropOffLocation.value
+        } else {
+            pickupLocation
+        } ?: return
+
+        val pickupDateTime = getPickupDateTime()
+        val dropOffDateTime = getDropOffDateTime()
+
+        viewModel.fetchFeaturedVehicles(
+            pickupMillis = pickupDateTime.timeInMillis,
+            dropoffMillis = dropOffDateTime.timeInMillis,
+            pickupLocationId = pickupLocation.id,
+            dropOffLocationId = dropOffLocation.id
+        )
     }
 
     override fun onDestroyView() {

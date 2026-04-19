@@ -3,6 +3,8 @@ package com.edadursun.otorentacar.ui.allvehicles.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.LayoutItemAllVehicleBinding
 
@@ -28,7 +30,18 @@ class AllVehiclesAdapter(
             binding.tvBag.text = item.bagCount
             binding.tvPrice.text = item.dailyPrice
             binding.total.text = item.totalPrice
-            binding.ivVehicle.setImageResource(item.imageResId)
+
+            // Eğer API'den gerçek resim url'i geldiyse onu yükle
+            if (item.imageUrl.isNotBlank()) {
+                Glide.with(binding.ivVehicle.context)
+                    .load(item.imageUrl)
+                    .placeholder(R.drawable.ic_directions_car)
+                    .error(R.drawable.ic_directions_car)
+                    .into(binding.ivVehicle)
+            } else {
+                // Resim yoksa local placeholder göster
+                binding.ivVehicle.setImageResource(item.imageResId)
+            }
 
             // Kullanıcı seç butonuna basınca dışarıya seçilen aracı gönder
             binding.btnSelect.setOnClickListener {

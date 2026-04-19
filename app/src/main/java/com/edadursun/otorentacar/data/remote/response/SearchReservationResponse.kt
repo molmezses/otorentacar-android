@@ -35,7 +35,8 @@ data class ReservationVehicleModelResponse(
     val engine: ReservationEngineResponse,
     val transmission: ReservationTransmissionResponse,
     val name: String,
-    val year: Int
+    val year: Int,
+    val imageList: List<String>? = emptyList()
 ) : Serializable
 
 // Araç markası bilgisi

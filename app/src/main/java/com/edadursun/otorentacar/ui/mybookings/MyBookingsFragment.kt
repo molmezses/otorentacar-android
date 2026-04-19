@@ -87,6 +87,24 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
                             putString("flightCode", reservation.flightNo.orEmpty())
                             putDouble("totalPrice", reservation.totalPrice)
                             putSerializable("extraList", ArrayList(reservation.extraList))
+
+                            // İkinci searchPrices isteği için gerekli alanlar
+                            putInt("vehicleModelId", reservation.vehicleModel.modelId)
+                            putInt("pickupLocationId", reservation.pickUpLocationPoint.id)
+                            putInt("dropOffLocationId", reservation.dropOffLocationPoint.id)
+                            putString("rawPickupDateTime", reservation.pickUpDateTime)
+                            putString("rawDropOffDateTime", reservation.dropOffDateTime)
+
+                            // searchReservation endpointinde imageList null geldiği için bu şimdilik boş olabilir
+                            putString(
+                                "vehicleImageUrl",
+                                buildImageUrl(reservation.vehicleModel.imageList?.firstOrNull().orEmpty())
+                            )
+
+                            android.util.Log.d(
+                                "MY_BOOKINGS_IMAGE",
+                                "imageList=${reservation.vehicleModel.imageList}"
+                            )
                         }
 
                         findNavController().navigate(
@@ -106,6 +124,16 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
         }
     }
 
+    private fun buildImageUrl(imagePath: String): String {
+        if (imagePath.isBlank()) return ""
+
+        return if (imagePath.startsWith("http")) {
+            imagePath
+        } else {
+            val normalizedPath = if (imagePath.startsWith("/")) imagePath else "/$imagePath"
+            "https://www.otorentacar.com$normalizedPath"
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

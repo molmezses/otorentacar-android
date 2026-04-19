@@ -142,9 +142,9 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="126dp"
-                    android:layout_height="108dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="5dp"
                     app:cardBackgroundColor="@color/bg_input"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp"
@@ -154,11 +154,8 @@
                         android:id="@+id/ivVehicle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="22dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_directions_car"
-                        android:tint="#A7A7AD"
-                        tools:ignore="UseAppTint" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_directions_car" />
 
                 </com.google.android.material.card.MaterialCardView>
 

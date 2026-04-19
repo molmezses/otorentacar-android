@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.data.remote.response.ReservationExtraItemResponse
 import com.edadursun.otorentacar.databinding.FragmentBookingDetailBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -30,13 +34,21 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
     private var email: String = ""
     private var flightCode: String = ""
     private var totalPrice: Double = 0.0
-
     private var extraList: ArrayList<ReservationExtraItemResponse> = arrayListOf()
+
+    private var vehicleModelId: Int = 0
+    private var pickupLocationId: Int = 0
+    private var dropOffLocationId: Int = 0
+    private var rawPickupDateTime: String = ""
+    private var rawDropOffDateTime: String = ""
+
+    private val viewModel: BookingDetailViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentBookingDetailBinding.bind(view)
+
 
         // Bundle ile gelen verileri oku
         readArguments()
@@ -45,6 +57,16 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
         setupUi()
 
         renderExtras()
+
+        observeVehicleImage()
+
+        viewModel.fetchVehicleImage(
+            vehicleModelId = vehicleModelId,
+            pickupLocationId = pickupLocationId,
+            dropOffLocationId = dropOffLocationId,
+            rawPickupDateTime = rawPickupDateTime,
+            rawDropOffDateTime = rawDropOffDateTime
+        )
 
         // Tıklama olaylarını ayarla
         setupClicks()
@@ -69,6 +91,12 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
         extraList =
             arguments?.getSerializable("extraList") as? ArrayList<ReservationExtraItemResponse>
                 ?: arrayListOf()
+
+        vehicleModelId = arguments?.getInt("vehicleModelId") ?: 0
+        pickupLocationId = arguments?.getInt("pickupLocationId") ?: 0
+        dropOffLocationId = arguments?.getInt("dropOffLocationId") ?: 0
+        rawPickupDateTime = arguments?.getString("rawPickupDateTime").orEmpty()
+        rawDropOffDateTime = arguments?.getString("rawDropOffDateTime").orEmpty()
     }
 
 
@@ -98,6 +126,7 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
         binding.tvRentalPrice.text = "€${formatPrice(rentalPrice)}"
         binding.tvTaxPrice.text = "€${formatPrice(extrasTotal)}"
         binding.tvTotalPrice.text = "€${formatPrice(totalPrice)}"
+
     }
 
     private fun renderExtras() {
@@ -165,6 +194,36 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
             price.toInt().toString()
         } else {
             String.format(Locale.US, "%.2f", price)
+        }
+    }
+
+    private fun observeVehicleImage() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.imageUiState.collect { state ->
+                when (state) {
+                    is BookingDetailImageUiState.Idle -> Unit
+
+                    is BookingDetailImageUiState.Loading -> {
+                        binding.ivVehicle.setImageResource(R.drawable.ic_directions_car)
+                    }
+
+                    is BookingDetailImageUiState.Success -> {
+                        Glide.with(requireContext())
+                            .load(state.imageUrl)
+                            .placeholder(R.drawable.ic_directions_car)
+                            .error(R.drawable.ic_directions_car)
+                            .into(binding.ivVehicle)
+                    }
+
+                    is BookingDetailImageUiState.Empty -> {
+                        binding.ivVehicle.setImageResource(R.drawable.ic_directions_car)
+                    }
+
+                    is BookingDetailImageUiState.Error -> {
+                        binding.ivVehicle.setImageResource(R.drawable.ic_directions_car)
+                    }
+                }
+            }
         }
     }
 

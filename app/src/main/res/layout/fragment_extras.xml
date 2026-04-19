@@ -83,8 +83,8 @@
                     android:padding="18dp">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="82dp"
-                        android:layout_height="82dp"
+                        android:layout_width="140dp"
+                        android:layout_height="85dp"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="18dp"
                         app:cardElevation="0dp"
@@ -94,11 +94,8 @@
                             android:id="@+id/ivSelectedVehicle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="12dp"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_directions_car"
-                            android:tint="#A7A7AD"
-                            tools:ignore="UseAppTint" />
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_directions_car" />
 
                     </com.google.android.material.card.MaterialCardView>
 

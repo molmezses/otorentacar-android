@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="6dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -30,16 +31,5 @@
         app:layout_constraintStart_toEndOf="@id/ivMenu"
         app:layout_constraintTop_toTopOf="@id/ivMenu" />
 
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:background="@drawable/bg_profile_circle"
-        android:padding="6dp"
-        android:src="@drawable/ic_person"
-        android:tint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UseAppTint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
