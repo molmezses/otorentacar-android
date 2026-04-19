@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edadursun.otorentacar.R
-import com.edadursun.otorentacar.data.local.DummyDataProvider
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.FragmentAllVehiclesBinding
 import com.edadursun.otorentacar.ui.allvehicles.adapter.AllVehiclesAdapter
@@ -67,7 +66,7 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
         val pickUpDateTime = formatApiDateTime(pickupMillis)
         val dropOffDateTime = formatApiDateTime(dropoffMillis)
 
-        // Test amaçlı loglar
+
         android.util.Log.d("SEARCH_PRICE_TEST", "pickupMillis = $pickupMillis")
         android.util.Log.d("SEARCH_PRICE_TEST", "dropoffMillis = $dropoffMillis")
         android.util.Log.d("SEARCH_PRICE_TEST", "pickupLocationId = $pickupLocationId")
@@ -116,6 +115,8 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
     }
 
     private fun navigateToExtras(vehicle: Vehicle) {
+        android.util.Log.d("ALL_VEHICLES_IMAGE_TEST", "vehicle.imageUrl=${vehicle.imageUrl}")
+
         val bundle = Bundle().apply {
             // Araç bilgileri
             putInt("vehicleModelId", vehicle.id)
@@ -126,6 +127,7 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
             putString("vehicleTag", vehicle.tag)
             putString("vehicleDailyPrice", vehicle.dailyPrice)
             putString("vehicleTotalPrice", vehicle.totalPrice)
+            putString("vehicleImageUrl", vehicle.imageUrl)
 
             // Tarih bilgileri
             putLong("pickupMillis", pickupMillis)

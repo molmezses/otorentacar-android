@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Volkswagen Tiguan"
+                    android:text="Araç Adı"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_lg"
                     android:textStyle="bold" />
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="PREMIUM SUV"
+                    android:text="Tür"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_xs"
                     android:textStyle="bold" />
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/araba" />
+                android:src="@drawable/ic_directions_car" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -221,7 +221,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="₺2.950"
+                    android:text="€0"
                     android:textColor="@color/primary_green_dark"
                     android:textSize="@dimen/text_xl"
                     android:textStyle="bold" />

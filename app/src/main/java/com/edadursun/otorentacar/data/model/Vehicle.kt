@@ -13,6 +13,7 @@ data class Vehicle(
     val bagCount: String,
     val tag: String,
     val imageResId: Int,
+    val imageUrl: String,
     val orderNo: Int
 
 )

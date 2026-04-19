@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.data.model.ExtraService
 import com.edadursun.otorentacar.databinding.FragmentExtrasBinding
@@ -34,6 +35,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     private var vehicleTag: String = ""
     private var vehicleDailyPrice: String = ""
     private var vehicleTotalPrice: String = ""
+    private var vehicleImageUrl: String = ""
 
     // Önceki ekrandan gelen tarih bilgileri
     private var pickupMillis: Long = 0L
@@ -78,6 +80,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         vehicleModelId = arguments?.getInt("vehicleModelId") ?: 0
         pickupLocationId = arguments?.getInt("pickupLocationId") ?: 0
         dropOffLocationId = arguments?.getInt("dropOffLocationId") ?: 0
+        vehicleImageUrl = arguments?.getString("vehicleImageUrl").orEmpty()
 
         // Alış ve dönüşe göre kaç gün kiralama olduğunu hesapla
         rentalDays = calculateRentalDays(pickupMillis, dropoffMillis)
@@ -86,7 +89,9 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
             "EXTRAS_ARGS",
             "vehicleModelId=$vehicleModelId, pickupLocationId=$pickupLocationId, dropOffLocationId=$dropOffLocationId"
         )
+
     }
+
 
     // Üstteki seçili araç kartı ve ilk fiyat alanlarını doldurur
     private fun setupHeader() {
@@ -96,6 +101,16 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         binding.tvVehiclePrice.text = vehicleTotalPrice
         binding.tvExtraPrice.text = "€0"
         binding.tvTotalPrice.text = vehicleTotalPrice
+
+        if (vehicleImageUrl.isNotBlank()) {
+            Glide.with(requireContext())
+                .load(vehicleImageUrl)
+                .placeholder(R.drawable.ic_directions_car)
+                .error(R.drawable.ic_directions_car)
+                .into(binding.ivSelectedVehicle)
+        } else {
+            binding.ivSelectedVehicle.setImageResource(R.drawable.ic_directions_car)
+        }
     }
 
     // RecyclerView ve adapter bağlantısını kurar
@@ -147,6 +162,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
                 putString("vehicleInfo", "$vehicleTransmission | $vehicleFuel")
                 putString("vehicleTag", vehicleTag)
                 putString("rentalPrice", binding.tvVehiclePrice.text.toString())
+                putString("vehicleImageUrl", vehicleImageUrl)
 
                 // API tarafında da kullanılacak id bilgileri
                 putInt("vehicleModelId", vehicleModelId)

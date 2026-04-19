@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.core.session.TokenStore
 import com.edadursun.otorentacar.data.remote.request.AddReservationRequest
@@ -45,6 +46,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private var rentalPrice: String = ""
     private var extraPrice: String = ""
     private var totalPrice: String = ""
+    private var vehicleImageUrl: String = ""
 
     // API için gerekli id alanları
     private var vehicleModelId: Int = 0
@@ -87,6 +89,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         vehicleModelId = arguments?.getInt("vehicleModelId") ?: 0
         pickupLocationId = arguments?.getInt("pickupLocationId") ?: 0
         dropOffLocationId = arguments?.getInt("dropOffLocationId") ?: 0
+        vehicleImageUrl = arguments?.getString("vehicleImageUrl").orEmpty()
 
         selectedExtras = arguments?.getStringArrayList("selectedExtras") ?: arrayListOf()
         childrenAge = arguments?.getStringArrayList("childrenAge") ?: arrayListOf()
@@ -111,6 +114,16 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         binding.etEmail.setText("")
         binding.etBirthDate.setText("")
         binding.etFlightCode.setText("")
+
+        if (vehicleImageUrl.isNotBlank()) {
+            Glide.with(requireContext())
+                .load(vehicleImageUrl)
+                .placeholder(R.drawable.ic_directions_car)
+                .error(R.drawable.ic_directions_car)
+                .into(binding.ivVehicle)
+        } else {
+            binding.ivVehicle.setImageResource(R.drawable.ic_directions_car)
+        }
     }
 
     private fun setupClicks() {
@@ -404,21 +417,21 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         }
 
         val extraNameMap = mapOf(
-            "1" to "Navigasyon Cihazı",
-            "2" to "Muafiyetsiz Kaza Güvencesi",
-            "3" to "Süper Hasar Güvencesi",
-            "4" to "Mini Hasar Güvencesi",
-            "5" to "Ek Sürücü",
-            "6" to "Bebek Koltuğu (0-3 yaş)"
+            "1" to "Ek Sürücü",
+            "2" to "Bebek Koltuğu (0-3 yaş)",
+            "3" to "Mini Hasar Güvencesi",
+            "4" to "Süper Hasar Güvencesi",
+            "5" to "Muafiyetsiz Kaza Güvencesi",
+            "6" to "Navigasyon Cihazı"
         )
 
         val extraPriceMap = mapOf(
-            "1" to "€2",
-            "2" to "€8",
-            "3" to "€6",
-            "4" to "€4",
-            "5" to "€5",
-            "6" to "€3"
+            "1" to "€5",
+            "2" to "€3",
+            "3" to "€4",
+            "4" to "€6",
+            "5" to "€8",
+            "6" to "€2"
         )
 
         val entries = groupedExtras.entries.toList()

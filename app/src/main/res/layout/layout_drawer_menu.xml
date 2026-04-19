@@ -23,17 +23,44 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-                <ImageView
-                    android:id="@+id/ivDrawerProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/bg_profile_circle_green"
-                    android:src="@drawable/logo"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UseAppTint" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="2dp"
+                    app:cardBackgroundColor="@color/primary_green_dark"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="0dp"
+                    tools:ignore="MissingConstraints">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="Otorentacar"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_lg"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="110dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#D4D62A" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <ImageView
                     android:id="@+id/ivDrawerClose"
@@ -51,7 +78,7 @@
                 android:id="@+id/tvDrawerLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xl"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:fontFamily="@font/inter_bold"
                 android:text="Otorentacar"
                 android:textColor="@color/text_primary"
@@ -74,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/inter_regular"
                 android:lineSpacingExtra="1dp"
                 android:text="Araç kiralama işlemlerini hızlı ve kolay şekilde yönetebilirsiniz."
                 android:textColor="@color/text_hint"

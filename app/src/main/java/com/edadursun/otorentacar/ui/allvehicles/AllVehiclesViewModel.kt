@@ -93,6 +93,11 @@ class AllVehiclesViewModel : ViewModel() {
         val dailyPriceText = "$currencyText${formatPrice(dailyPriceValue)}"
         val totalPriceText = "$currencyText${formatPrice(totalPriceValue)}"
 
+        android.util.Log.d(
+            "VEHICLE_IMAGE_TEST",
+            "name=$name, imageList=$imageList, imageUrl=${buildImageUrl(imageList.firstOrNull().orEmpty())}"
+        )
+
         return Vehicle(
             id = modelId,
             name = brand.name + " " + name,
@@ -105,6 +110,7 @@ class AllVehiclesViewModel : ViewModel() {
             bagCount = maxBigBaggage.toString(),
             tag = vehicleModelClass.name,
             imageResId = R.drawable.ic_directions_car,
+            imageUrl = buildImageUrl(imageList.firstOrNull().orEmpty()),
             orderNo = orderNo
         )
     }
@@ -133,6 +139,17 @@ class AllVehiclesViewModel : ViewModel() {
             price.toInt().toString()
         } else {
             String.format(java.util.Locale.US, "%.2f", price)
+        }
+    }
+
+    private fun buildImageUrl(imagePath: String): String {
+        if (imagePath.isBlank()) return ""
+
+        return if (imagePath.startsWith("http")) {
+            imagePath
+        } else {
+            val normalizedPath = if (imagePath.startsWith("/")) imagePath else "/$imagePath"
+            "https://www.otorentacar.com$normalizedPath"
         }
     }
 }

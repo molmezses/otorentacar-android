@@ -85,7 +85,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:text="Rezervasyon"
                         android:textColor="@color/bottom_nav_active"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_xs"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -123,9 +123,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Rezervasyon Sorgu"
+                        android:text="Sorgula"
                         android:textColor="@color/bottom_nav_inactive"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_xs"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -165,7 +165,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:text="İletişim"
                         android:textColor="@color/bottom_nav_inactive"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/text_xs"
                         android:textStyle="bold" />
                 </LinearLayout>
 

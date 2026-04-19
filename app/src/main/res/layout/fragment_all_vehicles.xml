@@ -19,8 +19,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBack"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 app:cardBackgroundColor="@color/bg_card"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/inter_regular"
-            android:text="• 09 Nis 2026"
+            android:text="• 00 Ay 2026"
             android:textColor="@color/text_hint"
             android:textSize="@dimen/text_sm"
             android:textStyle="bold" />
