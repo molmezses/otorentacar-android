@@ -508,13 +508,15 @@
 
             <TextView
                 android:id="@+id/tvFeaturedTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_md"
                 android:fontFamily="@font/inter_bold"
                 android:text="Öne Çıkan Kiralık Araçlar"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_lg"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvSeeAll"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -522,6 +524,7 @@
                 android:id="@+id/tvSeeAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
                 android:fontFamily="@font/inter_bold"
                 android:text="Tümünü Gör"
                 android:textColor="@color/primary_green_dark"
