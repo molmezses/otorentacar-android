@@ -148,8 +148,9 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
         }
 
         binding.cardFilter.setOnClickListener {
-            Toast.makeText(requireContext(), "Filtreleme sonraki adımda eklenecek", Toast.LENGTH_SHORT).show()
-        }
+            binding.cardFilter.isEnabled = false
+            binding.cardFilter.isClickable = false
+            binding.cardFilter.alpha = 0.5f        }
 
         binding.cardSort.setOnClickListener {
             showSortMenu(it)
