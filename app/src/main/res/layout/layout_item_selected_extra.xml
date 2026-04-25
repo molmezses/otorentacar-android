@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="14dp">
+    android:paddingBottom="@dimen/radius_14dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:id="@+id/tvExtraQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/spacing_2xs"
             android:fontFamily="@font/inter_medium"
             android:text="Adet:0"
             android:textColor="@color/text_hint"
@@ -52,8 +52,8 @@
     <View
         android:id="@+id/viewDivider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="@dimen/spacing_3xs"
+        android:layout_marginTop="@dimen/spacing_md"
         android:background="@color/bg_divider" />
 
 </LinearLayout>

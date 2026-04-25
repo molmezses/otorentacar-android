@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing -->
+    <dimen name="spacing_3xs">1dp</dimen>
+    <dimen name="spacing_2xs">2dp</dimen>
+    <dimen name="spacing_5dp">5dp</dimen>
+    <dimen name="spacing_xs">6dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_10dp">10dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_15dp">15dp</dimen>
+    <dimen name="spacing_lg">16dp</dimen>
+    <dimen name="spacing_18dp">18dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_22dp">22dp</dimen>
+    <dimen name="spacing_xxl">24dp</dimen>
+    <dimen name="spacing_25dp">25dp</dimen>
+    <dimen name="spacing_3xl">28dp</dimen>
+    <dimen name="spacing_4xl">32dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="radius_xs">8dp</dimen>
+    <dimen name="radius_drawer_logo">10dp</dimen>
+    <dimen name="radius_sm">12dp</dimen>
+    <dimen name="radius_14dp">14dp</dimen>
+    <dimen name="radius_md">16dp</dimen>
+    <dimen name="radius_lg">18dp</dimen>
+    <dimen name="radius_20dp">20dp</dimen>
+    <dimen name="radius_22dp">22dp</dimen>
+    <dimen name="radius_xl">24dp</dimen>
+    <dimen name="radius_26dp">26dp</dimen>
+    <dimen name="radius_2xl">28dp</dimen>
+    <dimen name="radius_3xl">30dp</dimen>
+
+    <!-- Text -->
+    <dimen name="text_xs">12sp</dimen>
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_contact_value">17sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="text_2xl">22sp</dimen>
+    <dimen name="text_3xl">24sp</dimen>
+    <dimen name="text_4xl">26sp</dimen>
+    <dimen name="text_5xl">28sp</dimen>
+    <dimen name="text_bullet">28sp</dimen>
+    <dimen name="text_vehicle_tag">11sp</dimen>
+
+    <!-- Icons -->
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">20dp</dimen>
+    <dimen name="icon_lg">24dp</dimen>
+    <dimen name="icon_xl">28dp</dimen>
+    <dimen name="topbar_menu_icon_size">25dp</dimen>
+    <dimen name="drawer_close_icon_size">26dp</dimen>
+    <dimen name="drawer_menu_icon_size">22dp</dimen>
+    <dimen name="filter_sort_icon_size">18dp</dimen>
+    <dimen name="featured_vehicle_spec_icon_size">14dp</dimen>
+
+    <!-- Common heights / widths -->
+    <dimen name="button_height_sm">48dp</dimen>
+    <dimen name="button_height_md">56dp</dimen>
+    <dimen name="button_height_60dp">60dp</dimen>
+    <dimen name="button_height_70dp">70dp</dimen>
+
+    <dimen name="input_height_md">56dp</dimen>
+    <dimen name="option_item_min_height">52dp</dimen>
+
+    <dimen name="card_height_sm">48dp</dimen>
+    <dimen name="card_height_md">56dp</dimen>
+    <dimen name="card_height_lg">64dp</dimen>
+
+    <dimen name="card_size_62dp">62dp</dimen>
+
+    <!-- Drawer -->
+    <dimen name="drawer_width">300dp</dimen>
+    <dimen name="drawer_logo_card_width">150dp</dimen>
+    <dimen name="drawer_logo_card_height">50dp</dimen>
+    <dimen name="drawer_logo_line_width">110dp</dimen>
+    <dimen name="drawer_logo_line_height">3dp</dimen>
+    <dimen name="drawer_menu_item_height">56dp</dimen>
+    <dimen name="drawer_menu_item_height_lg">60dp</dimen>
+
+    <!-- Error -->
+    <dimen name="error_button_width">200dp</dimen>
+    <dimen name="error_button_height">60dp</dimen>
+
+    <!-- Success -->
+    <dimen name="success_icon_card_size">120dp</dimen>
+    <dimen name="success_icon_card_radius">70dp</dimen>
+    <dimen name="success_icon_padding">30dp</dimen>
+    <dimen name="success_done_button_margin_top">30dp</dimen>
+
+    <!-- Reservation / Booking -->
+    <dimen name="tag_height_28dp">28dp</dimen>
+    <dimen name="vehicle_image_width_150dp">150dp</dimen>
+    <dimen name="vehicle_image_height_100dp">100dp</dimen>
+    <dimen name="reservation_track_icon_card_size">58dp</dimen>
+    <dimen name="reservation_query_input_height">58dp</dimen>
+    <dimen name="how_it_works_step_size">40dp</dimen>
+    <dimen name="booking_detail_vehicle_image_width">170dp</dimen>
+    <dimen name="booking_detail_vehicle_image_height">110dp</dimen>
+
+    <!-- Home -->
+    <dimen name="home_location_card_height">60dp</dimen>
+    <dimen name="home_date_time_card_height">72dp</dimen>
+
+    <!-- Extras -->
+    <dimen name="extras_vehicle_image_width">140dp</dimen>
+    <dimen name="extras_vehicle_image_height">85dp</dimen>
+    <dimen name="extra_select_card_size">34dp</dimen>
+    <dimen name="stroke_2dp">2dp</dimen>
+    <dimen name="check_icon_padding">7dp</dimen>
+    <dimen name="counter_button_size">40dp</dimen>
+
+    <!-- Contact -->
+    <dimen name="contact_item_icon_card_size">58dp</dimen>
+    <dimen name="contact_item_icon_padding">15dp</dimen>
+    <dimen name="contact_map_card_height">220dp</dimen>
+
+    <!-- About -->
+    <dimen name="about_hero_card_height">138dp</dimen>
+    <dimen name="about_hero_line_width">180dp</dimen>
+    <dimen name="about_hero_line_height">4dp</dimen>
+
+    <!-- Bottom nav -->
+    <dimen name="bottom_nav_item_padding_vertical">3dp</dimen>
+    <dimen name="bottom_nav_indicator_width">72dp</dimen>
+    <dimen name="bottom_nav_indicator_height">36dp</dimen>
+
+    <!-- All vehicles -->
+    <dimen name="vehicle_tag_height">30dp</dimen>
+    <dimen name="vehicle_tag_radius">15dp</dimen>
+    <dimen name="all_vehicle_image_height">190dp</dimen>
+    <dimen name="all_vehicle_select_button_width">120dp</dimen>
+    <dimen name="all_vehicle_select_button_height">54dp</dimen>
+
+    <!-- Featured vehicles -->
+    <dimen name="featured_vehicle_card_width">300dp</dimen>
+    <dimen name="featured_vehicle_fav_size">44dp</dimen>
+    <dimen name="featured_vehicle_fav_icon_padding">12dp</dimen>
+    <dimen name="featured_vehicle_image_height">170dp</dimen>
+    <dimen name="featured_vehicle_spec_chip_height">34dp</dimen>
+    <dimen name="featured_vehicle_spec_chip_radius">17dp</dimen>
+
+    <!-- Sort / filter -->
+    <dimen name="sort_dropdown_width">220dp</dimen>
+    <dimen name="filter_sort_card_height">52dp</dimen>
+
+    <!-- Misc -->
+    <dimen name="back_icon_padding_13dp">13dp</dimen>
+
+</resources>

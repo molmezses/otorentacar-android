@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="@dimen/featured_vehicle_card_width"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/spacing_lg"
     app:cardBackgroundColor="@color/bg_card"
-    app:cardCornerRadius="28dp"
+    app:cardCornerRadius="@dimen/radius_3xl"
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_lg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     android:id="@+id/tvVehicleType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     android:fontFamily="@font/inter_bold"
                     android:text="Tür"
                     android:textColor="@color/text_hint"
@@ -55,10 +55,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardFav"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="@dimen/featured_vehicle_fav_size"
+                android:layout_height="@dimen/featured_vehicle_fav_size"
                 app:cardBackgroundColor="@color/bg_input"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="@dimen/radius_14dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -68,7 +68,7 @@
                     android:id="@+id/ivFav"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="12dp"
+                    android:padding="@dimen/featured_vehicle_fav_icon_padding"
                     android:src="@drawable/ic_favorite"
                     android:tint="@color/primary_green_dark"
                     tools:ignore="UseAppTint" />
@@ -79,10 +79,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="@dimen/featured_vehicle_image_height"
+            android:layout_marginTop="@dimen/spacing_lg"
             app:cardBackgroundColor="@color/bg_input"
-            app:cardCornerRadius="18dp"
+            app:cardCornerRadius="@dimen/radius_lg"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -98,7 +98,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/spacing_lg">
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/layoutSpecs"
@@ -114,11 +114,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="@dimen/featured_vehicle_spec_chip_height"
+                    android:layout_marginEnd="@dimen/spacing_sm"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="17dp"
+                    app:cardCornerRadius="@dimen/featured_vehicle_spec_chip_radius"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -127,13 +127,13 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="12dp">
+                        android:paddingStart="@dimen/spacing_10dp"
+                        android:paddingEnd="@dimen/spacing_md">
 
                         <ImageView
                             android:id="@+id/ivTransmissionIcon"
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
+                            android:layout_width="@dimen/featured_vehicle_spec_icon_size"
+                            android:layout_height="@dimen/featured_vehicle_spec_icon_size"
                             android:src="@drawable/ic_settings"
                             android:tint="@color/primary_green_dark"
                             tools:ignore="UseAppTint" />
@@ -142,7 +142,7 @@
                             android:id="@+id/tvTransmission"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/spacing_xs"
                             android:fontFamily="@font/inter_medium"
                             android:maxLines="1"
                             android:text="Auto"
@@ -155,11 +155,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="@dimen/featured_vehicle_spec_chip_height"
+                    android:layout_marginEnd="@dimen/spacing_sm"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="17dp"
+                    app:cardCornerRadius="@dimen/featured_vehicle_spec_chip_radius"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -168,13 +168,13 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="12dp">
+                        android:paddingStart="@dimen/spacing_10dp"
+                        android:paddingEnd="@dimen/spacing_md">
 
                         <ImageView
                             android:id="@+id/ivFuelIcon"
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
+                            android:layout_width="@dimen/featured_vehicle_spec_icon_size"
+                            android:layout_height="@dimen/featured_vehicle_spec_icon_size"
                             android:src="@drawable/ic_gas_station"
                             android:tint="@color/primary_green_dark"
                             tools:ignore="UseAppTint" />
@@ -183,7 +183,7 @@
                             android:id="@+id/tvFuel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
+                            android:layout_marginStart="@dimen/spacing_xs"
                             android:fontFamily="@font/inter_medium"
                             android:maxLines="1"
                             android:text="Benzin"
@@ -201,7 +201,7 @@
                 android:id="@+id/layoutPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="@dimen/spacing_md"
                 android:gravity="end"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -45,7 +45,7 @@
             android:layout_marginTop="@dimen/spacing_xl"
             android:background="@drawable/bg_app_card"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="@dimen/spacing_18dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,13 +56,12 @@
                 android:textSize="@dimen/text_sm"
                 android:textStyle="bold" />
 
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/home_location_card_height"
+                android:layout_marginTop="@dimen/spacing_10dp"
                 app:cardBackgroundColor="@color/bg_input"
-                app:cardCornerRadius="18dp"
+                app:cardCornerRadius="@dimen/radius_lg"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -74,8 +73,8 @@
                     android:paddingHorizontal="@dimen/spacing_lg">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/icon_md"
+                        android:layout_height="@dimen/icon_md"
                         android:src="@drawable/ic_near_me"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -84,13 +83,13 @@
                         android:id="@+id/actPickupLocation"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginStart="@dimen/radius_14dp"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
                         android:completionThreshold="1"
                         android:dropDownAnchor="@id/actPickupLocation"
                         android:dropDownHeight="wrap_content"
-                        android:dropDownVerticalOffset="8dp"
+                        android:dropDownVerticalOffset="@dimen/spacing_sm"
                         android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
                         android:hint="Şehir veya Havalimanı"
@@ -109,7 +108,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="@dimen/spacing_md">
 
                 <TextView
                     android:id="@+id/tvDropInfo"
@@ -139,14 +138,14 @@
                 android:id="@+id/layoutDropOffSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/spacing_10dp"
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     android:fontFamily="@font/inter_bold"
                     android:text="DROP-OFF LOCATION"
                     android:textColor="@color/text_hint"
@@ -155,10 +154,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="@dimen/home_location_card_height"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -170,8 +169,8 @@
                         android:paddingHorizontal="@dimen/spacing_lg">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="@dimen/icon_md"
+                            android:layout_height="@dimen/icon_md"
                             android:src="@drawable/ic_near_me"
                             android:tint="@color/primary_green_dark"
                             tools:ignore="UseAppTint" />
@@ -180,13 +179,13 @@
                             android:id="@+id/actDropOffLocation"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="14dp"
+                            android:layout_marginStart="@dimen/radius_14dp"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:completionThreshold="1"
                             android:dropDownAnchor="@id/actDropOffLocation"
                             android:dropDownHeight="wrap_content"
-                            android:dropDownVerticalOffset="8dp"
+                            android:dropDownVerticalOffset="@dimen/spacing_sm"
                             android:ellipsize="end"
                             android:fontFamily="@font/inter_medium"
                             android:hint="Dönüş Lokasyonu"
@@ -226,27 +225,27 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingStart="14dp"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="14dp"
-                            android:paddingBottom="5dp">
+                            android:paddingStart="@dimen/radius_14dp"
+                            android:paddingTop="@dimen/spacing_5dp"
+                            android:paddingEnd="@dimen/radius_14dp"
+                            android:paddingBottom="@dimen/spacing_5dp">
 
                             <TextView
                                 android:id="@+id/tvPickupDate"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_bold"
-                                android:lineSpacingExtra="1dp"
+                                android:lineSpacingExtra="@dimen/spacing_3xs"
                                 android:text="09 Nis\n2026"
                                 android:textColor="@color/text_primary"
                                 android:textSize="@dimen/text_md"
@@ -258,8 +257,8 @@
 
                             <ImageView
                                 android:id="@+id/ivPickupDate"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="@dimen/icon_md"
+                                android:layout_height="@dimen/icon_md"
                                 android:src="@drawable/ic_calendar"
                                 android:tint="@color/primary_green_dark"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -273,7 +272,7 @@
                 </LinearLayout>
 
                 <Space
-                    android:layout_width="14dp"
+                    android:layout_width="@dimen/radius_14dp"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
@@ -292,20 +291,20 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingStart="14dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="14dp"
-                            android:paddingBottom="12dp">
+                            android:paddingStart="@dimen/radius_14dp"
+                            android:paddingTop="@dimen/spacing_md"
+                            android:paddingEnd="@dimen/radius_14dp"
+                            android:paddingBottom="@dimen/spacing_md">
 
                             <TextView
                                 android:id="@+id/tvPickupTime"
@@ -323,8 +322,8 @@
 
                             <ImageView
                                 android:id="@+id/ivPickupTime"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="@dimen/icon_md"
+                                android:layout_height="@dimen/icon_md"
                                 android:src="@drawable/ic_time"
                                 android:tint="@color/primary_green_dark"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -361,27 +360,27 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingStart="14dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="14dp"
-                            android:paddingBottom="12dp">
+                            android:paddingStart="@dimen/radius_14dp"
+                            android:paddingTop="@dimen/spacing_md"
+                            android:paddingEnd="@dimen/radius_14dp"
+                            android:paddingBottom="@dimen/spacing_md">
 
                             <TextView
                                 android:id="@+id/tvDropOffDate"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_bold"
-                                android:lineSpacingExtra="1dp"
+                                android:lineSpacingExtra="@dimen/spacing_3xs"
                                 android:text="12 Nis\n2026"
                                 android:textColor="@color/text_primary"
                                 android:textSize="@dimen/text_md"
@@ -393,8 +392,8 @@
 
                             <ImageView
                                 android:id="@+id/ivDropOffDate"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="@dimen/icon_md"
+                                android:layout_height="@dimen/icon_md"
                                 android:src="@drawable/ic_calendar"
                                 android:tint="@color/primary_green_dark"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -408,7 +407,7 @@
                 </LinearLayout>
 
                 <Space
-                    android:layout_width="14dp"
+                    android:layout_width="@dimen/radius_14dp"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
@@ -427,20 +426,20 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="72dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingStart="14dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="14dp"
-                            android:paddingBottom="12dp">
+                            android:paddingStart="@dimen/radius_14dp"
+                            android:paddingTop="@dimen/spacing_md"
+                            android:paddingEnd="@dimen/radius_14dp"
+                            android:paddingBottom="@dimen/spacing_md">
 
                             <TextView
                                 android:id="@+id/tvDropOffTime"
@@ -458,8 +457,8 @@
 
                             <ImageView
                                 android:id="@+id/ivDropOffTime"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="@dimen/icon_md"
+                                android:layout_height="@dimen/icon_md"
                                 android:src="@drawable/ic_time"
                                 android:tint="@color/primary_green_dark"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -478,7 +477,7 @@
                 android:id="@+id/tvDateValidationError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:fontFamily="@font/inter_bold"
                 android:text="Dönüş tarihi, alış tarihinden sonra olmalıdır."
                 android:textColor="@android:color/holo_red_dark"
@@ -488,8 +487,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnFindCar"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="18dp"
+                android:layout_height="@dimen/button_height_70dp"
+                android:layout_marginTop="@dimen/spacing_18dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Araç Bul"
                 android:textAllCaps="false"
@@ -497,7 +496,7 @@
                 android:textSize="@dimen/text_lg"
                 android:textStyle="bold"
                 app:backgroundTint="@color/primary_green_dark"
-                app:cornerRadius="18dp" />
+                app:cornerRadius="@dimen/radius_lg" />
 
         </LinearLayout>
 
@@ -540,7 +539,7 @@
             android:id="@+id/rvFeaturedVehicles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             android:nestedScrollingEnabled="false" />
 
     </LinearLayout>

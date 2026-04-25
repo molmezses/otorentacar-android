@@ -19,10 +19,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/card_height_sm"
+                android:layout_height="@dimen/card_height_sm"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="@dimen/radius_14dp"
                 app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:padding="13dp"
+                    android:padding="@dimen/back_icon_padding_13dp"
                     android:src="@drawable/ic_arrow_back"
                     android:tint="@color/text_primary"
                     tools:ignore="UseAppTint" />
@@ -60,18 +60,18 @@
             android:id="@+id/tvVehicleCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/spacing_xxl"
             android:fontFamily="@font/inter_bold"
             android:text="5 araç bulundu"
             android:textColor="@color/text_primary"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_lg"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvSelectedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:fontFamily="@font/inter_regular"
             android:text="• 00 Ay 2026"
             android:textColor="@color/text_hint"
@@ -81,16 +81,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="@dimen/radius_14dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardFilter"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="@dimen/filter_sort_card_height"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="@dimen/radius_md"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -99,18 +99,20 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
+                    android:paddingHorizontal="@dimen/spacing_lg">
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="@dimen/filter_sort_icon_size"
+                        android:layout_height="@dimen/filter_sort_icon_size"
                         android:src="@drawable/ic_filter" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_bold"
+                        android:maxLines="1"
                         android:text="Filtrele"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_md"
@@ -120,16 +122,16 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Space
-                android:layout_width="12dp"
+                android:layout_width="@dimen/spacing_md"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardSort"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="@dimen/filter_sort_card_height"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="@dimen/radius_md"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -138,28 +140,32 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="16dp">
+                    android:paddingHorizontal="@dimen/spacing_lg">
 
                     <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="@dimen/filter_sort_icon_size"
+                        android:layout_height="@dimen/filter_sort_icon_size"
                         android:src="@drawable/ic_suggestion" />
 
                     <TextView
                         android:id="@+id/tvSortLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:layout_weight="1"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_bold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:text="Önerilen"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/icon_md"
+                        android:layout_height="@dimen/icon_md"
                         android:src="@drawable/ic_arrow_down" />
 
                 </LinearLayout>
@@ -172,7 +178,7 @@
             android:id="@+id/rvAllVehicles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:nestedScrollingEnabled="false" />
 
     </LinearLayout>

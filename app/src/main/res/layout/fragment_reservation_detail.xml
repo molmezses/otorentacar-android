@@ -19,10 +19,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/card_height_sm"
+                android:layout_height="@dimen/card_height_sm"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="@dimen/radius_14dp"
                 app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
                     android:id="@+id/ivBack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="14dp"
+                    android:padding="@dimen/radius_14dp"
                     android:src="@drawable/ic_arrow_back"
                     android:tint="@color/text_primary"
                     tools:ignore="UseAppTint" />
@@ -42,7 +42,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="@dimen/radius_14dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Rezervasyon Detayı"
                 android:textColor="@color/text_primary"
@@ -58,7 +58,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
             android:text="Rezervasyon Detayları"
             android:textColor="@color/text_primary"
@@ -68,9 +68,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
-            android:lineSpacingExtra="2dp"
+            android:lineSpacingExtra="@dimen/spacing_2xs"
             android:text="Bilgilerinizi doldurup rezervasyonu tamamlayabilirsiniz."
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_md" />
@@ -78,9 +78,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -99,9 +99,9 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
-                        android:layout_height="28dp"
+                        android:layout_height="@dimen/tag_height_28dp"
                         app:cardBackgroundColor="@color/bg_input"
-                        app:cardCornerRadius="14dp"
+                        app:cardCornerRadius="@dimen/radius_14dp"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
@@ -110,7 +110,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center"
-                            android:paddingHorizontal="12dp"
+                            android:paddingHorizontal="@dimen/spacing_md"
                             android:text="POPULAR"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_xs"
@@ -122,7 +122,7 @@
                         android:id="@+id/tvVehicleName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Araç Adı"
                         android:textColor="@color/text_primary"
@@ -133,7 +133,7 @@
                         android:id="@+id/tvVehicleInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         android:fontFamily="@font/inter_bold"
                         android:text="Özellik 1 | Özellik 2"
                         android:textColor="@color/text_hint"
@@ -142,11 +142,11 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_width="@dimen/vehicle_image_width_150dp"
+                    android:layout_height="@dimen/vehicle_image_height_100dp"
+                    android:layout_marginStart="@dimen/spacing_5dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -166,7 +166,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="22dp"
+                app:cardCornerRadius="@dimen/radius_22dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -182,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -197,9 +197,9 @@
                         android:id="@+id/tvPickupDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="Gün Ay Yıl, 00:00"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
@@ -209,7 +209,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Space
-                android:layout_width="14dp"
+                android:layout_width="@dimen/radius_14dp"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.card.MaterialCardView
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="22dp"
+                app:cardCornerRadius="@dimen/radius_22dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -225,7 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -240,9 +240,9 @@
                         android:id="@+id/tvDropOffDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="Gün Ay Yıl, 00:00"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
@@ -256,13 +256,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/spacing_xxl"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_person"
                 android:tint="@color/primary_green_dark"
                 tools:ignore="UseAppTint" />
@@ -270,7 +270,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Kişisel Bilgiler"
                 android:textColor="@color/text_primary"
@@ -281,9 +281,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -291,7 +291,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -306,13 +306,13 @@
                     android:id="@+id/tilFullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:boxBackgroundColor="@color/bg_input"
                     app:boxBackgroundMode="filled"
-                    app:boxCornerRadiusBottomEnd="18dp"
-                    app:boxCornerRadiusBottomStart="18dp"
-                    app:boxCornerRadiusTopEnd="18dp"
-                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                    app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusTopStart="@dimen/radius_lg"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp">
 
@@ -334,7 +334,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -356,13 +356,13 @@
                             android:id="@+id/tilPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/spacing_10dp"
                             app:boxBackgroundColor="@color/bg_input"
                             app:boxBackgroundMode="filled"
-                            app:boxCornerRadiusBottomEnd="18dp"
-                            app:boxCornerRadiusBottomStart="18dp"
-                            app:boxCornerRadiusTopEnd="18dp"
-                            app:boxCornerRadiusTopStart="18dp"
+                            app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                            app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                            app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                            app:boxCornerRadiusTopStart="@dimen/radius_lg"
                             app:boxStrokeWidth="0dp"
                             app:boxStrokeWidthFocused="0dp">
 
@@ -384,7 +384,7 @@
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="14dp"
+                        android:layout_width="@dimen/radius_14dp"
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
@@ -406,13 +406,13 @@
                             android:id="@+id/tilBirthDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/spacing_10dp"
                             app:boxBackgroundColor="@color/bg_input"
                             app:boxBackgroundMode="filled"
-                            app:boxCornerRadiusBottomEnd="18dp"
-                            app:boxCornerRadiusBottomStart="18dp"
-                            app:boxCornerRadiusTopEnd="18dp"
-                            app:boxCornerRadiusTopStart="18dp"
+                            app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                            app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                            app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                            app:boxCornerRadiusTopStart="@dimen/radius_lg"
                             app:boxStrokeWidth="0dp"
                             app:boxStrokeWidthFocused="0dp">
 
@@ -440,7 +440,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="E-POSTA"
                     android:textColor="@color/text_hint"
@@ -451,13 +451,13 @@
                     android:id="@+id/tilEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:boxBackgroundColor="@color/bg_input"
                     app:boxBackgroundMode="filled"
-                    app:boxCornerRadiusBottomEnd="18dp"
-                    app:boxCornerRadiusBottomStart="18dp"
-                    app:boxCornerRadiusTopEnd="18dp"
-                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                    app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusTopStart="@dimen/radius_lg"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp">
 
@@ -479,7 +479,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="UÇUŞ KODU (OPSIYONEL)"
                     android:textColor="@color/text_hint"
@@ -490,13 +490,13 @@
                     android:id="@+id/tilFlightCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:boxBackgroundColor="@color/bg_input"
                     app:boxBackgroundMode="filled"
-                    app:boxCornerRadiusBottomEnd="18dp"
-                    app:boxCornerRadiusBottomStart="18dp"
-                    app:boxCornerRadiusTopEnd="18dp"
-                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                    app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                    app:boxCornerRadiusTopStart="@dimen/radius_lg"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp">
 
@@ -521,9 +521,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -531,7 +531,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -540,8 +540,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
+                        android:layout_width="@dimen/drawer_menu_icon_size"
+                        android:layout_height="@dimen/drawer_menu_icon_size"
                         android:src="@drawable/ic_credit_card"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -549,7 +549,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Ödeme Özeti"
                         android:textColor="@color/text_primary"
@@ -561,7 +561,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp">
+                    android:layout_marginTop="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -590,7 +590,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginTop="@dimen/radius_14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -616,17 +616,16 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_height="@dimen/spacing_3xs"
+                    android:layout_marginTop="@dimen/spacing_18dp"
                     android:background="@color/bg_divider" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="GENEL TOPLAM"
                     android:textColor="@color/primary_green_dark"
@@ -637,7 +636,7 @@
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/spacing_5dp"
                     android:fontFamily="@font/inter_bold"
                     android:text="€0"
                     android:textColor="@color/text_primary"
@@ -652,9 +651,9 @@
             android:id="@+id/cardSelectedExtras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -662,7 +661,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -677,7 +676,7 @@
                     android:id="@+id/layoutSelectedExtrasContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="@dimen/spacing_18dp"
                     android:orientation="vertical" />
 
             </LinearLayout>
@@ -687,8 +686,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCompleteReservation"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="@dimen/button_height_70dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             android:fontFamily="@font/inter_bold"
             android:text="Rezervasyonu Tamamla"
             android:textAllCaps="false"
@@ -696,7 +695,7 @@
             android:textSize="@dimen/text_lg"
             android:textStyle="bold"
             app:backgroundTint="@color/primary_green_dark"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="@dimen/radius_lg" />
 
     </LinearLayout>
 

@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
             android:text="Otorentacar hakkında temel bilgiler"
             android:textColor="@color/text_secondary"
@@ -41,10 +41,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="138dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="@dimen/about_hero_card_height"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/primary_green_dark"
-            app:cardCornerRadius="28dp"
+            app:cardCornerRadius="@dimen/radius_3xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="@dimen/spacing_xxl">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,13 +61,13 @@
                     android:fontFamily="@font/inter_bold"
                     android:text="Otorentacar"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/text_3xl"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="180dp"
-                    android:layout_height="4dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="@dimen/about_hero_line_width"
+                    android:layout_height="@dimen/about_hero_line_height"
+                    android:layout_marginTop="@dimen/spacing_md"
                     android:background="#D4D62A" />
 
             </LinearLayout>
@@ -77,9 +77,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="22dp">
+                android:padding="@dimen/spacing_22dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,7 +97,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
+                        android:layout_height="@dimen/icon_lg"
                         android:src="@drawable/ic_directions_car"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -105,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Otorentacar"
                         android:textColor="@color/text_primary"
@@ -116,9 +116,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_regular"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="@dimen/spacing_2xs"
                     android:text="@string/about_company_text"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_md" />
@@ -130,9 +130,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -140,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="22dp">
+                android:padding="@dimen/spacing_22dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -150,7 +150,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="24dp"
+                        android:layout_height="@dimen/icon_lg"
                         android:src="@drawable/ic_assignment_globe"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -158,7 +158,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Misyonumuz"
                         android:textColor="@color/text_primary"
@@ -169,9 +169,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_regular"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="@dimen/spacing_2xs"
                     android:text="@string/about_mission_text"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_md" />
@@ -183,9 +183,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="22dp">
+                android:padding="@dimen/spacing_22dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -202,8 +202,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/icon_md"
+                        android:layout_height="@dimen/icon_md"
                         android:src="@drawable/ic_thumb_up"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -211,7 +211,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Vizyonumuz"
                         android:textColor="@color/text_primary"
@@ -222,9 +222,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_regular"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="@dimen/spacing_2xs"
                     android:text="@string/about_vision_text"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_md" />
@@ -236,9 +236,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -246,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="22dp">
+                android:padding="@dimen/spacing_22dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -255,8 +255,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/icon_md"
+                        android:layout_height="@dimen/icon_md"
                         android:src="@drawable/ic_verified"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -264,7 +264,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="İlkelerimiz"
                         android:textColor="@color/text_primary"
@@ -275,14 +275,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="@dimen/spacing_18dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -291,15 +291,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_1"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -308,7 +308,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -317,15 +317,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_2"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -334,7 +334,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -343,15 +343,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_3"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -360,7 +360,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -369,15 +369,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_4"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -386,7 +386,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -395,15 +395,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_5"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -412,7 +412,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -421,15 +421,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_6"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -439,7 +439,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -448,15 +448,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_7"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -465,7 +465,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -474,15 +474,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_8"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -491,7 +491,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -500,15 +500,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_9"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -517,7 +517,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginBottom="@dimen/radius_14dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -526,15 +526,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_10"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -551,15 +551,15 @@
                             android:layout_height="wrap_content"
                             android:text="•"
                             android:textColor="@color/primary_green_dark"
-                            android:textSize="28sp" />
+                            android:textSize="@dimen/text_bullet" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/spacing_10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_regular"
-                            android:lineSpacingExtra="2dp"
+                            android:lineSpacingExtra="@dimen/spacing_2xs"
                             android:text="@string/about_principle_11"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_md" />
@@ -574,10 +574,3 @@
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
-
-
-
-
-
-
-

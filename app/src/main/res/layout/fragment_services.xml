@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
             android:text="Otorentacar ile sunduğumuz avantajlar"
             android:textColor="@color/text_secondary"
@@ -42,9 +42,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -52,13 +52,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="@dimen/spacing_2xs"
                     android:text="@string/services_intro_title"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_2xl"
@@ -67,9 +67,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_regular"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="@dimen/spacing_2xs"
                     android:text="@string/services_intro_desc"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_sm" />
@@ -82,9 +82,9 @@
             android:id="@+id/cardSupport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -93,20 +93,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
+                    android:layout_width="@dimen/card_size_62dp"
+                    android:layout_height="@dimen/card_size_62dp"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="18dp"
+                        android:padding="@dimen/spacing_18dp"
                         android:src="@drawable/ic_call"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -116,7 +116,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -124,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_support_title"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
@@ -133,9 +133,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_support_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -150,9 +150,9 @@
             android:id="@+id/cardDelivery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -161,20 +161,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
+                    android:layout_width="@dimen/card_size_62dp"
+                    android:layout_height="@dimen/card_size_62dp"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="18dp"
+                        android:padding="@dimen/spacing_18dp"
                         android:src="@drawable/ic_key"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -184,7 +184,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -192,7 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_delivery_title"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
@@ -201,9 +201,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_delivery_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -218,9 +218,9 @@
             android:id="@+id/cardCleanCars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -229,20 +229,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
+                    android:layout_width="@dimen/card_size_62dp"
+                    android:layout_height="@dimen/card_size_62dp"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="18dp"
+                        android:padding="@dimen/spacing_18dp"
                         android:src="@drawable/ic_eco"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -251,7 +251,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -259,7 +259,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_clean_title"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
@@ -268,9 +268,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_clean_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -285,9 +285,9 @@
             android:id="@+id/cardLuxury"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -296,20 +296,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
+                    android:layout_width="@dimen/card_size_62dp"
+                    android:layout_height="@dimen/card_size_62dp"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="18dp"
+                        android:padding="@dimen/spacing_18dp"
                         android:src="@drawable/ic_directions_car"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -318,7 +318,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -326,7 +326,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_luxury_title"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
@@ -335,9 +335,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_luxury_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -352,9 +352,9 @@
             android:id="@+id/cardOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -363,20 +363,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="62dp"
-                    android:layout_height="62dp"
+                    android:layout_width="@dimen/card_size_62dp"
+                    android:layout_height="@dimen/card_size_62dp"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="18dp"
+                        android:padding="@dimen/spacing_18dp"
                         android:src="@drawable/ic_stacks"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -385,7 +385,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -393,7 +393,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_options_title"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
@@ -402,9 +402,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="@string/services_options_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />

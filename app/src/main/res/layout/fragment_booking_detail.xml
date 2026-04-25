@@ -19,10 +19,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/card_height_sm"
+                android:layout_height="@dimen/card_height_sm"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="14dp"
+                app:cardCornerRadius="@dimen/radius_14dp"
                 app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
                     android:id="@+id/ivBack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="14dp"
+                    android:padding="@dimen/radius_14dp"
                     android:src="@drawable/ic_arrow_back"
                     android:tint="@color/text_primary"
                     tools:ignore="UseAppTint" />
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="@dimen/radius_14dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Rezervasyon Bilgileri"
                 android:textColor="@color/text_primary"
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
             android:text="Rezervasyonun Hazır"
             android:textColor="@color/text_primary"
@@ -67,9 +67,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
-            android:lineSpacingExtra="2dp"
+            android:lineSpacingExtra="@dimen/spacing_2xs"
             android:text="Mevcut rezervasyon bilgilerini aşağıda görüntüleyebilirsin."
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_md" />
@@ -77,16 +77,16 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <LinearLayout
                     android:id="@+id/layoutCode"
@@ -110,11 +110,11 @@
                         android:id="@+id/tvReservationCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         android:fontFamily="@font/inter_bold"
                         android:text="ASDF"
                         android:textColor="@color/text_primary"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text_xl"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -139,10 +139,10 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/how_it_works_step_size"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/primary_green_light"
-                        app:cardCornerRadius="20dp"
+                        app:cardCornerRadius="@dimen/radius_xl"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
@@ -152,7 +152,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
-                            android:paddingHorizontal="16dp"
+                            android:paddingHorizontal="@dimen/spacing_lg"
                             android:text="Onaylandı"
                             android:textColor="@color/primary_green_dark"
                             android:textSize="@dimen/text_sm"
@@ -168,9 +168,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="18dp">
+                android:padding="@dimen/spacing_18dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -187,14 +187,13 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-
                     <TextView
                         android:id="@+id/tvVehicleName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/spacing_5dp"
                         android:fontFamily="@font/inter_bold"
-                        android:lineSpacingExtra="2dp"
+                        android:lineSpacingExtra="@dimen/spacing_2xs"
                         android:text="Araç Adı"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_xl"
@@ -204,7 +203,7 @@
                         android:id="@+id/tvVehicleInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="Özellik 1 | Özelik 2"
                         android:textColor="@color/text_secondary"
@@ -214,11 +213,11 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="170dp"
-                    android:layout_height="110dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="@dimen/booking_detail_vehicle_image_width"
+                    android:layout_height="@dimen/booking_detail_vehicle_image_height"
+                    android:layout_marginStart="@dimen/spacing_lg"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -238,7 +237,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
@@ -246,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="22dp"
+                app:cardCornerRadius="@dimen/radius_22dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -254,7 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -265,12 +264,11 @@
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
 
-
                     <TextView
                         android:id="@+id/tvPickupDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
                         android:text="09 Nis 2026, 10:00"
                         android:textColor="@color/text_hint"
@@ -281,7 +279,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Space
-                android:layout_width="14dp"
+                android:layout_width="@dimen/radius_14dp"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.card.MaterialCardView
@@ -289,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:cardBackgroundColor="@color/bg_card"
-                app:cardCornerRadius="22dp"
+                app:cardCornerRadius="@dimen/radius_22dp"
                 app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
@@ -297,7 +295,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -308,12 +306,11 @@
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
 
-
                     <TextView
                         android:id="@+id/tvDropOffDateTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
                         android:text="12 Nis 2026, 10:00"
                         android:textColor="@color/text_hint"
@@ -328,13 +325,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/spacing_xxl"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_person"
                 android:tint="@color/primary_green_dark"
                 tools:ignore="UseAppTint" />
@@ -342,7 +339,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Kişisel Bilgiler"
                 android:textColor="@color/text_primary"
@@ -353,9 +350,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/spacing_18dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -363,12 +360,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -388,10 +385,10 @@
 
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="match_parent"
-                            android:layout_height="58dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_height="@dimen/reservation_query_input_height"
+                            android:layout_marginTop="@dimen/spacing_10dp"
                             app:cardBackgroundColor="@color/bg_input"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="@dimen/radius_lg"
                             app:cardElevation="0dp"
                             app:strokeWidth="0dp">
 
@@ -401,7 +398,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center_vertical"
-                                android:paddingHorizontal="16dp"
+                                android:paddingHorizontal="@dimen/spacing_lg"
                                 android:text=""
                                 android:textColor="@color/text_secondary"
                                 android:textSize="@dimen/text_sm" />
@@ -409,7 +406,7 @@
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="14dp"
+                        android:layout_width="@dimen/radius_14dp"
                         android:layout_height="wrap_content" />
 
                     <LinearLayout
@@ -429,10 +426,10 @@
 
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="match_parent"
-                            android:layout_height="58dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_height="@dimen/reservation_query_input_height"
+                            android:layout_marginTop="@dimen/spacing_10dp"
                             app:cardBackgroundColor="@color/bg_input"
-                            app:cardCornerRadius="18dp"
+                            app:cardCornerRadius="@dimen/radius_lg"
                             app:cardElevation="0dp"
                             app:strokeWidth="0dp">
 
@@ -442,7 +439,7 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/inter_medium"
                                 android:gravity="center_vertical"
-                                android:paddingHorizontal="16dp"
+                                android:paddingHorizontal="@dimen/spacing_lg"
                                 android:text=""
                                 android:textColor="@color/text_secondary"
                                 android:textSize="@dimen/text_sm" />
@@ -455,7 +452,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="TELEFON"
                     android:textColor="@color/text_hint"
@@ -464,10 +461,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="@dimen/reservation_query_input_height"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -477,7 +474,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/inter_medium"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingHorizontal="@dimen/spacing_lg"
                         android:text=""
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -487,7 +484,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="DOĞUM TARİHİ"
                     android:textColor="@color/text_hint"
@@ -496,10 +493,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="@dimen/reservation_query_input_height"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -509,7 +506,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/inter_medium"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingHorizontal="@dimen/spacing_lg"
                         android:text=""
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -519,7 +516,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="E-POSTA"
                     android:textColor="@color/text_hint"
@@ -528,10 +525,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="@dimen/reservation_query_input_height"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -541,7 +538,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/inter_medium"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingHorizontal="@dimen/spacing_lg"
                         android:text=""
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -550,7 +547,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="UÇUŞ KODU (OPSIYONEL)"
                     android:textColor="@color/text_hint"
@@ -559,10 +556,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="@dimen/reservation_query_input_height"
+                    android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
-                    app:cardCornerRadius="18dp"
+                    app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
@@ -572,7 +569,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/inter_medium"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingHorizontal="@dimen/spacing_lg"
                         android:text=""
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
@@ -585,9 +582,9 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -595,7 +592,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -604,8 +601,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/icon_lg"
+                        android:layout_height="@dimen/icon_lg"
                         android:src="@drawable/ic_credit_card"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -613,7 +610,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
                         android:text="Ödeme Özeti"
                         android:textColor="@color/text_primary"
@@ -624,7 +621,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp">
+                    android:layout_marginTop="@dimen/spacing_18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -652,7 +649,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginTop="@dimen/radius_14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -680,14 +677,14 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_height="@dimen/spacing_3xs"
+                    android:layout_marginTop="@dimen/spacing_18dp"
                     android:background="@color/bg_divider" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
                     android:text="GENEL TOPLAM"
                     android:textColor="@color/primary_green_dark"
@@ -698,7 +695,7 @@
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="@dimen/spacing_5dp"
                     android:fontFamily="@font/inter_bold"
                     android:text="€0"
                     android:textColor="@color/text_primary"
@@ -713,9 +710,9 @@
             android:id="@+id/cardExtras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="24dp"
+            app:cardCornerRadius="@dimen/radius_xl"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -723,7 +720,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -738,7 +735,7 @@
                     android:id="@+id/layoutExtrasContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="@dimen/radius_14dp"
                     android:orientation="vertical" />
 
             </LinearLayout>

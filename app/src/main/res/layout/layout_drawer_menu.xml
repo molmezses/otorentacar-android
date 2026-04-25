@@ -2,7 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="@dimen/drawer_width"
     android:layout_height="match_parent"
     android:background="@color/bg_screen"
     android:fillViewport="true">
@@ -24,14 +24,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="@dimen/spacing_10dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_width="@dimen/drawer_logo_card_width"
+                    android:layout_height="@dimen/drawer_logo_card_height"
+                    android:layout_marginTop="@dimen/spacing_2xs"
                     app:cardBackgroundColor="@color/primary_green_dark"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="@dimen/radius_drawer_logo"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp"
                     tools:ignore="MissingConstraints">
@@ -41,7 +41,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="4dp">
+                        android:padding="@dimen/spacing_2xs">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -53,9 +53,9 @@
                             android:textStyle="bold" />
 
                         <View
-                            android:layout_width="110dp"
-                            android:layout_height="3dp"
-                            android:layout_marginTop="2dp"
+                            android:layout_width="@dimen/drawer_logo_line_width"
+                            android:layout_height="@dimen/drawer_logo_line_height"
+                            android:layout_marginTop="@dimen/spacing_2xs"
                             android:background="#D4D62A" />
 
                     </LinearLayout>
@@ -64,13 +64,12 @@
 
                 <ImageView
                     android:id="@+id/ivDrawerClose"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
+                    android:layout_width="@dimen/drawer_close_icon_size"
+                    android:layout_height="@dimen/drawer_close_icon_size"
                     android:src="@drawable/ic_close"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="UseAppTint" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,7 +88,7 @@
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_2xs"
                 android:fontFamily="@font/inter_bold"
                 android:text="Hoş Geldiniz"
                 android:textColor="@color/primary_green_dark"
@@ -100,9 +99,9 @@
                 android:id="@+id/tvInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_2xs"
                 android:fontFamily="@font/inter_regular"
-                android:lineSpacingExtra="1dp"
+                android:lineSpacingExtra="@dimen/spacing_3xs"
                 android:text="Araç kiralama işlemlerini hızlı ve kolay şekilde yönetebilirsiniz."
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm"
@@ -113,18 +112,18 @@
         <LinearLayout
             android:id="@+id/menuHome"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/drawer_menu_item_height_lg"
             android:layout_marginStart="@dimen/spacing_lg"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/spacing_5dp"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="@dimen/spacing_18dp">
 
             <ImageView
                 android:id="@+id/ivMenuHome"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_home"
                 android:tint="@color/text_secondary"
                 tools:ignore="UseAppTint" />
@@ -133,7 +132,7 @@
                 android:id="@+id/tvMenuHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Anasayfa"
                 android:textColor="@color/text_secondary"
@@ -144,18 +143,18 @@
         <LinearLayout
             android:id="@+id/menuBookings"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_md"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="@dimen/spacing_18dp">
 
             <ImageView
                 android:id="@+id/ivMenuBookings"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_directions_car"
                 android:tint="@color/text_secondary"
                 tools:ignore="UseAppTint" />
@@ -164,7 +163,7 @@
                 android:id="@+id/tvMenuBookings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Rezervasyonlarım"
                 android:textColor="@color/text_secondary"
@@ -175,18 +174,18 @@
         <LinearLayout
             android:id="@+id/menuAbout"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="@dimen/spacing_18dp">
 
             <ImageView
                 android:id="@+id/ivMenuAbout"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_info"
                 android:tint="@color/text_secondary"
                 tools:ignore="UseAppTint" />
@@ -195,7 +194,7 @@
                 android:id="@+id/tvMenuAbout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Hakkımızda"
                 android:textColor="@color/text_secondary"
@@ -206,18 +205,18 @@
         <LinearLayout
             android:id="@+id/menuServices"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="@dimen/spacing_18dp">
 
             <ImageView
                 android:id="@+id/ivMenuServices"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_services"
                 android:tint="@color/text_secondary"
                 tools:ignore="UseAppTint" />
@@ -226,7 +225,7 @@
                 android:id="@+id/tvMenuServices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:text="Hizmetlerimiz"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -236,18 +235,18 @@
         <LinearLayout
             android:id="@+id/menuContact"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:paddingHorizontal="@dimen/spacing_18dp">
 
             <ImageView
                 android:id="@+id/ivMenuContact"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/drawer_menu_icon_size"
+                android:layout_height="@dimen/drawer_menu_icon_size"
                 android:src="@drawable/ic_support_agent"
                 android:tint="@color/text_secondary"
                 tools:ignore="UseAppTint" />
@@ -256,7 +255,7 @@
                 android:id="@+id/tvMenuContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="İletişim"
                 android:textColor="@color/text_secondary"
