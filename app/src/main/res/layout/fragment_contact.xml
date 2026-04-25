@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/spacing_2xs"
             android:fontFamily="@font/inter_medium"
             android:text="Bize ulaşmanın en kolay yolu"
             android:textColor="@color/primary_green_dark"
@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
             android:text="Telefon, e-posta ve WhatsApp üzerinden bizimle hızlıca iletişime geçebilirsiniz."
             android:textColor="@color/text_secondary"
@@ -53,11 +53,11 @@
             android:id="@+id/cardWhatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="@dimen/spacing_22dp"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -66,20 +66,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/spacing_lg">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
+                    android:layout_width="@dimen/contact_item_icon_card_size"
+                    android:layout_height="@dimen/contact_item_icon_card_size"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="@dimen/radius_md"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="15dp"
+                        android:padding="@dimen/contact_item_icon_padding"
                         android:src="@drawable/ic_message"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -89,7 +89,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="@dimen/radius_14dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -105,11 +105,11 @@
                         android:id="@+id/tvWhatsapp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="Hızlı destek için\nmesaj gönder"
                         android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -120,11 +120,11 @@
             android:id="@+id/cardPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -133,20 +133,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/spacing_lg">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
+                    android:layout_width="@dimen/contact_item_icon_card_size"
+                    android:layout_height="@dimen/contact_item_icon_card_size"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="@dimen/radius_md"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="15dp"
+                        android:padding="@dimen/contact_item_icon_padding"
                         android:src="@drawable/ic_call"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -155,7 +155,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="@dimen/radius_14dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -171,11 +171,11 @@
                         android:id="@+id/tvPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="+90 531 709 8838"
                         android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -186,11 +186,11 @@
             android:id="@+id/cardEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -199,20 +199,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/spacing_lg">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
+                    android:layout_width="@dimen/contact_item_icon_card_size"
+                    android:layout_height="@dimen/contact_item_icon_card_size"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="@dimen/radius_md"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="15dp"
+                        android:padding="@dimen/contact_item_icon_padding"
                         android:src="@drawable/ic_mail"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -221,7 +221,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="@dimen/radius_14dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -237,11 +237,11 @@
                         android:id="@+id/tvEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="iletisim@otorentacar.com"
                         android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -252,11 +252,11 @@
             android:id="@+id/cardAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -265,20 +265,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/spacing_lg">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="58dp"
-                    android:layout_height="58dp"
+                    android:layout_width="@dimen/contact_item_icon_card_size"
+                    android:layout_height="@dimen/contact_item_icon_card_size"
                     app:cardBackgroundColor="@color/primary_green_light"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="@dimen/radius_md"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="15dp"
+                        android:padding="@dimen/contact_item_icon_padding"
                         android:src="@drawable/ic_near_me"
                         android:tint="@color/primary_green_dark"
                         tools:ignore="UseAppTint" />
@@ -287,7 +287,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="@dimen/radius_14dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -303,11 +303,11 @@
                         android:id="@+id/tvAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="Kayseri Erkilet Havalimanı,\nOto Rent A Car Ofis"
                         android:textColor="@color/text_primary"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -317,12 +317,12 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardLocation"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="@dimen/contact_map_card_height"
+            android:layout_marginTop="@dimen/spacing_xl"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="26dp"
+            app:cardCornerRadius="@dimen/radius_26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -344,14 +344,14 @@
                     android:background="@drawable/bg_map_overlay"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="16dp"
-                    android:paddingTop="14dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="14dp">
+                    android:paddingStart="@dimen/spacing_lg"
+                    android:paddingTop="@dimen/radius_14dp"
+                    android:paddingEnd="@dimen/spacing_lg"
+                    android:paddingBottom="@dimen/radius_14dp">
 
                     <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
                         android:src="@drawable/ic_near_me"
                         android:tint="@color/white"
                         tools:ignore="UseAppTint" />
@@ -359,7 +359,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:orientation="vertical">
 
                         <TextView
@@ -368,17 +368,17 @@
                             android:fontFamily="@font/inter_bold"
                             android:text="Kayseri Erkilet Havalimanı"
                             android:textColor="@color/white"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/text_md"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="@dimen/spacing_2xs"
                             android:fontFamily="@font/inter_medium"
                             android:text="Haritada açmak için dokunun"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/text_xs" />
 
                     </LinearLayout>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/errorContainer"
@@ -10,23 +10,23 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="@dimen/spacing_xxl"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/tvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
             android:gravity="center"
             android:text="Bir hata oluştu"
-            android:textSize="20sp"
-            android:fontFamily="@font/inter_bold"/>
+            android:textSize="@dimen/text_xl" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRetry"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="@dimen/error_button_width"
+            android:layout_height="@dimen/error_button_height"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:fontFamily="@font/inter_bold"
             android:text="Yeniden Dene"
             android:textAllCaps="false"
@@ -34,7 +34,7 @@
             android:textSize="@dimen/text_lg"
             android:textStyle="bold"
             app:backgroundTint="@color/primary_green_dark"
-            app:cornerRadius="18dp" />
+            app:cornerRadius="@dimen/radius_lg" />
     </LinearLayout>
 
 </FrameLayout>

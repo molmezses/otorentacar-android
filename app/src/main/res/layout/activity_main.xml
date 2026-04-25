@@ -28,11 +28,11 @@
             android:id="@+id/bottomBarContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_marginBottom="@dimen/spacing_10dp"
             app:cardBackgroundColor="@color/bg_card"
-            app:cardCornerRadius="28dp"
+            app:cardCornerRadius="@dimen/radius_3xl"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,9 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:paddingHorizontal="@dimen/spacing_10dp"
+                android:paddingTop="@dimen/spacing_5dp"
+                android:paddingBottom="@dimen/spacing_5dp"
                 android:weightSum="3">
 
                 <LinearLayout
@@ -56,14 +56,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="3dp">
+                    android:paddingVertical="@dimen/bottom_nav_item_padding_vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/navHomeIndicator"
-                        android:layout_width="72dp"
-                        android:layout_height="36dp"
+                        android:layout_width="@dimen/bottom_nav_indicator_width"
+                        android:layout_height="@dimen/bottom_nav_indicator_height"
                         app:cardBackgroundColor="@color/bottom_nav_selected_bg"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
@@ -71,7 +71,7 @@
                             android:id="@+id/ivNavHome"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="8dp"
+                            android:padding="@dimen/spacing_sm"
                             android:src="@drawable/ic_home"
                             android:tint="@color/bottom_nav_active"
                             tools:ignore="UseAppTint" />
@@ -81,7 +81,7 @@
                         android:id="@+id/tvNavHome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="Rezervasyon"
                         android:textColor="@color/bottom_nav_active"
@@ -96,14 +96,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="3dp">
+                    android:paddingVertical="@dimen/bottom_nav_item_padding_vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/navBookingsIndicator"
-                        android:layout_width="72dp"
-                        android:layout_height="36dp"
+                        android:layout_width="@dimen/bottom_nav_indicator_width"
+                        android:layout_height="@dimen/bottom_nav_indicator_height"
                         app:cardBackgroundColor="@android:color/transparent"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
@@ -111,7 +111,7 @@
                             android:id="@+id/ivNavBookings"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="8dp"
+                            android:padding="@dimen/spacing_sm"
                             android:src="@drawable/ic_calendar"
                             android:tint="@color/bottom_nav_inactive"
                             tools:ignore="UseAppTint" />
@@ -121,7 +121,7 @@
                         android:id="@+id/tvNavBookings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="Sorgula"
                         android:textColor="@color/bottom_nav_inactive"
@@ -136,14 +136,14 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="3dp">
+                    android:paddingVertical="@dimen/bottom_nav_item_padding_vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/navContactIndicator"
-                        android:layout_width="72dp"
-                        android:layout_height="36dp"
+                        android:layout_width="@dimen/bottom_nav_indicator_width"
+                        android:layout_height="@dimen/bottom_nav_indicator_height"
                         app:cardBackgroundColor="@android:color/transparent"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
 
@@ -151,7 +151,7 @@
                             android:id="@+id/ivNavContact"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="8dp"
+                            android:padding="@dimen/spacing_sm"
                             android:src="@drawable/ic_contact"
                             android:tint="@color/bottom_nav_inactive"
                             tools:ignore="UseAppTint" />
@@ -161,7 +161,7 @@
                         android:id="@+id/tvNavContact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
                         android:text="İletişim"
                         android:textColor="@color/bottom_nav_inactive"
@@ -178,7 +178,7 @@
     <include
         android:id="@+id/drawerMenu"
         layout="@layout/layout_drawer_menu"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start" />
 

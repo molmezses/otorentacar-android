@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
+    android:layout_marginTop="@dimen/spacing_sm"
     android:orientation="vertical">
 
     <TextView
@@ -19,13 +19,13 @@
         android:id="@+id/tilChildAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/spacing_xs"
         app:boxBackgroundColor="@color/bg_input"
         app:boxBackgroundMode="filled"
-        app:boxCornerRadiusBottomEnd="16dp"
-        app:boxCornerRadiusBottomStart="16dp"
-        app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusBottomEnd="@dimen/radius_md"
+        app:boxCornerRadiusBottomStart="@dimen/radius_md"
+        app:boxCornerRadiusTopEnd="@dimen/radius_md"
+        app:boxCornerRadiusTopStart="@dimen/radius_md"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp">
 
@@ -36,9 +36,9 @@
             android:inputType="number"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_md"
+            app:errorIconTint="@color/error_red"
             app:errorTextAppearance="@style/TextInputErrorStyle"
-            app:errorTextColor="@color/error_red"
-            app:errorIconTint="@color/error_red"/>
+            app:errorTextColor="@color/error_red" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
