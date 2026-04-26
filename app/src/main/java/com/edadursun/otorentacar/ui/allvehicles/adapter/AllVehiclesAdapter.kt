@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.data.local.FavoritesManager
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.LayoutItemAllVehicleBinding
 
-// Araç listesini RecyclerView içinde göstermek için kullanılan adapter
+// Tüm araçları listelemek için kullanılan adapter
 class AllVehiclesAdapter(
     private val items: List<Vehicle>,
     private val onSelectClick: (Vehicle) -> Unit
@@ -19,7 +20,7 @@ class AllVehiclesAdapter(
         private val binding: LayoutItemAllVehicleBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        // Vehicle içindeki verileri kart tasarımındaki alanlara yazar
+        // Vehicle verisini kart içindeki alanlara yerleştirir
         fun bind(item: Vehicle) {
             binding.tvTag.text = item.tag
             binding.tvVehicleName.text = item.name
@@ -31,7 +32,7 @@ class AllVehiclesAdapter(
             binding.tvPrice.text = item.dailyPrice
             binding.total.text = item.totalPrice
 
-            // Eğer API'den gerçek resim url'i geldiyse onu yükle
+            // Eğer araç için gerçek image url geldiyse onu yükle
             if (item.imageUrl.isNotBlank()) {
                 Glide.with(binding.ivVehicle.context)
                     .load(item.imageUrl)
@@ -39,14 +40,39 @@ class AllVehiclesAdapter(
                     .error(R.drawable.ic_directions_car)
                     .into(binding.ivVehicle)
             } else {
-                // Resim yoksa local placeholder göster
+                // Url yoksa local placeholder göster
                 binding.ivVehicle.setImageResource(item.imageResId)
             }
 
-            // Kullanıcı seç butonuna basınca dışarıya seçilen aracı gönder
+            // Araç daha önce favorilere eklenmişse kalp ikonunu doğru göster
+            updateFavoriteIcon(item)
+
+            // Kalp ikonuna basılınca favori durumunu değiştir
+            binding.ivFav.setOnClickListener {
+                FavoritesManager.toggleFavorite(item)
+                updateFavoriteIcon(item)
+            }
+
+            // Kalbin bulunduğu kart alanına basılınca da aynı işlem çalışsın
+            binding.cardFav.setOnClickListener {
+                FavoritesManager.toggleFavorite(item)
+                updateFavoriteIcon(item)
+            }
+
+            // Kullanıcı seç butonuna bastığında dışarıya seçilen aracı gönder
             binding.btnSelect.setOnClickListener {
                 onSelectClick(item)
             }
+        }
+
+        // Favori durumuna göre kalp ikonunu günceller
+        private fun updateFavoriteIcon(item: Vehicle) {
+            val isFavorite = FavoritesManager.isFavorite(item.id)
+
+            binding.ivFav.setImageResource(
+                if (isFavorite) R.drawable.ic_favorite_fill
+                else R.drawable.ic_favorite
+            )
         }
     }
 

@@ -7,6 +7,16 @@
         android:title="Rezervasyon" />
 
     <item
+        android:id="@+id/reservationsFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="Rezervasyonlar" />
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/ic_favorite_fill"
+        android:title="Favoriler" />
+
+    <item
         android:id="@+id/myBookingsFragment"
         android:icon="@drawable/ic_calendar"
         android:title="Rezervasyon Sorgula" />

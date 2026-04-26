@@ -34,6 +34,7 @@
     <dimen name="radius_3xl">26dp</dimen>
 
     <!-- Text -->
+    <dimen name="text_xxs">10sp</dimen>
     <dimen name="text_xs">11sp</dimen>
     <dimen name="text_sm">12sp</dimen>
     <dimen name="text_md">14sp</dimen>
@@ -150,5 +151,14 @@
 
     <!-- Misc -->
     <dimen name="back_icon_padding_13dp">11dp</dimen>
+
+    <dimen name="favorite_vehicle_image_width">112dp</dimen>
+    <dimen name="favorite_vehicle_image_height">76dp</dimen>
+    <dimen name="favorite_vehicle_fav_size">40dp</dimen>
+    <dimen name="favorite_vehicle_fav_icon_padding">10dp</dimen>
+
+
+    <dimen name="reservation_delete_button_size">36dp</dimen>
+    <dimen name="reservation_delete_icon_padding">8dp</dimen>
 
 </resources>

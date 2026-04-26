@@ -25,7 +25,8 @@ data class ReservationDetailResponse(
     val dropOffLocationPoint: ReservationLocationPointResponse, // Dönüş lokasyonu
     val reservationPaymentMethod: ReservationPaymentMethodResponse, // Ödeme yöntemi
     val reservationSource: String, // Rezervasyon kaynağı
-    val flightNo: String? = null // Uçuş kodu (opsiyonel)
+    val flightNo: String? = null, // Uçuş kodu (opsiyonel)
+    val currency: ReservationCurrencyResponse
 ) : Serializable
 
 // Araç model detaylarını tutar

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.core.session.TokenStore
+import com.edadursun.otorentacar.data.local.ReservationLocalManager
 import com.edadursun.otorentacar.data.remote.request.AddReservationRequest
 import com.edadursun.otorentacar.databinding.FragmentReservationDetailBinding
 import com.edadursun.otorentacar.databinding.LayoutItemSelectedExtraBinding
@@ -305,6 +306,12 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
                     is ReservationDetailUiState.Success -> {
                         binding.btnCompleteReservation.isEnabled = true
                         binding.btnCompleteReservation.text = "Rezervasyonu Tamamla"
+
+                        // Başarıyla oluşan rezervasyon kodunu localde sakla
+                        ReservationLocalManager.addReservationCode(
+                            requireContext(),
+                            state.response.reservationCode
+                        )
 
                         val bundle = Bundle().apply {
                             putString("reservationCode", state.response.reservationCode)

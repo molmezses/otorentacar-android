@@ -44,18 +44,35 @@ class MainActivity : AppCompatActivity() {
 
     // Alt navigation bar üzerindeki tıklamaları ayarlar
     private fun setupCustomBottomBar(navController: NavController) {
+        //Ana sayfa
         binding.navHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
                 navController.navigate(R.id.homeFragment)
             }
         }
 
+        //Rezervasyonlarım
+        binding.navReservations.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.reservationsFragment) {
+                navController.navigate(R.id.reservationsFragment)
+            }
+        }
+
+        //Favoriler
+        binding.navFavorites.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.favoritesFragment) {
+                navController.navigate(R.id.favoritesFragment)
+            }
+        }
+
+        //Sorgula
         binding.navBookings.setOnClickListener {
             if (navController.currentDestination?.id != R.id.myBookingsFragment) {
                 navController.navigate(R.id.myBookingsFragment)
             }
         }
 
+        //İletişim
         binding.navContact.setOnClickListener {
             if (navController.currentDestination?.id != R.id.contactFragment) {
                 navController.navigate(R.id.contactFragment)
@@ -66,14 +83,20 @@ class MainActivity : AppCompatActivity() {
     // Alt navigation bar üzerindeki tüm seçim stillerini sıfırlar
     private fun resetCustomBottomBar() {
         binding.navHomeIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
+        binding.navReservationsIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
+        binding.navFavoritesIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
         binding.navBookingsIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
         binding.navContactIndicator.setCardBackgroundColor(getColor(android.R.color.transparent))
 
         binding.ivNavHome.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.ivNavReservations.setColorFilter(getColor(R.color.bottom_nav_inactive))
+        binding.ivNavFavorites.setColorFilter(getColor(R.color.bottom_nav_inactive))
         binding.ivNavBookings.setColorFilter(getColor(R.color.bottom_nav_inactive))
         binding.ivNavContact.setColorFilter(getColor(R.color.bottom_nav_inactive))
 
         binding.tvNavHome.setTextColor(getColor(R.color.bottom_nav_inactive))
+        binding.tvNavReservations.setTextColor(getColor(R.color.bottom_nav_inactive))
+        binding.tvNavFavorites.setTextColor(getColor(R.color.bottom_nav_inactive))
         binding.tvNavBookings.setTextColor(getColor(R.color.bottom_nav_inactive))
         binding.tvNavContact.setTextColor(getColor(R.color.bottom_nav_inactive))
     }
@@ -95,10 +118,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.myBookingsFragment,
-            R.id.bookingDetailFragment-> {
+            R.id.bookingDetailFragment -> {
                 binding.navBookingsIndicator.setCardBackgroundColor(getColor(R.color.bottom_nav_selected_bg))
                 binding.ivNavBookings.setColorFilter(getColor(R.color.bottom_nav_active))
                 binding.tvNavBookings.setTextColor(getColor(R.color.bottom_nav_active))
+            }
+
+            R.id.reservationsFragment -> {
+                binding.navReservationsIndicator.setCardBackgroundColor(getColor(R.color.bottom_nav_selected_bg))
+                binding.ivNavReservations.setColorFilter(getColor(R.color.bottom_nav_active))
+                binding.tvNavReservations.setTextColor(getColor(R.color.bottom_nav_active))
+            }
+
+            R.id.favoritesFragment -> {
+                binding.navFavoritesIndicator.setCardBackgroundColor(getColor(R.color.bottom_nav_selected_bg))
+                binding.ivNavFavorites.setColorFilter(getColor(R.color.bottom_nav_active))
+                binding.tvNavFavorites.setTextColor(getColor(R.color.bottom_nav_active))
             }
 
             R.id.contactFragment -> {
@@ -128,7 +163,23 @@ class MainActivity : AppCompatActivity() {
             closeDrawer()
         }
 
-        // Rezervasyonlarım menüsü
+        //Rezervasyonlarım menüsü
+        binding.drawerMenu.menuReservations.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.reservationsFragment) {
+                navController.navigate(R.id.reservationsFragment)
+            }
+            closeDrawer()
+        }
+
+        //Favoriler menüsü
+        binding.drawerMenu.menuFavorites.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.favoritesFragment) {
+                navController.navigate(R.id.favoritesFragment)
+            }
+            closeDrawer()
+        }
+
+        // Rezervasyon Sorgulama menüsü
         binding.drawerMenu.menuBookings.setOnClickListener {
             if (navController.currentDestination?.id != R.id.myBookingsFragment) {
                 navController.navigate(R.id.myBookingsFragment)
@@ -167,18 +218,24 @@ class MainActivity : AppCompatActivity() {
         val textColor = getColor(R.color.text_secondary)
 
         binding.drawerMenu.menuHome.setBackgroundResource(transparent)
+        binding.drawerMenu.menuReservations.setBackgroundResource(transparent)
+        binding.drawerMenu.menuFavorites.setBackgroundResource(transparent)
         binding.drawerMenu.menuBookings.setBackgroundResource(transparent)
         binding.drawerMenu.menuAbout.setBackgroundResource(transparent)
         binding.drawerMenu.menuServices.setBackgroundResource(transparent)
         binding.drawerMenu.menuContact.setBackgroundResource(transparent)
 
         binding.drawerMenu.tvMenuHome.setTextColor(textColor)
+        binding.drawerMenu.tvMenuReservation.setTextColor(textColor)
+        binding.drawerMenu.tvMenuFavorites.setTextColor(textColor)
         binding.drawerMenu.tvMenuBookings.setTextColor(textColor)
         binding.drawerMenu.tvMenuAbout.setTextColor(textColor)
         binding.drawerMenu.tvMenuServices.setTextColor(textColor)
         binding.drawerMenu.tvMenuContact.setTextColor(textColor)
 
         binding.drawerMenu.ivMenuHome.setColorFilter(textColor)
+        binding.drawerMenu.ivMenuReservation.setColorFilter(textColor)
+        binding.drawerMenu.ivMenuFavorites.setColorFilter(textColor)
         binding.drawerMenu.ivMenuBookings.setColorFilter(textColor)
         binding.drawerMenu.ivMenuAbout.setColorFilter(textColor)
         binding.drawerMenu.ivMenuServices.setColorFilter(textColor)
@@ -194,6 +251,18 @@ class MainActivity : AppCompatActivity() {
                 binding.drawerMenu.menuHome.setBackgroundResource(R.drawable.bg_menu_item_selected)
                 binding.drawerMenu.tvMenuHome.setTextColor(getColor(R.color.primary_green_dark))
                 binding.drawerMenu.ivMenuHome.setColorFilter(getColor(R.color.primary_green_dark))
+            }
+
+            R.id.reservationsFragment -> {
+                binding.drawerMenu.menuReservations.setBackgroundResource(R.drawable.bg_menu_item_selected)
+                binding.drawerMenu.tvMenuReservation.setTextColor(getColor(R.color.primary_green_dark))
+                binding.drawerMenu.ivMenuReservation.setColorFilter(getColor(R.color.primary_green_dark))
+            }
+
+            R.id.favoritesFragment -> {
+                binding.drawerMenu.menuFavorites.setBackgroundResource(R.drawable.bg_menu_item_selected)
+                binding.drawerMenu.tvMenuFavorites.setTextColor(getColor(R.color.primary_green_dark))
+                binding.drawerMenu.ivMenuFavorites.setColorFilter(getColor(R.color.primary_green_dark))
             }
 
             R.id.myBookingsFragment -> {
