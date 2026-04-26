@@ -67,6 +67,16 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/reservationsFragment"
+        android:name="com.edadursun.otorentacar.ui.reservations.ReservationsFragment"
+        android:label="ReservationsFragment"/>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.edadursun.otorentacar.ui.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"/>
+
 
     <fragment
         android:id="@+id/extrasFragment"

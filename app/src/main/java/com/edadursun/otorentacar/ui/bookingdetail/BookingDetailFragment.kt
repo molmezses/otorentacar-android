@@ -1,6 +1,7 @@
 package com.edadursun.otorentacar.ui.bookingdetail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.session.TokenStore
 import com.edadursun.otorentacar.data.remote.response.ReservationExtraItemResponse
 import com.edadursun.otorentacar.databinding.FragmentBookingDetailBinding
 import kotlinx.coroutines.launch
@@ -35,12 +37,12 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
     private var flightCode: String = ""
     private var totalPrice: Double = 0.0
     private var extraList: ArrayList<ReservationExtraItemResponse> = arrayListOf()
-
     private var vehicleModelId: Int = 0
     private var pickupLocationId: Int = 0
     private var dropOffLocationId: Int = 0
     private var rawPickupDateTime: String = ""
     private var rawDropOffDateTime: String = ""
+
 
     private val viewModel: BookingDetailViewModel by viewModels()
 
@@ -50,23 +52,33 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
         _binding = FragmentBookingDetailBinding.bind(view)
 
 
-        // Bundle ile gelen verileri oku
         readArguments()
 
-        // Ekranı doldur
-        setupUi()
-
-        renderExtras()
-
+        observeReservationDetail()
         observeVehicleImage()
 
-        viewModel.fetchVehicleImage(
-            vehicleModelId = vehicleModelId,
-            pickupLocationId = pickupLocationId,
-            dropOffLocationId = dropOffLocationId,
-            rawPickupDateTime = rawPickupDateTime,
-            rawDropOffDateTime = rawDropOffDateTime
-        )
+        // Eğer detaylar bundle ile geldiyse direkt ekrana bas
+        if (vehicleName.isNotBlank()) {
+            setupUi()
+            renderExtras()
+
+            viewModel.fetchVehicleImage(
+                vehicleModelId = vehicleModelId,
+                pickupLocationId = pickupLocationId,
+                dropOffLocationId = dropOffLocationId,
+                rawPickupDateTime = rawPickupDateTime,
+                rawDropOffDateTime = rawDropOffDateTime
+            )
+        } else {
+            // Eğer sadece reservationCode geldiyse API'den detayları çek
+            val token = TokenStore.token.orEmpty()
+
+            if (token.isNotBlank() && reservationCode.isNotBlank()) {
+                viewModel.fetchReservationDetail(reservationCode)
+            } else {
+                Log.e("BOOKING_DETAIL", "Rezervasyon detayı alınamadı")
+            }
+        }
 
         // Tıklama olaylarını ayarla
         setupClicks()
@@ -145,7 +157,8 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
 
             val tvExtraName = itemView.findViewById<android.widget.TextView>(R.id.tvExtraName)
             val tvExtraPrice = itemView.findViewById<android.widget.TextView>(R.id.tvExtraPrice)
-            val tvExtraQuantity = itemView.findViewById<android.widget.TextView>(R.id.tvExtraQuantity)
+            val tvExtraQuantity =
+                itemView.findViewById<android.widget.TextView>(R.id.tvExtraQuantity)
             val viewDivider = itemView.findViewById<View>(R.id.viewDivider)
 
             tvExtraName.text = item.extra.name
@@ -154,6 +167,58 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
             viewDivider.visibility = if (index == extraList.lastIndex) View.GONE else View.VISIBLE
 
             binding.layoutExtrasContainer.addView(itemView)
+        }
+    }
+
+    private fun observeReservationDetail() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.reservationUiState.collect { state ->
+                when (state) {
+                    is BookingDetailReservationUiState.Idle -> Unit
+
+                    is BookingDetailReservationUiState.Loading -> Unit
+
+                    is BookingDetailReservationUiState.Success -> {
+                        val reservation = state.response.`object`
+
+                        reservationCode = reservation.reservationCode
+                        reservationStatus = reservation.status.name
+                        vehicleName = reservation.vehicleModel.name
+                        vehicleInfo =
+                            "${reservation.vehicleModel.transmission.name} | ${reservation.vehicleModel.engine.name}"
+                        pickupDateTime = reservation.pickUpDateTime
+                        dropOffDateTime = reservation.dropOffDateTime
+                        fullName = reservation.fullname
+                        phone = reservation.phone1
+                        birthDate = reservation.birthDate
+                        email = reservation.email
+                        flightCode = reservation.flightNo.orEmpty()
+                        totalPrice = reservation.totalPrice
+                        extraList = ArrayList(reservation.extraList)
+
+                        vehicleModelId = reservation.vehicleModel.modelId
+                        pickupLocationId = reservation.pickUpLocationPoint.id
+                        dropOffLocationId = reservation.dropOffLocationPoint.id
+                        rawPickupDateTime = reservation.pickUpDateTime
+                        rawDropOffDateTime = reservation.dropOffDateTime
+
+                        setupUi()
+                        renderExtras()
+
+                        viewModel.fetchVehicleImage(
+                            vehicleModelId = vehicleModelId,
+                            pickupLocationId = pickupLocationId,
+                            dropOffLocationId = dropOffLocationId,
+                            rawPickupDateTime = rawPickupDateTime,
+                            rawDropOffDateTime = rawDropOffDateTime
+                        )
+                    }
+
+                    is BookingDetailReservationUiState.Error -> {
+                        Log.e("BOOKING_DETAIL", "Rezervasyon detayı alınamadı: ${state.message}")
+                    }
+                }
+            }
         }
     }
 
