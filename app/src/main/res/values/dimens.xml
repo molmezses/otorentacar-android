@@ -18,6 +18,7 @@
     <dimen name="spacing_25dp">25dp</dimen>
     <dimen name="spacing_3xl">28dp</dimen>
     <dimen name="spacing_4xl">32dp</dimen>
+    <dimen name="spacing_5xl">48dp</dimen>
 
     <!-- Radius -->
     <dimen name="radius_xs">8dp</dimen>
@@ -161,5 +162,7 @@
 
     <dimen name="reservation_delete_button_size">40dp</dimen>
     <dimen name="reservation_delete_icon_padding">10dp</dimen>
+
+    <dimen name="empty_state_icon_size">54dp</dimen>
 
 </resources>

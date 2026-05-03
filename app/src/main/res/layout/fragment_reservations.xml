@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -36,6 +37,59 @@
             android:layout_marginTop="@dimen/spacing_xl"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/layout_item_reservation" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmptyReservations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_5xl"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/empty_state_icon_size"
+                android:layout_height="@dimen/empty_state_icon_size"
+                android:src="@drawable/calendar_add_on"
+                android:tint="@color/primary_green_dark"
+                tools:ignore="UseAppTint" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="Henüz kayıtlı rezervasyonunuz yok"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:text="Yeni bir rezervasyon oluşturduğunuzda burada görüntüleyebilirsiniz."
+                android:textColor="@color/text_hint"
+                android:textSize="@dimen/text_sm" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreateReservation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height_60dp"
+                android:layout_marginTop="@dimen/spacing_lg"
+                android:fontFamily="@font/inter_medium"
+                android:text="Rezervasyon Oluştur"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold"
+                app:backgroundTint="@color/primary_green_dark"
+                app:cornerRadius="@dimen/radius_md" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

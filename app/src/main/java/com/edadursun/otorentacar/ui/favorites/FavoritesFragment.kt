@@ -47,12 +47,17 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private fun loadFavorites() {
         val favorites = FavoritesManager.getFavorites()
 
-        binding.rvFavorites.adapter = FavoritesAdapter(favorites) { vehicle ->
-            // Kalbe basılınca araç favorilerden çıkarılır
-            FavoritesManager.removeFromFavorites(vehicle.id)
+        if (favorites.isEmpty()) {
+            binding.rvFavorites.visibility = View.GONE
+            binding.layoutEmptyFavorites.visibility = View.VISIBLE
+        } else {
+            binding.rvFavorites.visibility = View.VISIBLE
+            binding.layoutEmptyFavorites.visibility = View.GONE
 
-            // Listeyi anında yenileyerek ekrana güncel halini basar
-            loadFavorites()
+            binding.rvFavorites.adapter = FavoritesAdapter(favorites) { vehicle ->
+                FavoritesManager.removeFromFavorites(vehicle.id)
+                loadFavorites()
+            }
         }
     }
 

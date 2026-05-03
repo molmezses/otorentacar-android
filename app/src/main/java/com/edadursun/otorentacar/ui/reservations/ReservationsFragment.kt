@@ -48,6 +48,10 @@ class ReservationsFragment : Fragment(R.layout.fragment_reservations) {
         binding.topBar.ivMenu.setOnClickListener {
             (activity as? MainActivity)?.openDrawer()
         }
+
+        binding.btnCreateReservation.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
     }
 
     // RecyclerView için layout manager ayarlanır
@@ -59,20 +63,21 @@ class ReservationsFragment : Fragment(R.layout.fragment_reservations) {
     private fun loadReservations() {
         val savedCodes = ReservationLocalManager.getReservationCodes(requireContext())
 
-        // Hiç kayıtlı rezervasyon yoksa boş liste göster
+        // Hiç kayıtlı rezervasyon yoksa boş state göster
         if (savedCodes.isEmpty()) {
-            binding.rvReservations.adapter = ReservationsAdapter(
-                items = emptyList(),
-                onDetailClick = {},
-                onDeleteClick = {}
-            )
+            binding.rvReservations.visibility = View.GONE
+            binding.layoutEmptyReservations.visibility = View.VISIBLE
             return
         }
+
+        // Kayıt varsa listeyi göster, boş state'i gizle
+        binding.rvReservations.visibility = View.VISIBLE
+        binding.layoutEmptyReservations.visibility = View.GONE
 
         val token = getToken()
 
         if (token.isBlank()) {
-            Log.e("RESERVATIONS_SCREEN", "Rezervasyonlar yüklenemedi çünkü token boş")
+            Log.e("RESERVATIONS_SCREEN", "Token bulunamadı")
             return
         }
 
@@ -94,21 +99,30 @@ class ReservationsFragment : Fragment(R.layout.fragment_reservations) {
                     }
 
                     is ReservationsUiState.Success -> {
-                        binding.rvReservations.adapter = ReservationsAdapter(
-                            items = state.reservations,
-                            onDetailClick = { reservation ->
-                                val bundle = Bundle().apply {
-                                    putString("reservationCode", reservation.reservationCode)
-                                }
+                        if (state.reservations.isEmpty()) {
+                            binding.rvReservations.visibility = View.GONE
+                            binding.layoutEmptyReservations.visibility = View.VISIBLE
+                        } else {
+                            binding.rvReservations.visibility = View.VISIBLE
+                            binding.layoutEmptyReservations.visibility = View.GONE
 
-                                findNavController().navigate(R.id.bookingDetailFragment, bundle)
-                            },
-                            onDeleteClick = { reservation ->
-                                // Sadece localde tutulan rezervasyon kodunu kaldır
-                                ReservationLocalManager.removeReservationCode(requireContext(), reservation.reservationCode)
-                                loadReservations()
-                            }
-                        )
+                            binding.rvReservations.adapter = ReservationsAdapter(
+                                items = state.reservations,
+                                onDetailClick = { reservation ->
+                                    val bundle = Bundle().apply {
+                                        putString("reservationCode", reservation.reservationCode)
+                                    }
+                                    findNavController().navigate(R.id.bookingDetailFragment, bundle)
+                                },
+                                onDeleteClick = { reservation ->
+                                    ReservationLocalManager.removeReservationCode(
+                                        requireContext(),
+                                        reservation.reservationCode
+                                    )
+                                    loadReservations()
+                                }
+                            )
+                        }
                     }
 
                     is ReservationsUiState.Error -> {
