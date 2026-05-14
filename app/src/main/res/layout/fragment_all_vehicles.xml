@@ -42,17 +42,65 @@
 
             <TextView
                 android:id="@+id/tvToolbarTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_md"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_bold"
-                android:text="Araçlar"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/vehicles"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_2xl"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/cardBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardCurrency"
+                app:layout_constraintStart_toEndOf="@id/cardBack"
                 app:layout_constraintTop_toTopOf="@id/cardBack" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/card_height_sm"
+                android:clickable="true"
+                android:contentDescription="@string/currency_selector_desc"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="@dimen/radius_14dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/cardBack"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardBack"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/spacing_md">
+
+                    <TextView
+                        android:id="@+id/tvCurrencyLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/currency_euro"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_sm" />
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_sm"
+                        android:layout_height="@dimen/icon_sm"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:src="@drawable/ic_arrow_down"
+                        android:tint="@color/text_primary"
+                        tools:ignore="UseAppTint" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xxl"
             android:fontFamily="@font/inter_bold"
-            android:text="5 araç bulundu"
+            android:text="@string/vehicle_count_placeholder"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_lg"
             android:textStyle="bold" />
@@ -73,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xs"
             android:fontFamily="@font/inter_regular"
-            android:text="• 00 Ay 2026"
+            android:text="@string/selected_date_placeholder"
             android:textColor="@color/text_hint"
             android:textSize="@dimen/text_sm"
             android:textStyle="bold" />
@@ -113,7 +161,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/inter_bold"
                         android:maxLines="1"
-                        android:text="Filtrele"
+                        android:text="@string/filter"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
@@ -158,7 +206,7 @@
                         android:includeFontPadding="false"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Önerilen"
+                        android:text="@string/recommended"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />

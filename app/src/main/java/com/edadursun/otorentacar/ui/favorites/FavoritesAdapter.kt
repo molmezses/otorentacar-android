@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.LayoutItemFavoriteVehicleBinding
 
@@ -22,7 +23,7 @@ class FavoritesAdapter(
         // Vehicle verisini favori kartına bağlar
         fun bind(item: Vehicle) {
             binding.tvVehicleName.text = item.name
-            binding.tvVehicleType.text = item.tag
+            binding.tvVehicleType.text = VehicleTextTranslator.translate(item.tag)
             binding.tvVehiclePrice.text = item.dailyPrice
 
             // Eğer araç için image url geldiyse resmi internetten yükle

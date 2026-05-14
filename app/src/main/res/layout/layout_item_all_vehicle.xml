@@ -45,7 +45,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:gravity="center"
                         android:paddingHorizontal="@dimen/spacing_md"
-                        android:text="POPULAR"
+                        android:text="@string/popular"
                         android:textColor="@color/primary_green_dark"
                         android:textSize="@dimen/text_vehicle_tag"
                         android:textStyle="bold"
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_xs"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Manuel"
+                    android:text="@string/manual"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_xs"
                     android:textStyle="bold" />
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_xs"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Dizel"
+                    android:text="@string/diesel"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_xs"
                     android:textStyle="bold" />
@@ -261,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Günlük"
+                    android:text="@string/daily"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_xs" />
 
@@ -285,7 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Toplam "
+                        android:text="@string/total_prefix"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_xs" />
 
@@ -307,7 +307,7 @@
                 android:layout_width="@dimen/all_vehicle_select_button_width"
                 android:layout_height="@dimen/all_vehicle_select_button_height"
                 android:fontFamily="@font/inter_bold"
-                android:text="Seç"
+                android:text="@string/select"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_lg"

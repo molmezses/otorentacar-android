@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="İletişim"
+            android:text="@string/contact"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2xs"
             android:fontFamily="@font/inter_medium"
-            android:text="Bize ulaşmanın en kolay yolu"
+            android:text="@string/contact_subtitle"
             android:textColor="@color/primary_green_dark"
             android:textSize="@dimen/text_lg"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
-            android:text="Telefon, e-posta ve WhatsApp üzerinden bizimle hızlıca iletişime geçebilirsiniz."
+            android:text="@string/contact_desc"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_sm" />
 
@@ -97,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="WhatsApp"
+                        android:text="@string/whatsapp"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Hızlı destek için\nmesaj gönder"
+                        android:text="@string/whatsapp_desc"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
@@ -163,7 +163,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Telefon"
+                        android:text="@string/phone_upper"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
-                        android:text="+90 531 709 8838"
+                        android:text="+90 531 709 88 38"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
@@ -229,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="E-Posta"
+                        android:text="@string/email_upper"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -295,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Adres"
+                        android:text="@string/address"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -305,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Kayseri Erkilet Havalimanı,\nOto Rent A Car Ofis"
+                        android:text="@string/address_text"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_contact_value" />
                 </LinearLayout>
@@ -366,7 +366,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="Kayseri Erkilet Havalimanı"
+                            android:text="@string/address_short"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_md"
                             android:textStyle="bold" />
@@ -376,7 +376,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/spacing_2xs"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Haritada açmak için dokunun"
+                            android:text="@string/open_map_hint"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_xs" />
 

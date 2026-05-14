@@ -7,6 +7,7 @@ data class ExtraService(
     val description: String,
     val price: Double,
     val currencySymbol: String,
+    val currencyCode: String,
     val maxCount: Int,
     val priceCalculationType: String,
     val orderNo: Int,

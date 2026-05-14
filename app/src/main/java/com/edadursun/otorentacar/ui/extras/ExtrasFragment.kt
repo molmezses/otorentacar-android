@@ -9,6 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.currency.CurrencyFormatter
+import com.edadursun.otorentacar.core.currency.DisplayCurrency
 import com.edadursun.otorentacar.data.model.ExtraService
 import com.edadursun.otorentacar.databinding.FragmentExtrasBinding
 import com.edadursun.otorentacar.ui.extras.adapter.ExtraServicesAdapter
@@ -35,7 +37,13 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     private var vehicleTag: String = ""
     private var vehicleDailyPrice: String = ""
     private var vehicleTotalPrice: String = ""
+    private var vehicleDailyPriceAmount: Double = 0.0
+    private var vehicleTotalPriceAmount: Double = 0.0
+    private var vehicleCurrencyCode: String = "EUR"
+    private var vehicleCurrencyId: Int = 4
+    private var totalPriceForApi: String = ""
     private var vehicleImageUrl: String = ""
+    private var displayCurrency: DisplayCurrency = DisplayCurrency.EURO
 
     // Önceki ekrandan gelen tarih bilgileri
     private var pickupMillis: Long = 0L
@@ -73,6 +81,13 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         vehicleTag = arguments?.getString("vehicleTag").orEmpty()
         vehicleDailyPrice = arguments?.getString("vehicleDailyPrice").orEmpty()
         vehicleTotalPrice = arguments?.getString("vehicleTotalPrice").orEmpty()
+        vehicleDailyPriceAmount = arguments?.getDouble("vehicleDailyPriceAmount") ?: 0.0
+        vehicleTotalPriceAmount = arguments?.getDouble("vehicleTotalPriceAmount") ?: 0.0
+        vehicleCurrencyCode = arguments?.getString("vehicleCurrencyCode").orEmpty().ifBlank { "EUR" }
+        vehicleCurrencyId = arguments?.getInt("vehicleCurrencyId") ?: 4
+        displayCurrency = arguments?.getString("displayCurrency")
+            ?.let { runCatching { DisplayCurrency.valueOf(it) }.getOrNull() }
+            ?: DisplayCurrency.EURO
 
         pickupMillis = arguments?.getLong("pickupMillis") ?: 0L
         dropoffMillis = arguments?.getLong("dropoffMillis") ?: 0L
@@ -97,10 +112,21 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     private fun setupHeader() {
         binding.tvSelectedVehicleName.text = vehicleName
         binding.tvSelectedVehicleType.text = vehicleType
-        binding.tvRentalDays.text = "$rentalDays gün kiralama"
+        binding.tvRentalDays.text = getString(R.string.rental_days_booking_format, rentalDays)
         binding.tvVehiclePrice.text = vehicleTotalPrice
-        binding.tvExtraPrice.text = "€0"
+        binding.tvExtraPrice.text = formatDisplayPrice(0.0)
         binding.tvTotalPrice.text = vehicleTotalPrice
+        totalPriceForApi = formatPlainPrice(
+            if (vehicleTotalPriceAmount > 0.0) {
+                CurrencyFormatter.convertAmount(
+                    amount = vehicleTotalPriceAmount,
+                    sourceCurrencyCode = vehicleCurrencyCode,
+                    displayCurrency = DisplayCurrency.EURO
+                )
+            } else {
+                parseDisplayPrice(vehicleTotalPrice)
+            }
+        )
 
         if (vehicleImageUrl.isNotBlank()) {
             Glide.with(requireContext())
@@ -118,6 +144,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
         adapter = ExtraServicesAdapter(
             items = emptyList(),
             rentalDays = rentalDays,
+            displayCurrency = displayCurrency,
             onSingleSelectClick = { serviceId ->
                 viewModel.toggleSingleSelection(serviceId)
             },
@@ -154,11 +181,13 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
                 putString("vehicleType", vehicleType)
                 putString("vehicleDailyPrice", vehicleDailyPrice)
                 putString("vehicleTotalPrice", vehicleTotalPrice)
+                putString("displayCurrency", displayCurrency.name)
                 putLong("pickupMillis", pickupMillis)
                 putLong("dropoffMillis", dropoffMillis)
                 putInt("rentalDays", rentalDays)
                 putString("extraPrice", binding.tvExtraPrice.text.toString())
                 putString("totalPrice", binding.tvTotalPrice.text.toString())
+                putString("totalPriceForApi", totalPriceForApi)
                 putString("vehicleInfo", "$vehicleTransmission | $vehicleFuel")
                 putString("vehicleTag", vehicleTag)
                 putString("rentalPrice", binding.tvVehiclePrice.text.toString())
@@ -168,6 +197,7 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
                 putInt("vehicleModelId", vehicleModelId)
                 putInt("pickupLocationId", pickupLocationId)
                 putInt("dropOffLocationId", dropOffLocationId)
+                putString("currencyId", vehicleCurrencyId.toString())
 
                 // Seçilen ek hizmetleri ve çocuk yaşlarını gönder
                 putStringArrayList("selectedExtras", ArrayList(buildSelectedExtras(currentServices)))
@@ -219,27 +249,69 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
             if (!service.isSelected || service.quantity == 0) {
                 0.0
             } else {
-                when {
+                val serviceTotal = when {
                     // Adetli hizmetlerde fiyat = fiyat x adet x gün
                     service.maxCount > 1 -> service.price * service.quantity * rentalDays
 
                     // Günlük hizmetlerde fiyat = fiyat x gün
-                    service.priceCalculationType.lowercase() == "günlük" -> service.price * rentalDays
+                    isDailyPrice(service) -> service.price * rentalDays
 
                     // Sabit fiyatlı hizmetlerde tek ücret alınır
                     else -> service.price
                 }
+
+                CurrencyFormatter.convertAmount(
+                    amount = serviceTotal,
+                    sourceCurrencyCode = service.currencyCode,
+                    displayCurrency = displayCurrency
+                )
             }
         }
 
         // Araç toplam fiyatını sayıya çevir
-        val vehicleTotalValue = parsePrice(vehicleTotalPrice)
+        val extrasTotalForApi = services.sumOf { service ->
+            if (!service.isSelected || service.quantity == 0) {
+                0.0
+            } else {
+                val serviceTotal = when {
+                    service.maxCount > 1 -> service.price * service.quantity * rentalDays
+                    isDailyPrice(service) -> service.price * rentalDays
+                    else -> service.price
+                }
+
+                CurrencyFormatter.convertAmount(
+                    amount = serviceTotal,
+                    sourceCurrencyCode = service.currencyCode,
+                    displayCurrency = DisplayCurrency.EURO
+                )
+            }
+        }
+
+        val vehicleTotalValue = if (vehicleTotalPriceAmount > 0.0) {
+            CurrencyFormatter.convertAmount(
+                amount = vehicleTotalPriceAmount,
+                sourceCurrencyCode = vehicleCurrencyCode,
+                displayCurrency = displayCurrency
+            )
+        } else {
+            parseDisplayPrice(vehicleTotalPrice)
+        }
+        val vehicleTotalForApi = if (vehicleTotalPriceAmount > 0.0) {
+            CurrencyFormatter.convertAmount(
+                amount = vehicleTotalPriceAmount,
+                sourceCurrencyCode = vehicleCurrencyCode,
+                displayCurrency = DisplayCurrency.EURO
+            )
+        } else {
+            parseDisplayPrice(vehicleTotalPrice)
+        }
 
         // Genel toplam = araç + ekstra hizmetler
         val grandTotal = vehicleTotalValue + extrasTotal
+        totalPriceForApi = formatPlainPrice(vehicleTotalForApi + extrasTotalForApi)
 
-        binding.tvExtraPrice.text = "€${formatPrice(extrasTotal)}"
-        binding.tvTotalPrice.text = "€${formatPrice(grandTotal)}"
+        binding.tvExtraPrice.text = formatDisplayPrice(extrasTotal)
+        binding.tvTotalPrice.text = formatDisplayPrice(grandTotal)
     }
 
     // Milisaniye farkına göre kiralama gün sayısını hesaplar
@@ -252,15 +324,26 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     }
 
     // Fiyat string'ini sayıya çevirir
-    private fun parsePrice(price: String): Double {
-        return price
+    private fun isDailyPrice(service: ExtraService): Boolean {
+        val type = service.priceCalculationType.lowercase()
+        return type.contains("daily") || (type.contains("g") && type.contains("nl"))
+    }
+
+    private fun parseDisplayPrice(price: String): Double {
+        val cleaned = price
             .replace("₺", "")
             .replace("€", "")
+            .replace("â‚º", "")
+            .replace("â‚¬", "")
             .replace("Toplam", "")
-            .replace(".", "")
-            .replace(",", ".")
             .trim()
-            .toDoubleOrNull() ?: 0.0
+
+        val normalized = when (displayCurrency) {
+            DisplayCurrency.TL -> cleaned.replace(".", "").replace(",", ".")
+            DisplayCurrency.EURO -> cleaned.replace(",", "")
+        }
+
+        return normalized.toDoubleOrNull() ?: 0.0
     }
 
     // Double fiyatı ekrana uygun string formatına çevirir
@@ -273,6 +356,22 @@ class ExtrasFragment : Fragment(R.layout.fragment_extras) {
     }
 
     // Fragment kapanırken binding temizlenir
+    private fun formatDisplayPrice(amount: Double): String {
+        return CurrencyFormatter.format(
+            amount = amount,
+            sourceCurrencyCode = CurrencyFormatter.currencyCodeFor(displayCurrency),
+            displayCurrency = displayCurrency
+        )
+    }
+
+    private fun formatPlainPrice(amount: Double): String {
+        return if (amount % 1.0 == 0.0) {
+            amount.toInt().toString()
+        } else {
+            String.format(java.util.Locale.US, "%.2f", amount)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

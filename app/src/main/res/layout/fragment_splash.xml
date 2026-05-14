@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
             android:gravity="center"
-            android:text="Bir hata oluştu"
+            android:text="@string/splash_error"
             android:textSize="@dimen/text_xl" />
 
         <com.google.android.material.button.MaterialButton
@@ -28,7 +28,7 @@
             android:layout_height="@dimen/error_button_height"
             android:layout_marginTop="@dimen/spacing_lg"
             android:fontFamily="@font/inter_bold"
-            android:text="Yeniden Dene"
+            android:text="@string/retry"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_lg"

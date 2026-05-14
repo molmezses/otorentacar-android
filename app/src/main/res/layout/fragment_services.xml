@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="Hizmetlerimiz"
+            android:text="@string/services"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
-            android:text="Otorentacar ile sunduğumuz avantajlar"
+            android:text="@string/services_subtitle"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_md" />
 

@@ -47,7 +47,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="Otorentacar"
+                            android:text="@string/brand_name"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_lg"
                             android:textStyle="bold" />
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:fontFamily="@font/inter_bold"
-                android:text="Otorentacar"
+                android:text="@string/brand_name"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_3xl"
                 android:textStyle="bold" />
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
                 android:fontFamily="@font/inter_bold"
-                android:text="Hoş Geldiniz"
+                android:text="@string/welcome"
                 android:textColor="@color/primary_green_dark"
                 android:textSize="@dimen/text_lg"
                 android:textStyle="bold" />
@@ -102,7 +102,7 @@
                 android:layout_marginTop="@dimen/spacing_2xs"
                 android:fontFamily="@font/inter_regular"
                 android:lineSpacingExtra="@dimen/spacing_3xs"
-                android:text="Araç kiralama işlemlerini hızlı ve kolay şekilde yönetebilirsiniz."
+                android:text="@string/drawer_info"
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm"
                 android:textStyle="bold" />
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Anasayfa"
+                android:text="@string/home"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Rezervasyonlarım"
+                android:text="@string/my_bookings"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Favorilerim"
+                android:text="@string/my_favorites"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Rezervasyon Sorgula"
+                android:text="@string/reservation_query"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -258,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="Hakkımızda"
+                android:text="@string/about"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -288,7 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
-                android:text="Hizmetlerimiz"
+                android:text="@string/services"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 
@@ -319,7 +319,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_medium"
-                android:text="İletişim"
+                android:text="@string/contact"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
 

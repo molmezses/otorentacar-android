@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="Rezervasyon Sorgula"
+            android:text="@string/reservation_query"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/spacing_2xs"
             android:fontFamily="@font/inter_medium"
             android:lineSpacingExtra="@dimen/spacing_2xs"
-            android:text="Takip kodun ile mevcut rezervasyon bilgilerine hızlıca ulaşabilirsin."
+            android:text="@string/my_bookings_subtitle"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_sm" />
 
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Rezervasyon Takibi"
+                        android:text="@string/reservation_tracking"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
                         android:textStyle="bold" />
@@ -96,7 +96,7 @@
                         android:layout_marginTop="@dimen/spacing_5dp"
                         android:fontFamily="@font/inter_bold"
                         android:lineSpacingExtra="@dimen/spacing_2xs"
-                        android:text="Kodunu girerek mevcut rezervasyon detaylarını görüntüleyebilirsin."
+                        android:text="@string/reservation_tracking_desc"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_sm" />
 
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="REZERVASYON TAKİP KODU"
+                    android:text="@string/reservation_tracking_code"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_md"
                     android:textStyle="bold" />
@@ -178,7 +178,7 @@
                     android:layout_height="@dimen/button_height_70dp"
                     android:layout_marginTop="@dimen/spacing_18dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Rezervasyonumu Bul"
+                    android:text="@string/find_reservation"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_lg"
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_10dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Lütfen rezervasyon kodunu girin."
+                    android:text="@string/please_enter_reservation_code"
                     android:textColor="@android:color/holo_red_dark"
                     android:textSize="@dimen/text_sm"
                     android:visibility="gone" />
@@ -206,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xxl"
             android:fontFamily="@font/inter_bold"
-            android:text="Nasıl Çalışır ? "
+            android:text="@string/how_it_works"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_2xl"
             android:textStyle="bold" />
@@ -257,7 +257,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Takip kodunu gir"
+                        android:text="@string/step_enter_code"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
                         android:textStyle="bold" />
@@ -267,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_regular"
-                        android:text="Rezervasyon tamamlandığında sana verilen kodu yaz."
+                        android:text="@string/step_enter_code_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
 
@@ -324,7 +324,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Sorgulamayı başlat"
+                        android:text="@string/step_start_query"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
                         android:textStyle="bold" />
@@ -334,7 +334,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_regular"
-                        android:text="Butona bastığında sistem rezervasyonunu kontrol eder."
+                        android:text="@string/step_start_query_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
 
@@ -391,7 +391,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Detaylarını görüntüle"
+                        android:text="@string/step_view_details"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_lg"
                         android:textStyle="bold" />
@@ -401,7 +401,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_2xs"
                         android:fontFamily="@font/inter_regular"
-                        android:text="Bulunan rezervasyon detay ekranında açılır."
+                        android:text="@string/step_view_details_desc"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_sm" />
 

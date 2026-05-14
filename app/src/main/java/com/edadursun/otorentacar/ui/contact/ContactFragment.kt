@@ -71,7 +71,8 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
             }
             startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "WhatsApp açılamadı.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.toast_whatsapp_error, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -82,7 +83,7 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
             }
             startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Arama ekranı açılamadı.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.toast_call_error, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -93,7 +94,7 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
             }
             startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "E-posta uygulaması açılamadı.", Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), R.string.toast_email_error, Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -115,7 +116,7 @@ class ContactFragment : Fragment(R.layout.fragment_contact) {
                 startActivity(fallbackIntent)
             }
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Harita açılamadı.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.toast_map_error, Toast.LENGTH_SHORT).show()
         }
     }
 

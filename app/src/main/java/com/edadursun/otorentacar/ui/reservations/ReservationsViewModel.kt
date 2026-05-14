@@ -86,7 +86,7 @@ class ReservationsViewModel(
     private fun formatReservationDateTime(dateTime: String): String {
         return try {
             val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val outputFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("tr"))
+            val outputFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
             val date = inputFormat.parse(dateTime)
             if (date != null) outputFormat.format(date) else dateTime
         } catch (e: Exception) {

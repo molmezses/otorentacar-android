@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.databinding.FragmentMyBookingsBinding
 import com.edadursun.otorentacar.ui.main.MainActivity
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
 
             if (code.isEmpty()) {
                 binding.tvReservationWarning.visibility = View.VISIBLE
-                binding.tvReservationWarning.text = "Lütfen rezervasyon kodunu girin."
+                binding.tvReservationWarning.text = getString(R.string.please_enter_reservation_code)
                 return@setOnClickListener
             }
 
@@ -51,18 +52,18 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
                 when (state) {
                     is MyBookingsUiState.Idle -> {
                         binding.btnFindReservation.isEnabled = true
-                        binding.btnFindReservation.text = "Rezervasyonumu Bul"
+                        binding.btnFindReservation.text = getString(R.string.find_reservation)
                     }
 
                     is MyBookingsUiState.Loading -> {
                         binding.btnFindReservation.isEnabled = false
-                        binding.btnFindReservation.text = "Sorgulanıyor..."
+                        binding.btnFindReservation.text = getString(R.string.querying)
                         binding.tvReservationWarning.visibility = View.GONE
                     }
 
                     is MyBookingsUiState.Success -> {
                         binding.btnFindReservation.isEnabled = true
-                        binding.btnFindReservation.text = "Rezervasyonumu Bul"
+                        binding.btnFindReservation.text = getString(R.string.find_reservation)
                         binding.tvReservationWarning.visibility = View.GONE
 
                         val reservation = state.reservation.`object`
@@ -76,7 +77,9 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
                             )
                             putString(
                                 "vehicleInfo",
-                                "${reservation.vehicleModel.transmission.name} | ${reservation.vehicleModel.engine.name}"
+                                "${VehicleTextTranslator.translate(reservation.vehicleModel.transmission.name)} | ${
+                                    VehicleTextTranslator.translate(reservation.vehicleModel.engine.name)
+                                }"
                             )
                             putString("pickupDateTime", reservation.pickUpDateTime)
                             putString("dropOffDateTime", reservation.dropOffDateTime)
@@ -115,7 +118,7 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
 
                     is MyBookingsUiState.Error -> {
                         binding.btnFindReservation.isEnabled = true
-                        binding.btnFindReservation.text = "Rezervasyonumu Bul"
+                        binding.btnFindReservation.text = getString(R.string.find_reservation)
                         binding.tvReservationWarning.visibility = View.VISIBLE
                         binding.tvReservationWarning.text = state.message
                     }

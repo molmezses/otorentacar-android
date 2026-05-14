@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.data.local.FavoritesManager
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.LayoutItemFeaturedVehicleBinding
@@ -22,9 +23,9 @@ class FeaturedVehicleAdapter(
         // Vehicle verisini kart tasarımına bağlar
         fun bind(item: Vehicle) {
             binding.tvVehicleName.text = item.name
-            binding.tvVehicleType.text = item.type
-            binding.tvTransmission.text = item.transmission
-            binding.tvFuel.text = item.fuel
+            binding.tvVehicleType.text = VehicleTextTranslator.translate(item.type)
+            binding.tvTransmission.text = VehicleTextTranslator.translate(item.transmission)
+            binding.tvFuel.text = VehicleTextTranslator.translate(item.fuel)
             binding.tvPrice.text = item.dailyPrice
 
             // Eğer API'den resim url'i geldiyse Glide ile yükle

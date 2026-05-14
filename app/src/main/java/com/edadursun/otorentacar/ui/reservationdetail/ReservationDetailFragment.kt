@@ -1,17 +1,26 @@
 package com.edadursun.otorentacar.ui.reservationdetail
 
 import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.currency.CurrencyFormatter
+import com.edadursun.otorentacar.core.currency.DisplayCurrency
 import com.edadursun.otorentacar.core.session.TokenStore
 import com.edadursun.otorentacar.data.local.ReservationLocalManager
 import com.edadursun.otorentacar.data.remote.request.AddReservationRequest
@@ -39,6 +48,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private var vehicleTag: String = ""
     private var vehicleDailyPrice: String = ""
     private var vehicleTotalPrice: String = ""
+    private var displayCurrency: DisplayCurrency = DisplayCurrency.EURO
 
     private var pickupMillis: Long = 0L
     private var dropoffMillis: Long = 0L
@@ -47,6 +57,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private var rentalPrice: String = ""
     private var extraPrice: String = ""
     private var totalPrice: String = ""
+    private var totalPriceForApi: String = ""
     private var vehicleImageUrl: String = ""
 
     // API için gerekli id alanları
@@ -55,6 +66,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private var dropOffLocationId: Int = 0
     private var currencyId: String = "4"
     private var paymentMethodId: String = "3"
+    private var selectedPhoneCountryCode: String = "+90"
 
     // Seçilen ek hizmetler ve çocuk yaşları
     private var selectedExtras: ArrayList<String> = arrayListOf()
@@ -65,6 +77,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         _binding = FragmentReservationDetailBinding.bind(view)
 
         readArguments()
+        setupPhoneCountryCodes()
         setupInitialData()
         renderSelectedExtras()
         setupClicks()
@@ -78,6 +91,9 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         vehicleTag = arguments?.getString("vehicleTag").orEmpty()
         vehicleDailyPrice = arguments?.getString("vehicleDailyPrice").orEmpty()
         vehicleTotalPrice = arguments?.getString("vehicleTotalPrice").orEmpty()
+        displayCurrency = arguments?.getString("displayCurrency")
+            ?.let { runCatching { DisplayCurrency.valueOf(it) }.getOrNull() }
+            ?: DisplayCurrency.EURO
 
         pickupMillis = arguments?.getLong("pickupMillis") ?: 0L
         dropoffMillis = arguments?.getLong("dropoffMillis") ?: 0L
@@ -86,6 +102,8 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         rentalPrice = arguments?.getString("rentalPrice").orEmpty()
         extraPrice = arguments?.getString("extraPrice").orEmpty()
         totalPrice = arguments?.getString("totalPrice").orEmpty()
+        totalPriceForApi = arguments?.getString("totalPriceForApi").orEmpty()
+        currencyId = arguments?.getString("currencyId") ?: currencyId
 
         vehicleModelId = arguments?.getInt("vehicleModelId") ?: 0
         pickupLocationId = arguments?.getInt("pickupLocationId") ?: 0
@@ -111,6 +129,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
 
         // Form alanları boş başlasın
         binding.etFullName.setText("")
+        binding.tvPhoneCode.text = selectedPhoneCountryCode
         binding.etPhone.setText("")
         binding.etEmail.setText("")
         binding.etBirthDate.setText("")
@@ -142,7 +161,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
                 if (token.isBlank()) return@setOnClickListener
 
                 val fullName = binding.etFullName.text?.toString()?.trim().orEmpty()
-                val phone = binding.etPhone.text?.toString()?.trim().orEmpty()
+                val phone = buildPhoneForApi()
                 val email = binding.etEmail.text?.toString()?.trim().orEmpty()
                 val birthDate = binding.etBirthDate.text?.toString()?.trim().orEmpty()
                 val flightCode = binding.etFlightCode.text?.toString()?.trim().orEmpty()
@@ -164,7 +183,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
                     email = email,
                     birthDate = formatBirthDateForApi(birthDate),
                     flightNo = flightCode,
-                    totalPrice = cleanPriceForApi(totalPrice),
+                    totalPrice = totalPriceForApi.ifBlank { cleanPriceForApi(totalPrice) },
                     currencyId = currencyId,
                     paymentMethodId = paymentMethodId,
                     dynamicFields = dynamicFields
@@ -173,6 +192,81 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
 
                 viewModel.addReservation(request)
             }
+        }
+    }
+
+    private fun setupPhoneCountryCodes() {
+        val countryCodes = listOf(
+            "+90", "+1", "+44", "+49", "+33", "+31", "+32", "+43",
+            "+41", "+39", "+34", "+30", "+7", "+380", "+994", "+357",
+            "+966", "+971", "+974", "+965", "+968", "+973", "+972", "+962",
+            "+961", "+964", "+98", "+20", "+212", "+216", "+213", "+218",
+            "+91", "+92", "+880", "+86", "+81", "+82", "+60", "+65",
+            "+62", "+66", "+84", "+63", "+61", "+64", "+55", "+52",
+            "+54", "+56", "+57", "+51", "+27"
+        )
+        binding.tvPhoneCode.text = selectedPhoneCountryCode
+        binding.cardPhoneCode.setOnClickListener { anchor ->
+            showPhoneCodeMenu(anchor, countryCodes)
+        }
+    }
+
+    private fun showPhoneCodeMenu(anchor: View, countryCodes: List<String>) {
+        val popupView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.layout_phone_code_dropdown, null, false)
+        val container = popupView.findViewById<LinearLayout>(R.id.phoneCodeContainer)
+
+        val optionHeight = resources.getDimensionPixelSize(R.dimen.option_item_min_height)
+        val horizontalPadding = resources.getDimensionPixelSize(R.dimen.spacing_lg)
+        val textSizeSp = resources.getDimension(R.dimen.text_md) / resources.displayMetrics.scaledDensity
+
+        countryCodes.forEach { code ->
+            val optionView = TextView(requireContext()).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                minHeight = optionHeight
+                gravity = android.view.Gravity.CENTER_VERTICAL
+                setPadding(horizontalPadding, 0, horizontalPadding, 0)
+                text = code
+                textSize = textSizeSp
+                typeface = ResourcesCompat.getFont(requireContext(), R.font.inter_bold)
+            }
+
+            stylePhoneCodeOption(optionView, code == selectedPhoneCountryCode)
+            container.addView(optionView)
+        }
+
+        val popupWindow = PopupWindow(
+            popupView,
+            resources.getDimensionPixelSize(R.dimen.phone_code_dropdown_width),
+            resources.getDimensionPixelSize(R.dimen.phone_code_dropdown_height),
+            true
+        ).apply {
+            isOutsideTouchable = true
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            elevation = 0f
+        }
+
+        for (i in 0 until container.childCount) {
+            container.getChildAt(i).setOnClickListener { option ->
+                selectedPhoneCountryCode = (option as TextView).text.toString()
+                binding.tvPhoneCode.text = selectedPhoneCountryCode
+                popupWindow.dismiss()
+            }
+        }
+
+        popupWindow.showAsDropDown(anchor, 0, 8)
+    }
+
+    private fun stylePhoneCodeOption(view: TextView, isSelected: Boolean) {
+        if (isSelected) {
+            view.setTextColor(requireContext().getColor(R.color.primary_green_dark))
+            view.setBackgroundResource(R.drawable.bg_vehicle_sort_dropdown)
+        } else {
+            view.setTextColor(requireContext().getColor(R.color.text_primary))
+            view.background = null
         }
     }
 
@@ -219,38 +313,56 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         clearFormErrors()
 
         if (fullName.isEmpty()) {
-            binding.tilFullName.error = "Lütfen ad ve soyad girin."
+            binding.tilFullName.error = getString(R.string.validation_full_name_required)
             isValid = false
         } else if (nameParts.size < 2) {
-            binding.tilFullName.error = "Lütfen ad ve soyadınızı birlikte girin."
+            binding.tilFullName.error = getString(R.string.validation_full_name_complete)
             isValid = false
         }
 
         if (phoneRaw.isEmpty()) {
-            binding.tilPhone.error = "Lütfen telefon numarası girin."
+            binding.tilPhone.error = getString(R.string.validation_phone_required)
             isValid = false
         } else if (phoneDigits.length < 10) {
-            binding.tilPhone.error = "Telefon numarası en az 10 rakam olmalıdır."
+            binding.tilPhone.error = getString(R.string.validation_phone_min)
             isValid = false
         } else if (phoneDigits.length > 11) {
-            binding.tilPhone.error = "Telefon numarası en fazla 11 rakam olmalıdır."
+            binding.tilPhone.error = getString(R.string.validation_phone_max)
             isValid = false
         }
 
         if (birthDate.isEmpty()) {
-            binding.tilBirthDate.error = "Lütfen doğum tarihi seçin."
+            binding.tilBirthDate.error = getString(R.string.validation_birth_date_required)
             isValid = false
         }
 
         if (email.isEmpty()) {
-            binding.tilEmail.error = "Lütfen e-posta girin."
+            binding.tilEmail.error = getString(R.string.validation_email_required)
             isValid = false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.tilEmail.error = "Geçerli bir e-posta girin."
+            binding.tilEmail.error = getString(R.string.validation_email_invalid)
             isValid = false
         }
 
         return isValid
+    }
+
+    private fun buildPhoneForApi(): String {
+        val phoneDigits = binding.etPhone.text
+            ?.toString()
+            ?.filter { it.isDigit() }
+            .orEmpty()
+
+        val normalizedLocalNumber = if (
+            selectedPhoneCountryCode == "+90" &&
+            phoneDigits.startsWith("0")
+        ) {
+            phoneDigits.drop(1)
+        } else {
+            phoneDigits
+        }
+
+        return "$selectedPhoneCountryCode$normalizedLocalNumber"
     }
 
     //Ortak error temizleme fonksiyonu
@@ -274,7 +386,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private fun formatReservationDateTime(millis: Long): String {
         if (millis == 0L) return ""
 
-        return SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("tr")).apply {
+        return SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }.format(millis)
     }
@@ -283,7 +395,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private fun formatApiDateTime(millis: Long): String {
         if (millis == 0L) return ""
 
-        return SimpleDateFormat("dd.MM.yyyy HH:mm", Locale("tr")).apply {
+        return SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }.format(millis)
     }
@@ -294,18 +406,18 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
                 when (state) {
                     is ReservationDetailUiState.Idle -> {
                         binding.btnCompleteReservation.isEnabled = true
-                        binding.btnCompleteReservation.text = "Rezervasyonu Tamamla"
+                        binding.btnCompleteReservation.text = getString(R.string.complete_reservation)
                     }
 
                     is ReservationDetailUiState.Loading -> {
                         binding.btnCompleteReservation.isEnabled = false
-                        binding.btnCompleteReservation.text = "Gönderiliyor..."
+                        binding.btnCompleteReservation.text = getString(R.string.submitting)
                         Log.d("ADD_RESERVATION", "Rezervasyon isteği gönderiliyor...")
                     }
 
                     is ReservationDetailUiState.Success -> {
                         binding.btnCompleteReservation.isEnabled = true
-                        binding.btnCompleteReservation.text = "Rezervasyonu Tamamla"
+                        binding.btnCompleteReservation.text = getString(R.string.complete_reservation)
 
                         // Başarıyla oluşan rezervasyon kodunu localde sakla
                         ReservationLocalManager.addReservationCode(
@@ -322,7 +434,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
 
                     is ReservationDetailUiState.Error -> {
                         binding.btnCompleteReservation.isEnabled = true
-                        binding.btnCompleteReservation.text = "Rezervasyonu Tamamla"
+                        binding.btnCompleteReservation.text = getString(R.string.complete_reservation)
 
                         showApiValidationError(state.message)
                         Log.e("ADD_RESERVATION", "Rezervasyon hatası: ${state.message}")
@@ -337,31 +449,31 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
 
         when {
             message.contains("Soyad", ignoreCase = true) -> {
-                binding.tilFullName.error = "Lütfen ad ve soyadınızı eksiksiz girin."
+                binding.tilFullName.error = getString(R.string.validation_full_name_api)
             }
 
             message.contains("Ad", ignoreCase = true) -> {
-                binding.tilFullName.error = "Lütfen adınızı girin."
+                binding.tilFullName.error = getString(R.string.validation_name_api)
             }
 
             message.contains("Telefon", ignoreCase = true) ||
                     message.contains("phone", ignoreCase = true) -> {
-                binding.tilPhone.error = "Lütfen geçerli bir telefon numarası girin."
+                binding.tilPhone.error = getString(R.string.validation_phone_api)
             }
 
             message.contains("Doğum Tarihi", ignoreCase = true) ||
                     message.contains("birth", ignoreCase = true) -> {
-                binding.tilBirthDate.error = "Lütfen geçerli bir doğum tarihi seçin."
+                binding.tilBirthDate.error = getString(R.string.validation_birth_date_api)
             }
 
             message.contains("E-posta", ignoreCase = true) ||
                     message.contains("email", ignoreCase = true) -> {
-                binding.tilEmail.error = "Lütfen geçerli bir e-posta girin."
+                binding.tilEmail.error = getString(R.string.validation_email_api)
             }
 
             message.contains("Uçuş", ignoreCase = true) ||
                     message.contains("flight", ignoreCase = true) -> {
-                binding.tilFlightCode.error = "Lütfen geçerli bir uçuş kodu girin."
+                binding.tilFlightCode.error = getString(R.string.validation_flight_api)
             }
 
             else -> {
@@ -382,7 +494,7 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
     private fun formatBirthDateForApi(dateText: String): String {
         return try {
             val inputFormat = SimpleDateFormat("d MMM yyyy", Locale.ENGLISH)
-            val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale("tr"))
+            val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
             val date = inputFormat.parse(dateText)
             if (date != null) outputFormat.format(date) else ""
         } catch (e: Exception) {
@@ -433,12 +545,12 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         )
 
         val extraPriceMap = mapOf(
-            "1" to "€5",
-            "2" to "€3",
-            "3" to "€4",
-            "4" to "€6",
-            "5" to "€8",
-            "6" to "€2"
+            "1" to formatExtraPrice(5.0),
+            "2" to formatExtraPrice(3.0),
+            "3" to formatExtraPrice(4.0),
+            "4" to formatExtraPrice(6.0),
+            "5" to formatExtraPrice(8.0),
+            "6" to formatExtraPrice(2.0)
         )
 
         val entries = groupedExtras.entries.toList()
@@ -453,15 +565,23 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
             val extraId = entry.key
             val quantity = entry.value
 
-            itemBinding.tvExtraName.text = extraNameMap[extraId] ?: "Ek Hizmet"
-            itemBinding.tvExtraPrice.text = extraPriceMap[extraId] ?: "€0"
-            itemBinding.tvExtraQuantity.text = "Adet: $quantity"
+            itemBinding.tvExtraName.text = extraNameMap[extraId] ?: getString(R.string.extra_service)
+            itemBinding.tvExtraPrice.text = extraPriceMap[extraId] ?: formatExtraPrice(0.0)
+            itemBinding.tvExtraQuantity.text = getString(R.string.quantity_format, quantity)
 
             itemBinding.viewDivider.visibility =
                 if (index == entries.lastIndex) View.GONE else View.VISIBLE
 
             extrasContainer.addView(itemBinding.root)
         }
+    }
+
+    private fun formatExtraPrice(amount: Double): String {
+        return CurrencyFormatter.format(
+            amount = amount,
+            sourceCurrencyCode = "EUR",
+            displayCurrency = displayCurrency
+        )
     }
 
     override fun onDestroyView() {

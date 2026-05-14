@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_screen"
-    android:fillViewport="true">
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +22,9 @@
         android:paddingStart="@dimen/spacing_xl"
         android:paddingTop="@dimen/spacing_xl"
         android:paddingEnd="@dimen/spacing_xl"
-        android:paddingBottom="@dimen/spacing_xxl">
+            android:paddingBottom="@dimen/spacing_5xl"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
         <include
             android:id="@+id/topBar"
@@ -25,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="Mükemmel Sürüşünüzü"
+            android:text="@string/home_title_line_1"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -34,24 +44,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_bold"
-            android:text="Bugün Keşfedin."
+            android:text="@string/home_title_line_2"
             android:textColor="@color/primary_green_dark"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xl"
-            android:background="@drawable/bg_app_card"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_18dp">
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:id="@+id/searchCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_app_card"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold"
-                android:text="PICK-UP LOCATION"
+                android:text="@string/pickup_location"
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm"
                 android:textStyle="bold" />
@@ -92,7 +112,7 @@
                         android:dropDownVerticalOffset="@dimen/spacing_sm"
                         android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
-                        android:hint="Şehir veya Havalimanı"
+                        android:hint="@string/location_hint"
                         android:inputType="none"
                         android:maxLines="2"
                         android:paddingVertical="0dp"
@@ -115,7 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Farklı bir yerde bırak"
+                    android:text="@string/different_dropoff"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_md"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_10dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="DROP-OFF LOCATION"
+                    android:text="@string/dropoff_location"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
                     android:textStyle="bold" />
@@ -188,7 +208,7 @@
                             android:dropDownVerticalOffset="@dimen/spacing_sm"
                             android:ellipsize="end"
                             android:fontFamily="@font/inter_medium"
-                            android:hint="Dönüş Lokasyonu"
+                            android:hint="@string/dropoff_location_hint"
                             android:inputType="none"
                             android:maxLines="2"
                             android:paddingVertical="0dp"
@@ -219,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="PICK-UP DATE"
+                        android:text="@string/pickup_date"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_sm" />
 
@@ -246,7 +266,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_bold"
                                 android:lineSpacingExtra="@dimen/spacing_3xs"
-                                android:text="09 Nis\n2026"
+                                android:text="@string/pickup_date_card_placeholder"
                                 android:textColor="@color/text_primary"
                                 android:textSize="@dimen/text_md"
                                 android:textStyle="bold"
@@ -285,7 +305,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="PICK-UP TIME"
+                        android:text="@string/pickup_time"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_sm" />
 
@@ -354,7 +374,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="DROP-OFF DATE"
+                        android:text="@string/dropoff_date"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_sm" />
 
@@ -381,7 +401,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_bold"
                                 android:lineSpacingExtra="@dimen/spacing_3xs"
-                                android:text="12 Nis\n2026"
+                                android:text="@string/dropoff_date_card_placeholder"
                                 android:textColor="@color/text_primary"
                                 android:textSize="@dimen/text_md"
                                 android:textStyle="bold"
@@ -420,7 +440,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="DROP-OFF TIME"
+                        android:text="@string/dropoff_time"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_sm" />
 
@@ -479,7 +499,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:fontFamily="@font/inter_bold"
-                android:text="Dönüş tarihi, alış tarihinden sonra olmalıdır."
+                android:text="@string/date_validation_error"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="@dimen/text_sm"
                 android:visibility="gone" />
@@ -490,7 +510,7 @@
                 android:layout_height="@dimen/button_height_70dp"
                 android:layout_marginTop="@dimen/spacing_18dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Araç Bul"
+                android:text="@string/find_car"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_lg"
@@ -498,50 +518,58 @@
                 app:backgroundTint="@color/primary_green_dark"
                 app:cornerRadius="@dimen/radius_lg" />
 
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_3xl">
-
-            <TextView
-                android:id="@+id/tvFeaturedTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_md"
-                android:fontFamily="@font/inter_bold"
-                android:text="Öne Çıkan Kiralık Araçlar"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_lg"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/tvSeeAll"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvSeeAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_sm"
-                android:fontFamily="@font/inter_bold"
-                android:text="Tümünü Gör"
-                android:textColor="@color/primary_green_dark"
-                android:textSize="@dimen/text_md"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/tvFeaturedTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvFeaturedTitle" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFeaturedVehicles"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/campaignSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_18dp"
-            android:nestedScrollingEnabled="false" />
+            android:layout_marginTop="0dp">
+
+            <ImageView
+                android:id="@+id/ivCampaignBanner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_campaign_top_offset"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/campaign_banner_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/promo_home"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardWhatsApp"
+        android:layout_width="@dimen/whatsapp_button_size"
+        android:layout_height="@dimen/whatsapp_button_size"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/home_whatsapp_fixed_end"
+        android:layout_marginBottom="@dimen/home_whatsapp_fixed_end"
+        android:clickable="true"
+        android:contentDescription="@string/content_desc_whatsapp"
+        android:focusable="true"
+        app:cardBackgroundColor="#25D366"
+        app:cardCornerRadius="@dimen/whatsapp_button_radius"
+        app:cardElevation="@dimen/spacing_3xs"
+        app:strokeWidth="0dp">
+
+        <ImageView
+            android:layout_width="@dimen/icon_xl"
+            android:layout_height="@dimen/icon_xl"
+            android:layout_gravity="center"
+            android:src="@drawable/whatsapp"
+            android:tint="@color/white"
+            tools:ignore="UseAppTint" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

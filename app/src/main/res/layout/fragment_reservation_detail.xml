@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radius_14dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Rezervasyon Detayı"
+                android:text="@string/reservation_detail"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_2xl"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="Rezervasyon Detayları"
+            android:text="@string/reservation_details"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -71,7 +71,7 @@
             android:layout_marginTop="@dimen/spacing_sm"
             android:fontFamily="@font/inter_medium"
             android:lineSpacingExtra="@dimen/spacing_2xs"
-            android:text="Bilgilerinizi doldurup rezervasyonu tamamlayabilirsiniz."
+            android:text="@string/reservation_detail_desc"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/text_md" />
 
@@ -111,7 +111,7 @@
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/spacing_md"
-                            android:text="POPULAR"
+                            android:text="@string/popular"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_xs"
                             android:textStyle="bold" />
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Araç Adı"
+                        android:text="@string/vehicle_name_placeholder"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_2xl"
                         android:textStyle="bold" />
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_sm"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Özellik 1 | Özellik 2"
+                        android:text="@string/feature_placeholder"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -188,7 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="ALIŞ"
+                        android:text="@string/pickup_short"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
@@ -200,7 +200,7 @@
                         android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
                         android:lineSpacingExtra="@dimen/spacing_2xs"
-                        android:text="Gün Ay Yıl, 00:00"
+                        android:text="@string/reservation_date_placeholder"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -231,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="DÖNÜŞ"
+                        android:text="@string/dropoff_short"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
                         android:textStyle="bold" />
@@ -243,7 +243,7 @@
                         android:layout_marginTop="@dimen/spacing_md"
                         android:fontFamily="@font/inter_medium"
                         android:lineSpacingExtra="@dimen/spacing_2xs"
-                        android:text="Gün Ay Yıl, 00:00"
+                        android:text="@string/reservation_date_placeholder"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md" />
 
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Kişisel Bilgiler"
+                android:text="@string/personal_info"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_xl"
                 android:textStyle="bold" />
@@ -297,7 +297,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="AD SOYAD"
+                    android:text="@string/full_name"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
                     android:textStyle="bold" />
@@ -335,69 +335,123 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_lg"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="TELEFON"
+                            android:text="@string/phone_upper"
                             android:textColor="@color/text_hint"
                             android:textSize="@dimen/text_sm"
                             android:textStyle="bold" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tilPhone"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/spacing_10dp"
-                            app:boxBackgroundColor="@color/bg_input"
-                            app:boxBackgroundMode="filled"
-                            app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
-                            app:boxCornerRadiusBottomStart="@dimen/radius_lg"
-                            app:boxCornerRadiusTopEnd="@dimen/radius_lg"
-                            app:boxCornerRadiusTopStart="@dimen/radius_lg"
-                            app:boxStrokeWidth="0dp"
-                            app:boxStrokeWidthFocused="0dp">
+                            android:orientation="horizontal">
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etPhone"
-                                android:layout_width="match_parent"
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/cardPhoneCode"
+                                android:layout_width="@dimen/phone_country_code_width"
+                                android:layout_height="@dimen/phone_country_code_height"
+                                android:clickable="true"
+                                android:focusable="true"
+                                app:cardBackgroundColor="@color/bg_input"
+                                app:cardCornerRadius="@dimen/radius_lg"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:paddingHorizontal="@dimen/spacing_md">
+
+                                    <TextView
+                                        android:id="@+id/tvPhoneCode"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@font/inter_regular"
+                                        android:gravity="center"
+                                        android:includeFontPadding="false"
+                                        android:maxLines="1"
+                                        android:text="+90"
+                                        android:textColor="@color/text_primary"
+                                        android:textSize="@dimen/text_md" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_sm"
+                                        android:layout_height="@dimen/icon_sm"
+                                        android:layout_marginStart="@dimen/spacing_2xs"
+                                        android:src="@drawable/ic_arrow_down"
+                                        android:tint="@color/primary_green_dark"
+                                        tools:ignore="UseAppTint" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <Space
+                                android:layout_width="@dimen/spacing_sm"
+                                android:layout_height="wrap_content" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilPhone"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_regular"
-                                android:hint=""
-                                android:inputType="phone"
-                                android:textColor="@color/text_primary"
-                                android:textColorHint="@color/text_light"
-                                android:textSize="@dimen/text_md"
-                                app:errorTextAppearance="@style/TextInputErrorStyle"
-                                app:errorTextColor="@color/error_red" />
+                                android:layout_weight="1"
+                                app:boxBackgroundColor="@color/bg_input"
+                                app:boxBackgroundMode="filled"
+                                app:boxCornerRadiusBottomEnd="@dimen/radius_lg"
+                                app:boxCornerRadiusBottomStart="@dimen/radius_lg"
+                                app:boxCornerRadiusTopEnd="@dimen/radius_lg"
+                                app:boxCornerRadiusTopStart="@dimen/radius_lg"
+                                app:boxStrokeWidth="0dp"
+                                app:boxStrokeWidthFocused="0dp">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etPhone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_regular"
+                                    android:hint=""
+                                    android:inputType="phone"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_light"
+                                    android:textSize="@dimen/text_md"
+                                    app:errorTextAppearance="@style/TextInputErrorStyle"
+                                    app:errorTextColor="@color/error_red" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <Space
-                        android:layout_width="@dimen/radius_14dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_lg" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_bold"
-                            android:text="DOĞUM TARİHİ"
+                            android:text="@string/birth_date"
                             android:textColor="@color/text_hint"
                             android:textSize="@dimen/text_sm"
                             android:textStyle="bold" />
@@ -442,7 +496,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
-                    android:text="E-POSTA"
+                    android:text="@string/email_upper"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
                     android:textStyle="bold" />
@@ -481,7 +535,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
-                    android:text="UÇUŞ KODU (OPSIYONEL)"
+                    android:text="@string/flight_code_optional"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm"
                     android:textStyle="bold" />
@@ -551,7 +605,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_10dp"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Ödeme Özeti"
+                        android:text="@string/payment_summary"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_2xl"
                         android:textStyle="bold" />
@@ -567,7 +621,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Araç Kiralama Bedeli"
+                        android:text="@string/rental_price"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
                         app:layout_constraintStart_toStartOf="parent"
@@ -596,7 +650,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Ek Hizmetler"
+                        android:text="@string/extra_services"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
                         app:layout_constraintStart_toStartOf="parent"
@@ -627,7 +681,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_lg"
                     android:fontFamily="@font/inter_bold"
-                    android:text="GENEL TOPLAM"
+                    android:text="@string/grand_total"
                     android:textColor="@color/primary_green_dark"
                     android:textSize="@dimen/text_sm"
                     android:textStyle="bold" />
@@ -667,7 +721,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Ek Hizmetler"
+                    android:text="@string/extra_services"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_2xl"
                     android:textStyle="bold" />
@@ -689,7 +743,7 @@
             android:layout_height="@dimen/button_height_70dp"
             android:layout_marginTop="@dimen/spacing_22dp"
             android:fontFamily="@font/inter_bold"
-            android:text="Rezervasyonu Tamamla"
+            android:text="@string/complete_reservation"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_lg"

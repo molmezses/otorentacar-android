@@ -3,6 +3,7 @@ package com.edadursun.otorentacar.ui.allvehicles
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.core.network.RetrofitProvider
 import com.edadursun.otorentacar.core.session.TokenStore
 import com.edadursun.otorentacar.data.model.Vehicle
@@ -101,17 +102,21 @@ class AllVehiclesViewModel : ViewModel() {
         return Vehicle(
             id = modelId,
             name = brand.name + " " + name,
-            type = type.name,
-            transmission = transmission.name,
-            fuel = engine.name,
+            type = VehicleTextTranslator.translate(type.name),
+            transmission = VehicleTextTranslator.translate(transmission.name),
+            fuel = VehicleTextTranslator.translate(engine.name),
             dailyPrice = dailyPriceText,
             totalPrice = totalPriceText,
             passengerCount = maxPassenger.toString(),
             bagCount = maxBigBaggage.toString(),
-            tag = vehicleModelClass.name,
+            tag = VehicleTextTranslator.translate(vehicleModelClass.name),
             imageResId = R.drawable.ic_directions_car,
             imageUrl = buildImageUrl(imageList.firstOrNull().orEmpty()),
-            orderNo = orderNo
+            orderNo = orderNo,
+            dailyPriceAmount = dailyPriceValue,
+            totalPriceAmount = totalPriceValue,
+            currencyCode = pricing.currency.code,
+            currencyId = pricing.currency.id
         )
     }
 

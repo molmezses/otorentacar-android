@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.core.session.TokenStore
 import com.edadursun.otorentacar.data.remote.response.ReservationExtraItemResponse
 import com.edadursun.otorentacar.databinding.FragmentBookingDetailBinding
@@ -163,7 +164,7 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
 
             tvExtraName.text = item.extra.name
             tvExtraPrice.text = "€${formatPrice(item.extra.price)}"
-            tvExtraQuantity.text = "Adet: ${item.count}"
+            tvExtraQuantity.text = getString(R.string.quantity_format, item.count)
             viewDivider.visibility = if (index == extraList.lastIndex) View.GONE else View.VISIBLE
 
             binding.layoutExtrasContainer.addView(itemView)
@@ -185,7 +186,9 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
                         reservationStatus = reservation.status.name
                         vehicleName = reservation.vehicleModel.name
                         vehicleInfo =
-                            "${reservation.vehicleModel.transmission.name} | ${reservation.vehicleModel.engine.name}"
+                            "${VehicleTextTranslator.translate(reservation.vehicleModel.transmission.name)} | ${
+                                VehicleTextTranslator.translate(reservation.vehicleModel.engine.name)
+                            }"
                         pickupDateTime = reservation.pickUpDateTime
                         dropOffDateTime = reservation.dropOffDateTime
                         fullName = reservation.fullname
@@ -245,7 +248,7 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
     private fun formatReservationDateTime(dateTime: String): String {
         return try {
             val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
-            val outputFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale("tr"))
+            val outputFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
             val parsedDate = inputFormat.parse(dateTime)
             if (parsedDate != null) outputFormat.format(parsedDate) else dateTime
         } catch (e: Exception) {

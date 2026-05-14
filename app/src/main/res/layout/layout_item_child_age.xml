@@ -10,7 +10,7 @@
         android:id="@+id/tvChildLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Çocuk Yaşı"
+        android:text="@string/first_child_age"
         android:textColor="@color/text_hint"
         android:textSize="@dimen/text_sm"
         android:textStyle="bold" />

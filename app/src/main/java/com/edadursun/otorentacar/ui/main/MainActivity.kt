@@ -1,17 +1,24 @@
 package com.edadursun.otorentacar.ui.main
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.locale.LocaleHelper
 import com.edadursun.otorentacar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     // Activity'nin view binding referansı
     private lateinit var binding: ActivityMainBinding
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.wrap(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -302,6 +309,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Geri tuşuna basıldığında drawer açıksa önce onu kapatır
+    fun onLanguageClick(view: View) {
+        LocaleHelper.toggleLanguage(this)
+        recreate()
+    }
+
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             closeDrawer()

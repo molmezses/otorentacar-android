@@ -48,7 +48,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/inter_bold"
                 android:maxLines="1"
-                android:text="Araç Adı"
+                android:text="@string/vehicle_name_placeholder"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_lg"
                 android:textStyle="bold" />
@@ -61,7 +61,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
                 android:maxLines="1"
-                android:text="Özelliği"
+                android:text="@string/feature_single_placeholder"
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm"
                 android:textStyle="bold" />

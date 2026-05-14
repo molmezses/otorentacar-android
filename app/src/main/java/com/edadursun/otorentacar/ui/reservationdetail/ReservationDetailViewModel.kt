@@ -9,6 +9,7 @@ import com.edadursun.otorentacar.data.repository.ReservationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 sealed class ReservationDetailUiState {
     object Idle : ReservationDetailUiState()
@@ -35,9 +36,16 @@ class ReservationDetailViewModel : ViewModel() {
                 _uiState.value = ReservationDetailUiState.Success(response)
             }.onFailure { error ->
                 _uiState.value = ReservationDetailUiState.Error(
-                    error.message ?: "Rezervasyon oluşturulamadı"
+                    error.message ?: localized(
+                        "Rezervasyon oluşturulamadı",
+                        "Reservation could not be created"
+                    )
                 )
             }
         }
+    }
+
+    private fun localized(tr: String, en: String): String {
+        return if (Locale.getDefault().language == "en") en else tr
     }
 }

@@ -1,17 +1,18 @@
 package com.edadursun.otorentacar.ui.home
 
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.edadursun.otorentacar.R
 import com.edadursun.otorentacar.databinding.FragmentHomeBinding
-import com.edadursun.otorentacar.ui.home.adapter.FeaturedVehicleAdapter
 import com.edadursun.otorentacar.ui.main.MainActivity
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
@@ -37,22 +38,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     // Home ekranına ait ViewModel
     private val viewModel: HomeViewModel by viewModels()
 
-    // Öne çıkan araçlar adapterı
-    private lateinit var featuredVehicleAdapter: FeaturedVehicleAdapter
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentHomeBinding.bind(view)
 
         // Ekran ilk açıldığında başlangıç kurulumları
         setupInitialDateTime()
-        setupFeaturedVehicles()
         setupClicks()
         setupInitialState()
 
         // ViewModel state'lerini dinle ve lokasyonları çek
         observeLocations()
-        observeFeaturedVehicles()
         setupLocationDropdowns()
         viewModel.fetchLocations()
     }
@@ -72,6 +68,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         // Araç Bul butonu: tarih kontrolü yapar ve araç listesine gider
         binding.btnFindCar.setOnClickListener {
             navigateToAllVehicles()
+        }
+
+        binding.cardWhatsApp.setOnClickListener {
+            openWhatsApp("905317098838")
         }
 
         // Farklı yerde bırak switch'i açılırsa drop-off alanını göster
@@ -130,10 +130,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )
         }
 
-        // Tüm araçları gör ekranına git
-        binding.tvSeeAll.setOnClickListener {
-            navigateToAllVehicles()
-        }
     }
 
     // Araç Bul ve Tümünü Gör için ortak yönlendirme fonksiyonu
@@ -141,7 +137,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val pickupLocation = viewModel.selectedPickupLocation.value
 
         if (pickupLocation == null) {
-            binding.tvDateValidationError.text = "Lütfen alış lokasyonu seçin."
+            binding.tvDateValidationError.text = getString(R.string.please_select_pickup_location)
             binding.tvDateValidationError.visibility = View.VISIBLE
             return
         }
@@ -172,8 +168,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             minPickupTime.add(Calendar.HOUR_OF_DAY, 1)
 
             if (pickupDateTime.before(minPickupTime)) {
-                binding.tvDateValidationError.text =
-                    "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                binding.tvDateValidationError.text = getString(R.string.pickup_time_today_error)
                 binding.tvDateValidationError.visibility = View.VISIBLE
                 return
             }
@@ -183,16 +178,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             minDropOffDate.add(Calendar.DAY_OF_MONTH, 1)
 
             if (dropOffDateTime.before(minDropOffDate)) {
-                binding.tvDateValidationError.text =
-                    "Bugün alınan araç için iade tarihi en az yarın olmalıdır."
+                binding.tvDateValidationError.text = getString(R.string.dropoff_today_error)
                 binding.tvDateValidationError.visibility = View.VISIBLE
                 return
             }
         } else {
             // Pickup bugün değilse, iade tarihi-saati pickup'tan önce olamaz
             if (dropOffDateTime.before(pickupDateTime)) {
-                binding.tvDateValidationError.text =
-                    "İade saati, alış saatinden önce olamaz."
+                binding.tvDateValidationError.text = getString(R.string.return_time_error)
                 binding.tvDateValidationError.visibility = View.VISIBLE
                 return
             }
@@ -255,16 +248,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         // İstersen burada toast/snackbar gösterebilirsin
                     }
                 }
-            }
-        }
-    }
-
-    // Gerçek API'den gelen öne çıkan araçları dinler ve recycler'a basar
-    private fun observeFeaturedVehicles() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.featuredVehicles.collect { vehicles ->
-                featuredVehicleAdapter = FeaturedVehicleAdapter(vehicles)
-                binding.rvFeaturedVehicles.adapter = featuredVehicleAdapter
             }
         }
     }
@@ -370,7 +353,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             .setTimeFormat(TimeFormat.CLOCK_24H)
             .setHour(calendar.get(Calendar.HOUR_OF_DAY))
             .setMinute(calendar.get(Calendar.MINUTE))
-            .setTitleText("Saat Seç")
+            .setTitleText(getString(R.string.time_picker_title))
             .setInputMode(INPUT_MODE_KEYBOARD)
             .build()
 
@@ -401,7 +384,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
                     if (tempCalendar.before(minPickupTime)) {
                         binding.tvDateValidationError.text =
-                            "Bugün için alış saati en erken şu andan 1 saat sonrası olabilir."
+                            getString(R.string.pickup_time_today_error)
                         binding.tvDateValidationError.visibility = View.VISIBLE
                         return@addOnPositiveButtonClickListener
                     }
@@ -479,13 +462,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     // Kart içindeki tarih formatı: 09 Nis\n2026
     private fun formatDateForCard(calendar: Calendar): String {
-        val dayFormat = SimpleDateFormat("dd", Locale("tr")).apply {
+        val dayFormat = SimpleDateFormat("dd", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }
-        val monthFormat = SimpleDateFormat("MMM", Locale("tr")).apply {
+        val monthFormat = SimpleDateFormat("MMM", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }
-        val yearFormat = SimpleDateFormat("yyyy", Locale("tr")).apply {
+        val yearFormat = SimpleDateFormat("yyyy", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }
 
@@ -498,7 +481,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     // Kart içindeki saat formatı: 10:00
     private fun formatTimeForCard(calendar: Calendar): String {
-        return SimpleDateFormat("HH:mm", Locale("tr")).apply {
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).apply {
             timeZone = turkeyTimeZone
         }.format(calendar.time)
     }
@@ -525,36 +508,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return calendar
     }
 
-    // RecyclerView ilk kurulumunu yapar
-    private fun setupFeaturedVehicles() {
-        featuredVehicleAdapter = FeaturedVehicleAdapter(emptyList())
-        binding.rvFeaturedVehicles.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvFeaturedVehicles.adapter = featuredVehicleAdapter
+    // Kampanya görseli featured araç listesinin yerini aldığı için burada ekstra istek atmıyoruz.
+    private fun refreshFeaturedVehiclesIfPossible() {
+        return
     }
 
-    // Lokasyon ve tarih bilgileri hazırsa featured araçları API'den çeker
-    private fun refreshFeaturedVehiclesIfPossible() {
-        val pickupLocation = viewModel.selectedPickupLocation.value ?: return
-
-        val dropOffLocation = if (
-            binding.switchDrop.isChecked &&
-            viewModel.selectedDropOffLocation.value != null
-        ) {
-            viewModel.selectedDropOffLocation.value
-        } else {
-            pickupLocation
-        } ?: return
-
-        val pickupDateTime = getPickupDateTime()
-        val dropOffDateTime = getDropOffDateTime()
-
-        viewModel.fetchFeaturedVehicles(
-            pickupMillis = pickupDateTime.timeInMillis,
-            dropoffMillis = dropOffDateTime.timeInMillis,
-            pickupLocationId = pickupLocation.id,
-            dropOffLocationId = dropOffLocation.id
-        )
+    private fun openWhatsApp(phone: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://wa.me/$phone")
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(requireContext(), R.string.toast_whatsapp_error, Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     override fun onDestroyView() {

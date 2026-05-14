@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edadursun.otorentacar.R
+import com.edadursun.otorentacar.core.currency.CurrencyFormatter
+import com.edadursun.otorentacar.core.currency.DisplayCurrency
+import com.edadursun.otorentacar.core.locale.VehicleTextTranslator
 import com.edadursun.otorentacar.data.local.FavoritesManager
 import com.edadursun.otorentacar.data.model.Vehicle
 import com.edadursun.otorentacar.databinding.LayoutItemAllVehicleBinding
@@ -12,6 +15,7 @@ import com.edadursun.otorentacar.databinding.LayoutItemAllVehicleBinding
 // Tüm araçları listelemek için kullanılan adapter
 class AllVehiclesAdapter(
     private val items: List<Vehicle>,
+    private val displayCurrency: DisplayCurrency,
     private val onSelectClick: (Vehicle) -> Unit
 ) : RecyclerView.Adapter<AllVehiclesAdapter.AllVehiclesViewHolder>() {
 
@@ -22,15 +26,26 @@ class AllVehiclesAdapter(
 
         // Vehicle verisini kart içindeki alanlara yerleştirir
         fun bind(item: Vehicle) {
-            binding.tvTag.text = item.tag
+            binding.tvTag.text = VehicleTextTranslator.translate(item.tag)
             binding.tvVehicleName.text = item.name
-            binding.tvVehicleType.text = item.type
-            binding.tvTransmission.text = item.transmission
-            binding.tvFuel.text = item.fuel
+            binding.tvVehicleType.text = VehicleTextTranslator.translate(item.type)
+            binding.tvTransmission.text = VehicleTextTranslator.translate(item.transmission)
+            binding.tvFuel.text = VehicleTextTranslator.translate(item.fuel)
             binding.tvPassenger.text = item.passengerCount
             binding.tvBag.text = item.bagCount
-            binding.tvPrice.text = item.dailyPrice
-            binding.total.text = item.totalPrice
+            val displayDailyPrice = CurrencyFormatter.format(
+                amount = item.dailyPriceAmount,
+                sourceCurrencyCode = item.currencyCode,
+                displayCurrency = displayCurrency
+            )
+            val displayTotalPrice = CurrencyFormatter.format(
+                amount = item.totalPriceAmount,
+                sourceCurrencyCode = item.currencyCode,
+                displayCurrency = displayCurrency
+            )
+
+            binding.tvPrice.text = displayDailyPrice
+            binding.total.text = displayTotalPrice
 
             // Eğer araç için gerçek image url geldiyse onu yükle
             if (item.imageUrl.isNotBlank()) {
@@ -61,7 +76,12 @@ class AllVehiclesAdapter(
 
             // Kullanıcı seç butonuna bastığında dışarıya seçilen aracı gönder
             binding.btnSelect.setOnClickListener {
-                onSelectClick(item)
+                onSelectClick(
+                    item.copy(
+                        dailyPrice = displayDailyPrice,
+                        totalPrice = displayTotalPrice
+                    )
+                )
             }
         }
 

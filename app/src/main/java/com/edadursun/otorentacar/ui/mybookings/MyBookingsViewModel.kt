@@ -9,6 +9,7 @@ import com.edadursun.otorentacar.data.repository.ReservationQueryRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 // MyBookings ekranında kullanılacak UI state yapısı
 sealed class MyBookingsUiState {
@@ -35,7 +36,7 @@ class MyBookingsViewModel : ViewModel() {
 
             // Token yoksa hata ver
             if (token.isBlank()) {
-                _uiState.value = MyBookingsUiState.Error("Token bulunamadı.")
+                _uiState.value = MyBookingsUiState.Error(localized("Token bulunamadı.", "Token not found."))
                 return@launch
             }
 
@@ -53,9 +54,13 @@ class MyBookingsViewModel : ViewModel() {
                 _uiState.value = MyBookingsUiState.Success(response)
             }.onFailure { error ->
                 _uiState.value = MyBookingsUiState.Error(
-                    error.message ?: "Rezervasyon bulunamadı"
+                    error.message ?: localized("Rezervasyon bulunamadı", "Reservation not found")
                 )
             }
         }
+    }
+
+    private fun localized(tr: String, en: String): String {
+        return if (Locale.getDefault().language == "en") en else tr
     }
 }

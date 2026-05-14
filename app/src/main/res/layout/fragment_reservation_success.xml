@@ -39,7 +39,7 @@
             android:layout_marginTop="@dimen/spacing_25dp"
             android:fontFamily="@font/inter_bold"
             android:gravity="center"
-            android:text="Rezervasyon Başarıyla Oluşturuldu"
+            android:text="@string/reservation_success_title"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_3xl"
             android:textStyle="bold" />
@@ -51,7 +51,7 @@
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/spacing_2xs"
-            android:text="Rezervasyonunuz sisteme kaydedildi. Aşağıdaki takip kodu ile rezervasyon detayınızı görüntüleyebilirsiniz."
+            android:text="@string/reservation_success_desc"
             android:textColor="@color/text_hint"
             android:textSize="@dimen/text_md" />
 
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:gravity="center"
-                    android:text="Takip Kodu"
+                    android:text="@string/tracking_code"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_sm" />
 
@@ -97,7 +97,7 @@
                     android:layout_height="@dimen/button_height_60dp"
                     android:layout_marginTop="@dimen/spacing_10dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Kodu Kopyala"
+                    android:text="@string/copy_code"
                     android:textAllCaps="false"
                     android:textColor="@color/primary_green_dark"
                     android:textSize="@dimen/text_lg"
@@ -119,7 +119,7 @@
             android:fontFamily="@font/inter_medium"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/spacing_2xs"
-            android:text="Takip kodunuzu kaybetmeyin. Rezervasyon sorgulama işlemlerinde bu koda ihtiyacınız olacaktır."
+            android:text="@string/tracking_warning"
             android:textColor="@color/text_hint"
             android:textSize="@dimen/text_sm" />
 
@@ -129,7 +129,7 @@
             android:layout_height="@dimen/button_height_70dp"
             android:layout_marginTop="@dimen/success_done_button_margin_top"
             android:fontFamily="@font/inter_bold"
-            android:text="Tamam"
+            android:text="@string/ok"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_lg"

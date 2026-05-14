@@ -14,6 +14,10 @@ data class Vehicle(
     val tag: String,
     val imageResId: Int,
     val imageUrl: String,
-    val orderNo: Int
+    val orderNo: Int,
+    val dailyPriceAmount: Double = 0.0,
+    val totalPriceAmount: Double = 0.0,
+    val currencyCode: String = "EUR",
+    val currencyId: Int = 4
 
 )

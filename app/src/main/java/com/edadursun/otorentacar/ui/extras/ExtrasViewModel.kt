@@ -156,6 +156,7 @@ class ExtrasViewModel : ViewModel() {
             description = description ?: "",
             price = price,
             currencySymbol = currency.symbol,
+            currencyCode = currency.code,
             maxCount = maxCount,
             priceCalculationType = priceCalculationType.name,
             orderNo = orderNo

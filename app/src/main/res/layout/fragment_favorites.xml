@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3xl"
             android:fontFamily="@font/inter_bold"
-            android:text="Favorilerim"
+            android:text="@string/my_favorites"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_4xl"
             android:textStyle="bold" />
@@ -59,7 +59,7 @@
                 android:layout_marginTop="@dimen/spacing_xl"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
-                android:text="Henüz favori aracınız yok"
+                android:text="@string/no_favorites_title"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_lg"
                 android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 android:layout_marginTop="@dimen/spacing_sm"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
-                android:text="Beğendiğiniz araçları favorilere ekleyerek daha sonra hızlıca görüntüleyebilirsiniz."
+                android:text="@string/no_favorites_desc"
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm" />
 

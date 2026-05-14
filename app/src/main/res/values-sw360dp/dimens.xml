@@ -55,6 +55,10 @@
     <dimen name="icon_lg">22dp</dimen>
     <dimen name="icon_xl">24dp</dimen>
     <dimen name="topbar_menu_icon_size">22dp</dimen>
+    <dimen name="topbar_logo_width">118dp</dimen>
+    <dimen name="topbar_logo_height">36dp</dimen>
+    <dimen name="topbar_language_width">78dp</dimen>
+    <dimen name="topbar_language_height">39dp</dimen>
     <dimen name="drawer_close_icon_size">24dp</dimen>
     <dimen name="drawer_menu_icon_size">20dp</dimen>
     <dimen name="filter_sort_icon_size">16dp</dimen>
@@ -148,6 +152,12 @@
 
     <!-- Sort / filter -->
     <dimen name="sort_dropdown_width">200dp</dimen>
+    <dimen name="currency_dropdown_width">190dp</dimen>
+    <dimen name="currency_dropdown_row_height">48dp</dimen>
+    <dimen name="phone_country_code_width">84dp</dimen>
+    <dimen name="phone_country_code_height">52dp</dimen>
+    <dimen name="phone_code_dropdown_width">136dp</dimen>
+    <dimen name="phone_code_dropdown_height">280dp</dimen>
     <dimen name="filter_sort_card_height">48dp</dimen>
 
     <!-- Misc -->
@@ -163,5 +173,10 @@
     <dimen name="reservation_delete_icon_padding">8dp</dimen>
 
     <dimen name="empty_state_icon_size">48dp</dimen>
+    <dimen name="whatsapp_button_size">50dp</dimen>
+    <dimen name="whatsapp_button_radius">25dp</dimen>
+    <dimen name="home_whatsapp_fixed_end">20dp</dimen>
+    <dimen name="home_whatsapp_fixed_bottom">108dp</dimen>
+    <dimen name="home_campaign_top_offset">0dp</dimen>
 
 </resources>
