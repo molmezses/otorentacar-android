@@ -247,10 +247,15 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
     private fun showSortMenu(anchor: View) {
         val popupView = LayoutInflater.from(requireContext())
             .inflate(R.layout.layout_sort_dropdown, null, false)
+        val horizontalPagePadding = resources.getDimensionPixelSize(R.dimen.spacing_xl) * 2
+        val popupWidth = minOf(
+            resources.getDimensionPixelSize(R.dimen.sort_dropdown_width),
+            resources.displayMetrics.widthPixels - horizontalPagePadding
+        )
 
         val popupWindow = PopupWindow(
             popupView,
-            anchor.width,
+            popupWidth,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             true
         ).apply {
@@ -293,7 +298,7 @@ class AllVehiclesFragment : Fragment(R.layout.fragment_all_vehicles) {
         priceDescView.setOnClickListener { selectOption(R.string.sort_price_desc) }
         alphabeticalView.setOnClickListener { selectOption(R.string.sort_az) }
 
-        popupWindow.showAsDropDown(anchor, 0, 12)
+        popupWindow.showAsDropDown(anchor, anchor.width - popupWidth, 12)
     }
 
     private fun applyCurrentSortAndRefresh() {

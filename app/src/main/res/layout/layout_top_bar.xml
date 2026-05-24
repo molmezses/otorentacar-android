@@ -19,15 +19,19 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/logoCard"
-        android:layout_width="@dimen/topbar_logo_width"
+        android:layout_width="0dp"
         android:layout_height="@dimen/topbar_logo_height"
         android:layout_marginStart="@dimen/spacing_lg"
+        android:layout_marginEnd="@dimen/spacing_md"
         android:contentDescription="@string/content_desc_logo"
         app:cardCornerRadius="@dimen/radius_14dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="@id/ivMenu"
+        app:layout_constraintEnd_toStartOf="@id/languageSelector"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@id/ivMenu"
         app:layout_constraintTop_toTopOf="@id/ivMenu"
+        app:layout_constraintWidth_max="@dimen/topbar_logo_width"
         app:strokeWidth="0dp">
 
         <ImageView

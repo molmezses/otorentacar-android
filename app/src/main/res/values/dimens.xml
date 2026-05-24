@@ -101,13 +101,13 @@
 
     <!-- Reservation / Booking -->
     <dimen name="tag_height_28dp">28dp</dimen>
-    <dimen name="vehicle_image_width_150dp">150dp</dimen>
-    <dimen name="vehicle_image_height_100dp">100dp</dimen>
+    <dimen name="vehicle_image_width_150dp">140dp</dimen>
+    <dimen name="vehicle_image_height_100dp">96dp</dimen>
     <dimen name="reservation_track_icon_card_size">58dp</dimen>
     <dimen name="reservation_query_input_height">58dp</dimen>
     <dimen name="how_it_works_step_size">40dp</dimen>
-    <dimen name="booking_detail_vehicle_image_width">170dp</dimen>
-    <dimen name="booking_detail_vehicle_image_height">110dp</dimen>
+    <dimen name="booking_detail_vehicle_image_width">140dp</dimen>
+    <dimen name="booking_detail_vehicle_image_height">96dp</dimen>
 
     <!-- Home -->
     <dimen name="home_location_card_height">60dp</dimen>

@@ -132,13 +132,17 @@
 
                 <TextView
                     android:id="@+id/tvDropInfo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_md"
+                    android:ellipsize="end"
                     android:fontFamily="@font/inter_medium"
+                    android:maxLines="2"
                     android:text="@string/different_dropoff"
                     android:textColor="@color/text_hint"
                     android:textSize="@dimen/text_md"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/switchDrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
