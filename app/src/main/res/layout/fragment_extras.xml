@@ -80,12 +80,12 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="@dimen/spacing_18dp">
+                    android:padding="@dimen/spacing_15dp">
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/extras_vehicle_image_width"
                         android:layout_height="@dimen/extras_vehicle_image_height"
-                        app:cardBackgroundColor="@color/bg_input"
+                        app:cardBackgroundColor="@color/bg_card"
                         app:cardCornerRadius="@dimen/radius_lg"
                         app:cardElevation="0dp"
                         app:strokeWidth="0dp">
@@ -94,7 +94,7 @@
                             android:id="@+id/ivSelectedVehicle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
+                            android:scaleType="fitCenter"
                             android:src="@drawable/ic_directions_car" />
 
                     </com.google.android.material.card.MaterialCardView>
@@ -102,7 +102,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_lg"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -195,12 +195,14 @@
             android:padding="@dimen/spacing_xl">
 
             <LinearLayout
+                android:id="@+id/layoutPaySummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layoutVehicleTotal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -228,6 +230,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutExtraTotal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -255,6 +258,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutGrandTotal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -287,7 +291,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinue"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_70dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/button_height_70dp"
                 android:layout_marginTop="@dimen/spacing_18dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/continue_text"

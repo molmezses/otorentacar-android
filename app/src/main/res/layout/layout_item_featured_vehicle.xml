@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/featured_vehicle_image_height"
             android:layout_marginTop="@dimen/spacing_lg"
-            app:cardBackgroundColor="@color/bg_input"
+            app:cardBackgroundColor="@color/bg_card"
             app:cardCornerRadius="@dimen/radius_lg"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
@@ -90,7 +90,7 @@
                 android:id="@+id/ivVehicle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_directions_car" />
 
         </com.google.android.material.card.MaterialCardView>

@@ -2,8 +2,12 @@ package com.edadursun.otorentacar.ui.bookingdetail
 
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -52,6 +56,7 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentBookingDetailBinding.bind(view)
 
+        adaptLayoutForCompactLargeText()
 
         readArguments()
 
@@ -83,6 +88,45 @@ class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
 
         // Tıklama olaylarını ayarla
         setupClicks()
+    }
+
+    private fun adaptLayoutForCompactLargeText() {
+        val configuration = resources.configuration
+        if (configuration.screenWidthDp > 360 || configuration.fontScale < 1.2f) return
+
+        binding.tvToolbarTitle.maxLines = 1
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+            binding.tvToolbarTitle,
+            14,
+            22,
+            1,
+            TypedValue.COMPLEX_UNIT_SP
+        )
+
+        binding.layoutVehicleSummary.orientation = LinearLayout.VERTICAL
+        binding.layoutVehicleInfo.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        binding.cardVehicleImage.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            resources.getDimensionPixelSize(R.dimen.booking_detail_vehicle_image_height)
+        ).apply {
+            topMargin = resources.getDimensionPixelSize(R.dimen.spacing_md)
+        }
+
+        binding.layoutRentalPeriod.orientation = LinearLayout.VERTICAL
+        binding.cardPickupPeriod.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        binding.spaceRentalPeriod.visibility = View.GONE
+        binding.cardDropOffPeriod.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            topMargin = resources.getDimensionPixelSize(R.dimen.spacing_md)
+        }
     }
 
     // MyBookings ekranından gelen verileri alır

@@ -112,7 +112,8 @@
         <LinearLayout
             android:id="@+id/menuHome"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height_lg"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height_lg"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_5dp"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -133,7 +134,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/home"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -143,7 +146,8 @@
         <LinearLayout
             android:id="@+id/menuReservations"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height_lg"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height_lg"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_5dp"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -164,7 +168,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/my_bookings"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -174,7 +180,8 @@
         <LinearLayout
             android:id="@+id/menuFavorites"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height_lg"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height_lg"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_5dp"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -195,7 +202,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/my_favorites"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -205,7 +214,8 @@
         <LinearLayout
             android:id="@+id/menuBookings"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height_lg"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height_lg"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_5dp"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -226,7 +236,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/reservation_query"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -236,7 +248,8 @@
         <LinearLayout
             android:id="@+id/menuAbout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -257,7 +270,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/about"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />
@@ -267,7 +282,8 @@
         <LinearLayout
             android:id="@+id/menuServices"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -288,16 +304,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="@string/services"
                 android:textColor="@color/text_secondary"
-                android:textSize="@dimen/text_md" />
+                android:textSize="@dimen/text_md"
+                android:fontFamily="@font/inter_medium"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/menuContact"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/drawer_menu_item_height"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/drawer_menu_item_height"
             android:layout_marginStart="@dimen/spacing_lg"
             android:layout_marginTop="@dimen/spacing_sm"
             android:layout_marginEnd="@dimen/spacing_lg"
@@ -318,7 +338,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
+                android:maxLines="2"
                 android:text="@string/contact"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_md" />

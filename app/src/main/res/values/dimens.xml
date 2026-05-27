@@ -38,7 +38,7 @@
     <!-- Text -->
     <dimen name="text_xxs">10sp</dimen>
     <dimen name="text_xs">12sp</dimen>
-    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_sm">13sp</dimen>
     <dimen name="text_md">16sp</dimen>
     <dimen name="text_contact_value">17sp</dimen>
     <dimen name="text_lg">18sp</dimen>
@@ -110,7 +110,7 @@
     <dimen name="booking_detail_vehicle_image_height">96dp</dimen>
 
     <!-- Home -->
-    <dimen name="home_location_card_height">60dp</dimen>
+    <dimen name="home_location_card_height">64dp</dimen>
     <dimen name="home_date_time_card_height">72dp</dimen>
 
     <!-- Extras -->
@@ -165,10 +165,10 @@
     <dimen name="back_icon_padding_13dp">13dp</dimen>
 
 
-    <dimen name="favorite_vehicle_image_width">125dp</dimen>
-    <dimen name="favorite_vehicle_image_height">85dp</dimen>
-    <dimen name="favorite_vehicle_fav_size">45dp</dimen>
-    <dimen name="favorite_vehicle_fav_icon_padding">12dp</dimen>
+    <dimen name="favorite_vehicle_image_width">110dp</dimen>
+    <dimen name="favorite_vehicle_image_height">76dp</dimen>
+    <dimen name="favorite_vehicle_fav_size">40dp</dimen>
+    <dimen name="favorite_vehicle_fav_icon_padding">10dp</dimen>
 
     <dimen name="reservation_delete_button_size">40dp</dimen>
     <dimen name="reservation_delete_icon_padding">10dp</dimen>

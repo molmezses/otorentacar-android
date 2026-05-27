@@ -94,7 +94,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCopyCode"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height_60dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/button_height_60dp"
                     android:layout_marginTop="@dimen/spacing_10dp"
                     android:fontFamily="@font/inter_medium"
                     android:text="@string/copy_code"
@@ -126,7 +127,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDone"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height_70dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_height_70dp"
             android:layout_marginTop="@dimen/success_done_button_margin_top"
             android:fontFamily="@font/inter_bold"
             android:text="@string/ok"

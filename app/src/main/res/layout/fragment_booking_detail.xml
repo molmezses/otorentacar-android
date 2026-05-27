@@ -39,6 +39,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                android:id="@+id/tvToolbarTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radius_14dp"
@@ -179,6 +180,7 @@
             app:strokeWidth="0dp">
 
             <LinearLayout
+                android:id="@+id/layoutVehicleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -186,6 +188,7 @@
                 android:padding="@dimen/spacing_18dp">
 
                 <LinearLayout
+                    android:id="@+id/layoutVehicleInfo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -221,10 +224,11 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardVehicleImage"
                     android:layout_width="@dimen/booking_detail_vehicle_image_width"
                     android:layout_height="@dimen/booking_detail_vehicle_image_height"
                     android:layout_marginStart="@dimen/spacing_lg"
-                    app:cardBackgroundColor="@color/bg_input"
+                    app:cardBackgroundColor="@color/bg_card"
                     app:cardCornerRadius="@dimen/radius_20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
@@ -233,7 +237,7 @@
                         android:id="@+id/ivVehicle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/ic_directions_car" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -243,12 +247,14 @@
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
+            android:id="@+id/layoutRentalPeriod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_18dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPickupPeriod"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -287,10 +293,12 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Space
+                android:id="@+id/spaceRentalPeriod"
                 android:layout_width="@dimen/radius_14dp"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDropOffPeriod"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -632,12 +640,16 @@
                     android:layout_marginTop="@dimen/spacing_18dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="2"
                         android:text="@string/rental_price"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
+                        app:layout_constraintEnd_toStartOf="@id/tvRentalPrice"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -660,12 +672,16 @@
                     android:layout_marginTop="@dimen/radius_14dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="2"
                         android:text="@string/extra_services"
                         android:textColor="@color/text_hint"
                         android:textSize="@dimen/text_md"
+                        app:layout_constraintEnd_toStartOf="@id/tvTaxPrice"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

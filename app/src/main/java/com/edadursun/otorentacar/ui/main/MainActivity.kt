@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         // Alt custom navigation bar'ı ayarla
         setupCustomBottomBar(navController)
+        adaptBottomBarForLargeText()
 
         // Uygulama ilk açıldığında home seçili gelsin
         updateDrawerSelection(R.id.homeFragment)
@@ -84,6 +85,22 @@ class MainActivity : AppCompatActivity() {
             if (navController.currentDestination?.id != R.id.contactFragment) {
                 navController.navigate(R.id.contactFragment)
             }
+        }
+    }
+
+    private fun adaptBottomBarForLargeText() {
+        val configuration = resources.configuration
+        val hideLabels = configuration.fontScale >= 1.2f || configuration.screenWidthDp < 360
+        val labelVisibility = if (hideLabels) View.GONE else View.VISIBLE
+
+        listOf(
+            binding.tvNavHome,
+            binding.tvNavReservations,
+            binding.tvNavFavorites,
+            binding.tvNavBookings,
+            binding.tvNavContact
+        ).forEach { label ->
+            label.visibility = labelVisibility
         }
     }
 

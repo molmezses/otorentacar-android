@@ -46,8 +46,10 @@
 
     <LinearLayout
         android:id="@+id/languageSelector"
-        android:layout_width="@dimen/topbar_language_width"
-        android:layout_height="@dimen/topbar_language_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/topbar_language_width"
+        android:minHeight="@dimen/topbar_language_height"
         android:background="@drawable/bg_language_container"
         android:clickable="true"
         android:contentDescription="@string/content_desc_change_language"
@@ -56,6 +58,7 @@
         android:onClick="onLanguageClick"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_xs"
         app:layout_constraintBottom_toBottomOf="@id/logoCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/logoCard">

@@ -59,7 +59,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_md"
+                    android:ellipsize="end"
                     android:fontFamily="@font/inter_bold"
+                    android:maxLines="2"
                     android:text="Renault Clio"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_xl"
@@ -70,7 +72,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2xs"
+                    android:ellipsize="end"
                     android:fontFamily="@font/inter_medium"
+                    android:maxLines="2"
                     android:text="Economy Hatchback"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_sm" />
@@ -105,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/all_vehicle_image_height"
             android:layout_marginTop="@dimen/spacing_lg"
-            app:cardBackgroundColor="@color/bg_input"
+            app:cardBackgroundColor="@color/bg_card"
             app:cardCornerRadius="@dimen/radius_lg"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
@@ -114,21 +118,24 @@
                 android:id="@+id/ivVehicle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_directions_car" />
 
         </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_18dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -152,13 +159,11 @@
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="@dimen/spacing_18dp"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_18dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -182,13 +187,11 @@
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="@dimen/spacing_18dp"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_18dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -212,13 +215,10 @@
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="@dimen/spacing_18dp"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -242,7 +242,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -250,10 +250,14 @@
             android:layout_marginTop="@dimen/radius_14dp">
 
             <LinearLayout
+                android:id="@+id/layoutPriceBlock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_sm"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnSelect"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -305,12 +309,13 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSelect"
                 android:layout_width="@dimen/all_vehicle_select_button_width"
-                android:layout_height="@dimen/all_vehicle_select_button_height"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/all_vehicle_select_button_height"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/select"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_lg"
+                android:textSize="@dimen/text_md"
                 android:textStyle="bold"
                 app:backgroundTint="@color/primary_green_dark"
                 app:cornerRadius="@dimen/radius_md"

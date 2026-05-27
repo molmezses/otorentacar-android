@@ -40,6 +40,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
+                android:id="@+id/tvToolbarTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radius_14dp"
@@ -89,6 +90,7 @@
             app:strokeWidth="0dp">
 
             <LinearLayout
+                android:id="@+id/layoutVehicleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -96,6 +98,7 @@
                 android:padding="@dimen/spacing_18dp">
 
                 <LinearLayout
+                    android:id="@+id/layoutVehicleInfo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -103,7 +106,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/tag_height_28dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/tag_height_28dp"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="@dimen/radius_14dp"
                         app:cardElevation="0dp"
@@ -111,10 +115,12 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/tag_height_28dp"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/spacing_md"
+                            android:paddingVertical="@dimen/spacing_2xs"
                             android:text="@string/popular"
                             android:textColor="@color/text_secondary"
                             android:textSize="@dimen/text_xs"
@@ -150,10 +156,11 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardVehicleImage"
                     android:layout_width="@dimen/vehicle_image_width_150dp"
                     android:layout_height="@dimen/vehicle_image_height_100dp"
-                    android:layout_marginStart="@dimen/spacing_xs"
-                    app:cardBackgroundColor="@color/bg_input"
+                    android:layout_marginStart="@dimen/spacing_2xs"
+                    app:cardBackgroundColor="@color/bg_card"
                     app:cardCornerRadius="@dimen/radius_lg"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
@@ -162,7 +169,7 @@
                         android:id="@+id/ivVehicle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/ic_directions_car" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -172,12 +179,14 @@
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
+            android:id="@+id/layoutRentalPeriod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_18dp"
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPickupPeriod"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -217,10 +226,12 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Space
+                android:id="@+id/spaceRentalPeriod"
                 android:layout_width="@dimen/radius_14dp"
                 android:layout_height="wrap_content" />
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDropOffPeriod"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -626,12 +637,16 @@
                     android:layout_marginTop="@dimen/spacing_18dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="2"
                         android:text="@string/rental_price"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
+                        app:layout_constraintEnd_toStartOf="@id/tvRentalPrice"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -655,12 +670,16 @@
                     android:layout_marginTop="@dimen/radius_14dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:ellipsize="end"
                         android:fontFamily="@font/inter_medium"
+                        android:maxLines="2"
                         android:text="@string/extra_services"
                         android:textColor="@color/text_secondary"
                         android:textSize="@dimen/text_md"
+                        app:layout_constraintEnd_toStartOf="@id/tvExtraPrice"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -748,7 +767,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCompleteReservation"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height_70dp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_height_70dp"
             android:layout_marginTop="@dimen/spacing_22dp"
             android:fontFamily="@font/inter_bold"
             android:text="@string/complete_reservation"

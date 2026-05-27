@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -76,12 +78,52 @@ class ReservationDetailFragment : Fragment(R.layout.fragment_reservation_detail)
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentReservationDetailBinding.bind(view)
 
+        adaptLayoutForCompactLargeText()
         readArguments()
         setupPhoneCountryCodes()
         setupInitialData()
         renderSelectedExtras()
         setupClicks()
         observeReservationState()
+    }
+
+    private fun adaptLayoutForCompactLargeText() {
+        val configuration = resources.configuration
+        if (configuration.screenWidthDp > 360 || configuration.fontScale < 1.2f) return
+
+        binding.tvToolbarTitle.maxLines = 1
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(
+            binding.tvToolbarTitle,
+            14,
+            22,
+            1,
+            TypedValue.COMPLEX_UNIT_SP
+        )
+
+        binding.layoutVehicleSummary.orientation = LinearLayout.VERTICAL
+        binding.layoutVehicleInfo.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        binding.cardVehicleImage.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            resources.getDimensionPixelSize(R.dimen.vehicle_image_height_100dp)
+        ).apply {
+            topMargin = resources.getDimensionPixelSize(R.dimen.spacing_md)
+        }
+
+        binding.layoutRentalPeriod.orientation = LinearLayout.VERTICAL
+        binding.cardPickupPeriod.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        binding.spaceRentalPeriod.visibility = View.GONE
+        binding.cardDropOffPeriod.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            topMargin = resources.getDimensionPixelSize(R.dimen.spacing_md)
+        }
     }
 
     // Extras ekranından gelen verileri alır

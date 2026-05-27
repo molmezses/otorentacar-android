@@ -78,7 +78,8 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/home_location_card_height"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/home_location_card_height"
                 android:layout_marginTop="@dimen/spacing_10dp"
                 app:cardBackgroundColor="@color/bg_input"
                 app:cardCornerRadius="@dimen/radius_lg"
@@ -87,7 +88,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/home_location_card_height"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/spacing_lg">
@@ -178,7 +180,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/home_location_card_height"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/home_location_card_height"
                     android:layout_marginTop="@dimen/spacing_10dp"
                     app:cardBackgroundColor="@color/bg_input"
                     app:cardCornerRadius="@dimen/radius_lg"
@@ -187,7 +190,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/home_location_card_height"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingHorizontal="@dimen/spacing_lg">
@@ -249,7 +253,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/home_date_time_card_height"
                         android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="@dimen/radius_lg"
@@ -258,7 +263,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/home_date_time_card_height"
                             android:paddingStart="@dimen/radius_14dp"
                             android:paddingTop="@dimen/spacing_5dp"
                             android:paddingEnd="@dimen/radius_14dp"
@@ -315,7 +321,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/home_date_time_card_height"
                         android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="@dimen/radius_lg"
@@ -324,7 +331,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/home_date_time_card_height"
                             android:paddingStart="@dimen/radius_14dp"
                             android:paddingTop="@dimen/spacing_md"
                             android:paddingEnd="@dimen/radius_14dp"
@@ -384,7 +392,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/home_date_time_card_height"
                         android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="@dimen/radius_lg"
@@ -393,7 +402,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/home_date_time_card_height"
                             android:paddingStart="@dimen/radius_14dp"
                             android:paddingTop="@dimen/spacing_md"
                             android:paddingEnd="@dimen/radius_14dp"
@@ -450,7 +460,8 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/home_date_time_card_height"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/home_date_time_card_height"
                         android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="@color/bg_input"
                         app:cardCornerRadius="@dimen/radius_lg"
@@ -459,7 +470,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/home_date_time_card_height"
                             android:paddingStart="@dimen/radius_14dp"
                             android:paddingTop="@dimen/spacing_md"
                             android:paddingEnd="@dimen/radius_14dp"
@@ -511,7 +523,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnFindCar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height_70dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/button_height_70dp"
                 android:layout_marginTop="@dimen/spacing_18dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/find_car"

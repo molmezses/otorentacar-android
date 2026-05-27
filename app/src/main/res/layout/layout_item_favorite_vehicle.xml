@@ -10,36 +10,45 @@
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:minHeight="@dimen/favorite_vehicle_image_height"
         android:padding="@dimen/spacing_lg">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardVehicleImage"
             android:layout_width="@dimen/favorite_vehicle_image_width"
             android:layout_height="@dimen/favorite_vehicle_image_height"
-            app:cardBackgroundColor="@color/bg_input"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            app:cardBackgroundColor="@color/bg_card"
             app:cardCornerRadius="@dimen/radius_lg"
             app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/layoutVehicleInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:strokeWidth="0dp">
 
             <ImageView
                 android:id="@+id/ivVehicle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_directions_car" />
 
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
+            android:id="@+id/layoutVehicleInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_lg"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/cardVehicleImage"
+            app:layout_constraintEnd_toStartOf="@id/cardFav"
+            app:layout_constraintStart_toEndOf="@id/cardVehicleImage"
+            app:layout_constraintTop_toTopOf="@id/cardVehicleImage">
 
             <TextView
                 android:id="@+id/tvVehicleName"
@@ -60,7 +69,7 @@
                 android:layout_marginTop="@dimen/spacing_2xs"
                 android:ellipsize="end"
                 android:fontFamily="@font/inter_medium"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@string/feature_single_placeholder"
                 android:textColor="@color/text_hint"
                 android:textSize="@dimen/text_sm"
@@ -71,7 +80,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2xs"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_bold"
+                android:maxLines="1"
                 android:text="€0"
                 android:textColor="@color/primary_green_dark"
                 android:textSize="@dimen/text_lg"
@@ -86,6 +97,9 @@
             app:cardBackgroundColor="@color/primary_green_light"
             app:cardCornerRadius="@dimen/radius_md"
             app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:strokeWidth="0dp">
 
             <ImageView
@@ -99,6 +113,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
