@@ -11,7 +11,6 @@ The application integrates with live backend services to provide real-time vehic
   <img src="./screenshots/vehicle-list.png" width="180" />
   <img src="./screenshots/extras.png" width="180" />
   <img src="./screenshots/reservation.png" width="180" />
-  <img src="./screenshots/query.png" width="180" />
 </p>
 
 ---
